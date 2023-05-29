@@ -9,40 +9,106 @@ class TestMatrix(unittest.TestCase):
     # Matrix Constructor #
     # ~~~~~~~~~~~~~~~~~~ #
 
-    def test_constructor_with_valid_input(self):
-        # Test with valid input
-        m = Matrix([[1, 2], [3, 4]])
-        self.assertEqual(m.data, [[1, 2], [3, 4]])
-        self.assertEqual(m.shape, (2, 2))
+    def test_init_with_data(self):
 
-    def test_constructor_with_empty_list(self):
-        # Test with empty list
-        with self.assertRaises(ValueError) as context:
-            Matrix([])
-        self.assertEqual(str(context.exception), "Data must not be empty")
+        # Test initialization with data
+        data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        matrix = Matrix(data=data)
+        self.assertEqual(matrix.data, data)
+        self.assertEqual(matrix.shape, (3, 3))
 
-    def test_constructor_with_invalid_input(self):
-        # Test with invalid input (not a list)
-        with self.assertRaises(TypeError) as context:
-            Matrix(123)
-        self.assertEqual(str(context.exception), "Data must be a list")
+        # Test initialization with data of different types
+        data = [[1, 2, 3], [4.0, 5.0, 6.0], [7, 8, 9]]
+        matrix = Matrix(data=data)
+        self.assertEqual(matrix.data, [[1.0, 2.0, 3.0],
+                                       [4.0, 5.0, 6.0],
+                                       [7.0, 8.0, 9.0]])
+        self.assertEqual(matrix.shape, (3, 3))
 
-        # Test with invalid input (not all elements are lists)
-        with self.assertRaises(TypeError) as context:
-            Matrix([[1, 2], 3])
-        self.assertEqual(str(context.exception), "All elements must be lists")
+        # Test initialization with empty data
+        with self.assertRaises(ValueError):
+            matrix = Matrix(data=[])
 
-        # Test with invalid input (not all lists are of the same length)
-        with self.assertRaises(ValueError) as context:
-            Matrix([[1, 2], [3]])
-        self.assertEqual(str(context.exception),
-                         "All lists must be of the same length")
+        # Test initialization with non-list data
+        with self.assertRaises(TypeError):
+            matrix = Matrix(data=1)
 
-        # Test with invalid input (not all elements are of the same type)
-        with self.assertRaises(TypeError) as context:
-            Matrix([[1, 2], [3, 'a']])
-        self.assertEqual(str(context.exception),
-                         "All elements must be of the same type")
+        # Test initialization with non-list elements in data
+        with self.assertRaises(TypeError):
+            matrix = Matrix(data=[1, 2, 3])
+
+        # Test initialization with lists of different lengths
+        with self.assertRaises(ValueError):
+            matrix = Matrix(data=[[1, 2, 3], [4, 5], [7, 8, 9]])
+
+        # Test initialization with elements of different types
+        with self.assertRaises(TypeError):
+            matrix = Matrix(data=[[1, 2, 3], [4, 5, 6], [7, 8, '9']])
+
+    def test_init_with_shape(self):
+        # Test initialization with shape
+        shape = (3, 3)
+        matrix = Matrix(shape=shape)
+        self.assertEqual(matrix.data, [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+        self.assertEqual(matrix.shape, shape)
+
+        shape = (3, 2)
+        matrix = Matrix(shape=shape)
+        self.assertEqual(matrix.data, [[0, 0], [0, 0], [0, 0]])
+        self.assertEqual(matrix.shape, shape)
+
+        # Test initialization with empty shape
+        with self.assertRaises(ValueError):
+            matrix = Matrix(shape=())
+
+        # Test initialization with non-tuple shape
+        with self.assertRaises(TypeError):
+            matrix = Matrix(shape=[])
+
+        # Test initialization with shape of length other than 2
+        with self.assertRaises(ValueError):
+            matrix = Matrix(shape=(3, 3, 3))
+
+        # Test initialization with non-integer elements in shape
+        with self.assertRaises(TypeError):
+            matrix = Matrix(shape=('3', '3'))
+
+        # Test initialization with non-positive elements in shape
+        with self.assertRaises(ValueError):
+            matrix = Matrix(shape=(-3, 3))
+
+    def test_init_with_both_data_and_shape(self):
+        # Test initialization with both data and shape
+        with self.assertRaises(ValueError):
+            Matrix(data=[[1, 2, 3]], shape=(3, 3))
+
+    def test_init_with_none_data_and_shape(self):
+        # Test initialization with none data and shape
+        with self.assertRaises(ValueError):
+            Matrix(data=None, shape=None)
+
+    def test_init_with_float_data(self):
+        # Test initialization with float data
+        data = [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]]
+        matrix = Matrix(data=data)
+        self.assertEqual(matrix.data, data)
+        self.assertEqual(matrix.shape, (3, 3))
+
+    def test_init_with_int_data(self):
+        # Test initialization with int data
+        data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+        matrix = Matrix(data=data)
+        self.assertEqual(matrix.data, [[1.0, 2.0, 3.0],
+                                       [4.0, 5.0, 6.0],
+                                       [7.0, 8.0, 9.0]])
+        self.assertEqual(matrix.shape, (3, 3))
+
+    def test_init_with_bool_data(self):
+        # Test initialization with bool data
+        data = [[True, False], [False, True]]
+        matrix = Matrix(data=data)
+        self.assertEqual(matrix.data, [[1.0, 0.0], [0.0, 1.0]])
+        self.assertEqual(matrix.shape, (2, 2))
 
     # ~~~~~~~~~~~~~~~~~~~~~~ #
     # Matrix Utility methods #
