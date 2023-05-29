@@ -1,6 +1,14 @@
 import unittest
-from Matrix import Matrix
-from Matrix import Vector
+
+try:
+    from ..matrix.matrix import Matrix
+except ImportError as e:
+    print("Error:", e)
+
+try:
+    from ..matrix.vector import Vector
+except ImportError as e:
+    print("Error:", e)
 
 
 class TestMatrix(unittest.TestCase):
@@ -134,6 +142,7 @@ class TestMatrix(unittest.TestCase):
         v = m.reshape_to_vector()
         self.assertIsInstance(v, Vector)
         self.assertEqual(v.data, [1, 2, 3, 4])
+        self.assertEqual(v.shape, 4)
 
     # ~~~~~~~~~~~~~~~~~~~~~~~ #
     # Matrix Arithmetic tests #
