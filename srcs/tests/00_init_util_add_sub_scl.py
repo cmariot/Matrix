@@ -1,14 +1,6 @@
 import unittest
-
-try:
-    from ..matrix.matrix import Matrix
-except ImportError as e:
-    print("Error:", e)
-
-try:
-    from ..matrix.vector import Vector
-except ImportError as e:
-    print("Error:", e)
+from ..matrix.matrix import Matrix
+from ..matrix.vector import Vector
 
 
 class TestMatrix(unittest.TestCase):

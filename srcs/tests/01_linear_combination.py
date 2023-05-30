@@ -1,7 +1,6 @@
 import unittest
 from ..matrix.vector import Vector
-from ..matrix.matrix import Matrix
-from ..matrix import functions as linear_combination
+from ..matrix import linear_combination as linear_combination
 
 
 class TestVector(unittest.TestCase):

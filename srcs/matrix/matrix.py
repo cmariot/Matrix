@@ -1,3 +1,6 @@
+import vector
+
+
 class Matrix:
 
     # ~~~~~~~~~~~ #
@@ -9,7 +12,6 @@ class Matrix:
             data: list = None,
             shape: 'tuple[int]' = None
     ) -> None:
-
         """
             Constructor for the Matrix class
 
@@ -38,52 +40,58 @@ class Matrix:
             raise ValueError("Data and shape cannot both be not None")
 
         if shape is not None:
-
-            if not isinstance(shape, tuple):
-                raise TypeError("Shape must be a tuple")
-            elif len(shape) != 2:
-                raise ValueError("Shape must be of length 2")
-            elif not all(isinstance(x, int) for x in shape):
-                raise TypeError("Shape must only contain integers")
-            elif not all(x > 0 for x in shape):
-                raise ValueError("Shape must only contain positive integers")
-
-            self.data = [[0.
-                          for _ in range(shape[1])]
-                         for _ in range(shape[0])]
-            self.shape = shape
+            self.__init_by_shape__(shape)
 
         elif data is not None:
+            self.__init_by_data__(data)
 
-            if not isinstance(data, list):
-                raise TypeError("Data must be a list")
-            elif len(data) == 0:
-                raise ValueError("Data must not be empty")
+    def __init_by_shape__(self, shape: 'tuple[int]' = None):
+        if not isinstance(shape, tuple):
+            raise TypeError("Shape must be a tuple")
+        elif len(shape) != 2:
+            raise ValueError("Shape must be of length 2")
+        elif not all(isinstance(x, int) for x in shape):
+            raise TypeError("Shape must only contain integers")
+        elif not all(x > 0 for x in shape):
+            raise ValueError("Shape must only contain positive integers")
 
-            if not all(isinstance(x, list) for x in data):
-                raise TypeError("All elements must be lists")
+        self.data = [[0.
+                      for _ in range(shape[1])]
+                     for _ in range(shape[0])]
+        self.shape = shape
 
-            value_length = len(data[0])
-            if value_length == 0:
-                raise ValueError("All lists must not be empty")
-            elif not all(len(x) == value_length for x in data):
-                raise ValueError("All lists must be of the same length")
+    def __init_by_data__(self, data: list = None):
 
-            value_type = type(data[0][0])
-            if value_type in (int, float):
-                value_type = (int, float)
-            for x in data:
-                if not all(isinstance(y, value_type) for y in x):
-                    raise TypeError("All elements must be of the same type")
+        if not isinstance(data, list):
+            raise TypeError("Data must be a list")
+        elif len(data) == 0:
+            raise ValueError("Data must not be empty")
 
-            # Convert all values to float
-            if value_type == int:
-                for i in range(len(data)):
-                    for j in range(len(data[0])):
-                        data[i][j] = float(data[i][j])
+        if not all(isinstance(x, list) for x in data):
+            raise TypeError("All elements must be lists")
 
-            self.data = data
-            self.shape = (len(data), len(data[0]))
+        value_length = len(data[0])
+        if value_length == 0:
+            raise ValueError("All lists must not be empty")
+        elif not all(len(x) == value_length for x in data):
+            raise ValueError("All lists must be of the same length")
+
+        value_type = type(data[0][0])
+        if value_type in (int, float):
+            value_type = (int, float)
+
+        for x in data:
+            if not all(isinstance(y, value_type) for y in x):
+                raise TypeError("All elements must be of the same type")
+
+        # Convert all values to float
+        if value_type in (int, float):
+            for i in range(len(data)):
+                for j in range(len(data[0])):
+                    data[i][j] = float(data[i][j])
+
+        self.data = data
+        self.shape = (len(data), len(data[0]))
 
     # ~~~~~~~~~~~~~~~ #
     # Utility methods #
@@ -103,7 +111,12 @@ class Matrix:
 
     # Reshapes the matrix to a vector
     def reshape_to_vector(self):
-        return Vector([x for y in self.data for x in y])
+        vec = vector.Vector([x for y in self.data for x in y])
+        self.shape = vec.shape
+        self.data = vec.data
+        self.__class__ = vec.__class__
+        self = vec
+        return self
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     # Add, Substract and Scale   #
@@ -148,3 +161,14 @@ class Matrix:
                 self.data[i][j] *= scalar
 
         return self
+
+
+if __name__ == "__main__":
+
+    test = Matrix([[0, 1, 2],
+                   [3, 4, 5],
+                   [6, 7, 8]])
+
+    test.reshape_to_vector()
+
+    print(test)

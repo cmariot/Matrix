@@ -1,3 +1,7 @@
+import vector
+from decimal import Decimal
+
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # Linear Combination         #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -43,14 +47,14 @@ def linear_combination(vectors, coeffs):
     first_vector_shape = vectors[0].shape
 
     for i in range(len(vectors)):
-        if not isinstance(vectors[i], Vector):
+        if not isinstance(vectors[i], vector.Vector):
             raise TypeError("All elements of vectors must be a Vector")
         if not isinstance(coeffs[i], (int, float)):
             raise TypeError("All elements of coeffs must be a number")
         if vectors[i].shape != first_vector_shape:
             raise ValueError("All vectors must be of the same size")
 
-    result = Vector(shape=first_vector_shape)
+    result = vector.Vector(shape=first_vector_shape)
     for i in range(len(vectors)):
         result.data = [
             float(Decimal.fma(Decimal(coeffs[i]), Decimal(v), Decimal(r)))
@@ -60,36 +64,10 @@ def linear_combination(vectors, coeffs):
     return result
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# Linear Interpolation       #
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-# Max Time Complexity: O(n)  #
-# Max Space Complexity: O(n) #
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-
-def lerp(u, v, t):
-    """
-        Returns the linear interpolation between two vectors
-
-        Args:
-            u: A vector
-            v: A vector
-            t: A number
-
-        Raises:
-            TypeError: If u is not a Vector
-            TypeError: If v is not a Vector
-            TypeError: If t is not a number
-            ValueError: If u and v are not of the same size
-    """
-
-    if not isinstance(u, Vector):
-        raise TypeError("U must be a Vector")
-    if not isinstance(v, Vector):
-        raise TypeError("V must be a Vector")
-    if not isinstance(t, (int, float)):
-        raise TypeError("T must be a number")
-    if u.shape != v.shape:
-        raise ValueError("U and V must be of the same size")
-
-    return Vector.linear_combination([u, v], [1 - t, t])
+if __name__ == "__main__":
+    v1 = vector.Vector([1, 2, 3])
+    v2 = vector.Vector([4, 5, 6])
+    vectors = [v1, v2]
+    coeffs = [2, 3]
+    result = linear_combination(vectors, coeffs)
+    print(result)
