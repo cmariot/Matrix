@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2023/12/05 15:48:40 by cmariot          ###   ########.fr        #
+#    Updated: 2022/06/07 22:09:16 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 # **************************************************************************** #
 
 
-NAME			 = Matrix
+NAME			 = libunit.a
 
 
 
@@ -28,17 +28,11 @@ NAME			 = Matrix
 CC				 = c++
 
 
-CFLAGS			 = -Wall -Wextra -Werror -pthread -g3
-LFLAGS			 = -Wall -Wextra -Werror -pthread -g3
+CFLAGS			 = -Wall -Wextra -Werror -pthread -O3
+LFLAGS			 = -Wall -Wextra -Werror -pthread -O3
 
 
-INCLUDES		 = -I srcs/vector
-INCLUDES		+= -I srcs/matrix
-INCLUDES		+= -I unit_tests
-INCLUDES		+= -I unit_tests/framework/includes
-
-
-LIBRARY			 = -L unit_tests/framework -lunit
+INCLUDES		 = -I includes
 
 
 
@@ -47,26 +41,20 @@ LIBRARY			 = -L unit_tests/framework -lunit
 # **************************************************************************** #
 
 
-SRC_ROOTDIR		= unit_tests/
+SRC_ROOTDIR		= srcs/
 
 
-SRC_SUBDIR	    = $(MAIN) \
-				  $(addprefix vector/, $(VECTOR)) \
-				  $(addprefix matrix/, $(MATRIX)) \
+SRC_FILES	    = load_test.cpp \
+				  launch_tests.cpp \
+				  clear_test_list.cpp \
+				  create_log_file.cpp \
+				  execute_test.cpp \
+				  timeout.cpp \
+				  print_test_output.cpp \
+				  results.cpp
 
 
-MAIN			= main.cpp
-
-
-VECTOR			= 00_vector_launcher.cpp \
-				  01_constructor_tests.cpp
-
-
-MATRIX			= 00_matrix_launcher.cpp \
-				  01_constructor_tests.cpp
-
-
-SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
+SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_FILES))
 
 
 
@@ -77,11 +65,11 @@ SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
 
 OBJ_ROOTDIR		= objs/
 
-OBJ_SUBDIR		= $(SRC_SUBDIR:.cpp=.o)
+OBJ_FILES		= $(SRC_FILES:.cpp=.o)
 
-OBJ_DIR 		= $(shell find ./unit_tests -type d | sed s/".\/unit_tests"/".\/objs"/g)
+OBJ_DIR 		= $(shell find ./srcs -type d | sed s/".\/srcs"/".\/objs"/g)
 
-OBJS			= $(addprefix $(OBJ_ROOTDIR), $(OBJ_SUBDIR))
+OBJS			= $(addprefix $(OBJ_ROOTDIR), $(OBJ_FILES))
 
 DEPENDS			:= $(OBJS:.o=.d)
 
@@ -106,7 +94,7 @@ RESET			= \033[0m
 .SILENT : 		all
 
 
-all : 			header $(NAME) footer
+all : 			header $(NAME)
 
 
 $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.cpp
@@ -115,23 +103,13 @@ $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.cpp
 
 
 $(NAME)	: 		$(OBJS)
-				@make -C unit_tests/framework --no-print-directory
-				$(CC) $(LFLAGS) $(OBJS) $(LIBRARY) -o $(NAME)
+				ar rcs $(NAME) $(OBJS)
 				@printf "\n"
 
 
 leaks :			all
-				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=66 ./$(NAME) 2> valgrind.log
+				valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME)
 
-
-showleaks :		all
-				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=66 ./$(NAME)
-
-ft :
-				$(CC) $(CFLAGS) -I containers -D FT=1 main.cpp -o ft
-				$(CC) $(CFLAGS) -I containers main.cpp -o std
-				./ft > ft.log
-				./std > std.log
 
 test :			all
 				./$(NAME)
@@ -139,22 +117,11 @@ test :			all
 
 clean :
 				@rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
-				@rm -rf VECTOR.log MATRIX.log valgrind.log
-				@make clean -C unit_tests/framework --no-print-directory
-				@printf "$(RED)"
-				@printf "Object files removed\n"
-				@printf "$(RESET)"
 
 
 fclean :
-				@rm -rf ft std ft.log std.log
 				@-rm -f $(NAME)
-				@rm -rf VECTOR.log MATRIX.log valgrind.log
 				@-rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
-				@make fclean -C unit_tests/framework --no-print-directory
-				@printf "$(RED)"
-				@printf "Binary and object files removed\n"
-				@printf "$(RESET)"
 
 
 re :			fclean all
@@ -162,21 +129,9 @@ re :			fclean all
 
 header :
 				@printf "$(CYAN)"
-				@printf " __  __    _  _____ ____  _____  __\n"
-				@printf "|  \\/  |  / \\|_   _|  _ \\|_ _\\ \\/ /\n"
-				@printf "| |\\/| | / _ \\ | | | |_) || | \\  /\n"
-				@printf "| |  | |/ ___ \\| | |  _ < | | /  \\ \n"
-				@printf "|_|  |_/_/   \\_\\_| |_| \\_\\___/_/\\_\\ \n\n"
-				@printf "MATRIX COMPILATION\n"
+				@printf "\nLIBUNIT COMPILATION\n"
 				@printf "$(RESET)"
 
-
-footer :
-				@printf "$(CYAN)"
-				@printf "➤     SUCCESS\n"
-				@printf "\nUSAGE\n"
-				@printf "$(RESET)"
-				@printf "./$(NAME)\n"
 
 
 -include $(DEPENDS)
