@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/05 18:37:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/06 13:57:48 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 #define MATRIX_HPP
 
 #include <vector>
+#include <map>
+#include <initializer_list>
+#include "../vector/vector.hpp"
 
 namespace ft
 {
+
+    template <typename T>
+    class Vector;
 
     template <typename T>
     class Matrix
@@ -26,14 +32,7 @@ namespace ft
         typedef T                               value_type;
         typedef T &                             reference;
         typedef const T &                       const_reference;
-        typedef T *                             pointer;
-        typedef const T *                       const_pointer;
-        typedef std::ptrdiff_t                  difference_type;
         typedef size_t                          size_type;
-        typedef std::vector<T>                  row_type;
-        typedef std::vector<std::vector<T> >    matrix_type;
-        typedef std::vector<T>                  column_type;
-        typedef std::vector<std::vector<T> > &  matrix_reference;
 
 
         public:
@@ -42,14 +41,184 @@ namespace ft
             Matrix();
             Matrix(size_type rows, size_type columns);
             Matrix(size_type rows, size_type columns, const_reference val);
-            Matrix(matrix_reference matrix);
+            Matrix(std::initializer_list<std::initializer_list<T> > initList);
             Matrix(const Matrix &copy);
+            Matrix(const ft::Vector<T> &copy);
 
             // Destructor
             ~Matrix();
 
             // Size : return the shape of the matrix (rows, columns)
-            std::pair<uint64_t, uint64_t> size() const;
+            std::map<bool, size_t> size() const;
+
+            // is_square : return true if the matrix is square
+            bool is_square() const;
+
+            // Operator + : Add two matrix
+            Matrix operator+(const Matrix &rhs) const
+            {
+                Matrix result(*this);
+
+                if (result.size() != rhs.size())
+                    throw std::length_error("Matrices are not the same size.");
+                for (size_type i = 0; i < result.size()[0]; i++)
+                    for (size_type j = 0; j < result.size()[1]; j++)
+                        result[i][j] += rhs[i][j];
+                return result;
+            }
+
+            // Operator += : Add two matrix
+            Matrix &operator+=(const Matrix &rhs)
+            {
+                if (this->size() != rhs.size())
+                    throw std::length_error("Matrices are not the same size.");
+                for (size_type i = 0; i < this->size()[0]; i++)
+                    for (size_type j = 0; j < this->size()[1]; j++)
+                        (*this)[i][j] += rhs[i][j];
+                return (*this);
+            }
+
+            // Method add : Add two matrix
+            Matrix &add(const Matrix &rhs)
+            {
+                if (this->size() != rhs.size())
+                    throw std::length_error("Matrices are not the same size.");
+                for (size_type i = 0; i < this->size()[0]; i++)
+                    for (size_type j = 0; j < this->size()[1]; j++)
+                        (*this)[i][j] += rhs[i][j];
+                return (*this);
+            }
+
+            // Operator - : Subtract two matrix
+            Matrix operator-(const Matrix &rhs) const
+            {
+                Matrix result(*this);
+
+                if (result.size() != rhs.size())
+                    throw std::length_error("Matrices are not the same size.");
+                for (size_type i = 0; i < result.size()[0]; i++)
+                    for (size_type j = 0; j < result.size()[1]; j++)
+                        result[i][j] -= rhs[i][j];
+                return result;
+            }
+
+            // Operator -= : Subtract two matrix
+            Matrix &operator-=(const Matrix &rhs)
+            {
+                if (this->size() != rhs.size())
+                    throw std::length_error("Matrices are not the same size.");
+                for (size_type i = 0; i < this->size()[0]; i++)
+                    for (size_type j = 0; j < this->size()[1]; j++)
+                        (*this)[i][j] -= rhs[i][j];
+                return (*this);
+            }
+
+            // Method sub : Subtract two matrix
+            Matrix &sub(const Matrix &rhs)
+            {
+                if (this->size() != rhs.size())
+                    throw std::length_error("Matrices are not the same size.");
+                for (size_type i = 0; i < this->size()[0]; i++)
+                    for (size_type j = 0; j < this->size()[1]; j++)
+                        (*this)[i][j] -= rhs[i][j];
+                return (*this);
+            }
+
+            // Operator * : Multiply a matrix by a scalar
+            Matrix operator*(const_reference rhs) const
+            {
+                Matrix result(*this);
+
+                for (size_type i = 0; i < result.size()[0]; i++)
+                    for (size_type j = 0; j < result.size()[1]; j++)
+                        result[i][j] *= rhs;
+                return result;
+            }
+
+            // Operator *= : Multiply a matrix by a scalar
+            Matrix &operator*=(const_reference rhs)
+            {
+                for (size_type i = 0; i < this->size()[0]; i++)
+                    for (size_type j = 0; j < this->size()[1]; j++)
+                        (*this)[i][j] *= rhs;
+                return (*this);
+            }
+
+            // Method scl : Multiply a matrix by a scalar
+            Matrix &scl(const_reference rhs)
+            {
+                for (size_type i = 0; i < this->size()[0]; i++)
+                    for (size_type j = 0; j < this->size()[1]; j++)
+                        (*this)[i][j] *= rhs;
+                return (*this);
+            }
+
+
+            // Operator << : Display the matrix
+            friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
+            {
+
+                os << "[";
+                for (size_type i = 0; i < matrix.size()[0] ; i++)
+                {
+                    os << "[";
+                    for (size_type j = 0; j < matrix.size()[1]; j++)
+                    {
+                        os << matrix._matrix[i][j];
+                        if (j < matrix.size()[1] - 1)
+                            os << ", ";
+                    }
+                    os << "]";
+                    if (i < matrix.size()[0] - 1)
+                        os << ", ";
+                }
+                os << "]";
+                return (os);
+            }
+
+            // Operator [] : Access element
+            std::vector<T> &operator[](size_type pos)
+            {
+                return _matrix[pos];
+            }
+
+            const std::vector<T> &operator[](size_type pos) const
+            {
+                return _matrix[pos];
+            }
+
+            // Operator = : Assign content
+            Matrix &operator=(const Matrix &rhs)
+            {
+                _matrix.clear();
+                _matrix.resize(rhs.size()[0]);
+                for (size_type i = 0; i < rhs.size()[0]; i++)
+                {
+                    _matrix[i].resize(rhs.size()[1]);
+                    for (size_type j = 0; j < rhs.size()[1]; j++)
+                        _matrix[i][j] = rhs._matrix[i][j];
+                }
+                return (*this);
+            }
+
+            // Operator == : Compare content
+            bool operator==(const Matrix &rhs) const
+            {
+                if (this->size() != rhs.size())
+                    return false;
+                for (size_type i = 0; i < this->size()[0]; i++)
+                    for (size_type j = 0; j < this->size()[1]; j++)
+                        if ((*this)[i][j] != rhs[i][j])
+                            return false;
+                return true;
+            }
+
+            // Operator != : Compare content
+            bool operator!=(const Matrix &rhs) const
+            {
+                return !(*this == rhs);
+            }
+
 
         private:
             std::vector<std::vector<T> > _matrix;
@@ -62,16 +231,16 @@ template <typename T>
 ft::Matrix<T>::Matrix()
 {
     // Create a matrix of 1 rows and 0 columns
-    _matrix.resize(0);
+    _matrix.resize(1);
+    _matrix[0].resize(0);
 }
 
 // Constructor : (rows, columns)
 template <typename T>
 ft::Matrix<T>::Matrix(size_type rows, size_type columns)
 {
-    // Create a matrix of rows rows and columns columns
     _matrix.resize(rows);
-    for (uint64_t i = 0; i < rows; i++)
+    for (size_type i = 0; i < rows; i++)
         _matrix[i].resize(columns);
 }
 
@@ -79,23 +248,25 @@ ft::Matrix<T>::Matrix(size_type rows, size_type columns)
 template <typename T>
 ft::Matrix<T>::Matrix(size_type rows, size_type columns, const_reference val)
 {
-    // Create a matrix of rows rows and columns columns
     _matrix.resize(rows);
-    for (uint64_t i = 0; i < rows; i++)
+    for (size_type i = 0; i < rows; i++)
         _matrix[i].resize(columns, val);
 }
 
-// Constructor : (matrix)
+// Constructor : Initializer list
 template <typename T>
-ft::Matrix<T>::Matrix(matrix_reference matrix)
+ft::Matrix<T>::Matrix(std::initializer_list<std::initializer_list<T> > initList)
 {
-    // Create a matrix of rows rows and columns columns with the values of matrix
-    _matrix.resize(matrix.size());
-    for (uint64_t i = 0; i < matrix.size(); i++)
+    size_type first_line_len = initList.begin()[0].size();
+
+    _matrix.resize(initList.size());
+    for (size_type i = 0; i < initList.size(); i++)
     {
-        _matrix[i].resize(matrix[i].size());
-        for (uint64_t j = 0; j < matrix[i].size(); j++)
-            _matrix[i][j] = matrix[i][j];
+        if (initList.begin()[i].size() != first_line_len)
+            throw std::invalid_argument("All lines must have the same length.");
+        _matrix[i].resize(initList.begin()[i].size());
+        for (size_type j = 0; j < initList.begin()[i].size(); j++)
+            _matrix[i][j] = initList.begin()[i].begin()[j];
     }
 }
 
@@ -103,11 +274,35 @@ ft::Matrix<T>::Matrix(matrix_reference matrix)
 template <typename T>
 ft::Matrix<T>::Matrix(const Matrix &copy)
 {
-    // Create a matrix of rows rows and columns columns
-    _matrix.resize(copy.size().first);
-    for (uint64_t i = 0; i < copy.size().first; i++)
-        _matrix[i].resize(copy.size().second);
+    _matrix.resize(copy.size()[0]);
+    for (size_type i = 0; i < copy.size()[0]; i++)
+    {
+        _matrix[i].resize(copy.size()[1]);
+        for (size_type j = 0; j < copy.size()[1]; j++)
+            _matrix[i][j] = copy._matrix[i][j];
+    }
 }
+
+// Constructor : Copy from Vector
+template <typename T>
+ft::Matrix<T>::Matrix(const ft::Vector<T> &copy)
+{
+    // If the vector is empty, create a matrix of 1 rows and 0 columns
+    if (copy.size() == 0)
+    {
+        _matrix.resize(1);
+        _matrix[0].resize(0);
+        return ;
+    }
+    // Else, create a matrix of n rows and 1 column
+    _matrix.resize(copy.size());
+    for (size_type i = 0; i < copy.size(); i++)
+    {
+        _matrix[i].resize(1);
+        _matrix[i][0] = copy[i];
+    }
+}
+
 
 // Destructor
 template <typename T>
@@ -118,13 +313,17 @@ ft::Matrix<T>::~Matrix()
 
 // Size
 template <typename T>
-std::pair<uint64_t, uint64_t> ft::Matrix<T>::size() const
+std::map<bool, size_t> ft::Matrix<T>::size() const
 {
-    const uint64_t rows = _matrix.size();
-
-    if (rows == 0)
-        return (std::make_pair<uint64_t, uint64_t>(0, 0));
-    return (std::make_pair<uint64_t, uint64_t>(_matrix.size(), _matrix[0].size()));
+    return std::map<bool, size_t> {{0, _matrix.size()}, {1, _matrix[0].size()}};
 }
+
+// is_square
+template <typename T>
+bool ft::Matrix<T>::is_square() const
+{
+    return (_matrix.size() == _matrix[0].size());
+}
+
 
 #endif

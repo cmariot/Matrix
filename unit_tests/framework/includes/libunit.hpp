@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 23:29:59 by cmariot           #+#    #+#             */
-/*   Updated: 2022/08/18 09:02:44 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/06 12:56:24 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,17 @@
 typedef struct s_test {
 	std::string		function;				// Function name
 	std::string		test_name;				// Test name
-	int				(*test_add)(void);		// Function pointer 
+	int				(*test_add)(void);		// Function pointer
 	int				status;					// Exit status
 	std::string		filename;				// Log file for this test
-	std::string		expected_output;		// If expected != output -> Error
+	bool            display_stdout;         // Display stdout or not
+    std::string		expected_output;		// If expected != output -> Error
 	struct s_test	*next;					// Pointer on the next test
 }	t_test;
 
 // Load all the tests with this function before execute them with the launch test function.
 void			load_test(t_test **test, std::string function, std::string test_name,
-					void *function_add, std::string expected_output);
+					void *function_add, const char *expected_output);
 
 int				launch_tests(t_test **test);
 std::ofstream	create_log_file(t_test *test);

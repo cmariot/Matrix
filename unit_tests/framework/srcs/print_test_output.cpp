@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 18:55:57 by cmariot           #+#    #+#             */
-/*   Updated: 2022/08/18 09:03:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/06 13:00:01 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static std::string	get_file_content(std::string file)
 {
 	std::ifstream	ifs(file);
-	
+
 	if (ifs.is_open() == false)
 		return ("");
 	std::string		content(
@@ -57,8 +57,8 @@ static void	check_stdout_output(t_test *test, std::ofstream &fd)
 	else
 	{
 		fd << std::endl;
-		if (output.empty() == false)
-			fd << "[OUTPUT] :" << std::endl << output << std::endl;
+        if (test->display_stdout && output.empty() == false)
+            fd << "[OUTPUT] :" << std::endl << output << std::endl;
 	}
 }
 

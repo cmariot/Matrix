@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2023/12/05 15:48:40 by cmariot          ###   ########.fr        #
+#    Updated: 2023/12/06 13:30:31 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ NAME			 = Matrix
 CC				 = c++
 
 
-CFLAGS			 = -Wall -Wextra -Werror -pthread -g3
-LFLAGS			 = -Wall -Wextra -Werror -pthread -g3
+CFLAGS			 = -Wall -Wextra -Werror -pthread -g3 -stdlib=libc++ -std=c++0x
+LFLAGS			 = -Wall -Wextra -Werror -pthread -g3 -stdlib=libc++ -std=c++0x
 
 
 INCLUDES		 = -I srcs/vector
@@ -59,11 +59,17 @@ MAIN			= main.cpp
 
 
 VECTOR			= 00_vector_launcher.cpp \
-				  01_constructor_tests.cpp
+				  01_constructor_tests.cpp \
+				  02_addition_tests.cpp \
+				  03_substraction_tests.cpp \
+				  04_scale_tests.cpp \
 
 
 MATRIX			= 00_matrix_launcher.cpp \
-				  01_constructor_tests.cpp
+				  01_constructor_tests.cpp \
+				  02_addition_tests.cpp \
+				  03_substraction_tests.cpp \
+				  04_scale_tests.cpp \
 
 
 SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
@@ -134,7 +140,7 @@ ft :
 				./std > std.log
 
 test :			all
-				./$(NAME)
+				@./$(NAME)
 
 
 clean :

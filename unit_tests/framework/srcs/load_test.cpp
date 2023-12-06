@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 22:04:08 by cmariot           #+#    #+#             */
-/*   Updated: 2022/06/07 22:14:20 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/06 12:56:46 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	add_test_to_list(t_test **test, t_test *ret)
 }
 
 static t_test	*new_test_list(std::string function, std::string test_name,
-			void *test_add, std::string expected_output)
+			void *test_add, const char *expected_output)
 {
 	t_test		*new_list;
 
@@ -41,7 +41,16 @@ static t_test	*new_test_list(std::string function, std::string test_name,
 		new_list->function = function;
 		new_list->test_name = test_name;
 		new_list->test_add = (int (*)(void))test_add;
-		new_list->expected_output = expected_output;
+        if (expected_output == NULL)
+        {
+            new_list->expected_output = "";
+            new_list->display_stdout = false;
+        }
+        else
+        {
+            new_list->expected_output = expected_output;
+            new_list->display_stdout = true;
+        }
 		new_list->filename = new_list->function + "_" + new_list->test_name + ".log";
 		new_list->status = -2;
 		new_list->next = NULL;
@@ -60,7 +69,7 @@ static t_test	*new_test_list(std::string function, std::string test_name,
  */
 
 void	load_test(t_test **test, std::string function, std::string test_name,
-			void *function_add, std::string expected_output)
+			void *function_add, const char *expected_output)
 {
 	if (test == NULL)
 		*test = new_test_list(function, test_name,
