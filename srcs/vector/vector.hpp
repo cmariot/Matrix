@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/06 13:19:43 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/07 15:21:58 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "../matrix/matrix.hpp"
 #include <vector>
+#include <list>
 #include <initializer_list>
 
 
@@ -138,6 +139,44 @@ namespace ft
                 return *this;
             }
 
+            // Linear combination : Linear combination of two vectors
+            static Vector linear_combination(std::list<Vector<double> > u, std::list<double> v)
+            {
+                /*
+                Linear combination of a list of vectors and a list of scalars.
+                Use std::fma()
+
+                Lets imagine we have a vector {1.0, 1.0}, we can perform a
+                linear interpolation with [2.0, 4.0] by multiplying the vector by the coefficients.
+
+                -> {2.0, 4.0}
+
+                Now if we have more than 1 vectors, we need to addition the vector values.
+                Let's add a vector {2.0, 2.0} and coefficients [2.0, 1.0]
+
+                -> {2.0, 4.0} + {4.0, 2.0}
+                -> {6.0, 6.0}
+
+                1st : scale vector by the coefficients
+                2nd : addition of the scaled vectors
+                */
+
+                if (u.size() != v.size())
+                    throw std::length_error("Lists are not the same size.");
+
+                // Linear combination
+                ft::Vector<double> result(u.size());
+
+                while (u.size() > 0)
+                {
+                    result += u.front().scl(v.front());
+                    std::cout << "Step " << result << std::endl;
+                    u.pop_front();
+                    v.pop_front();
+                }
+
+                return (result);
+            }
 
             // Operator << : Display the vector
             friend std::ostream &operator<<(std::ostream &os, const Vector &vector)

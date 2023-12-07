@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2023/12/06 13:30:31 by cmariot          ###   ########.fr        #
+#    Updated: 2023/12/06 16:29:23 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,8 @@ VECTOR			= 00_vector_launcher.cpp \
 				  02_addition_tests.cpp \
 				  03_substraction_tests.cpp \
 				  04_scale_tests.cpp \
+				  05_linear_combination_tests.cpp \
+
 
 
 MATRIX			= 00_matrix_launcher.cpp \
