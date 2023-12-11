@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2023/12/06 16:29:23 by cmariot          ###   ########.fr        #
+#    Updated: 2023/12/11 09:53:49 by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ CFLAGS			 = -Wall -Wextra -Werror -pthread -g3 -stdlib=libc++ -std=c++0x
 LFLAGS			 = -Wall -Wextra -Werror -pthread -g3 -stdlib=libc++ -std=c++0x
 
 
-INCLUDES		 = -I srcs/vector
+INCLUDES		= -I srcs
+INCLUDES		+= -I srcs/vector
 INCLUDES		+= -I srcs/matrix
 INCLUDES		+= -I unit_tests
 INCLUDES		+= -I unit_tests/framework/includes
@@ -64,6 +65,7 @@ VECTOR			= 00_vector_launcher.cpp \
 				  03_substraction_tests.cpp \
 				  04_scale_tests.cpp \
 				  05_linear_combination_tests.cpp \
+				  06_linear_interpolation_tests.cpp \
 
 
 
@@ -72,6 +74,7 @@ MATRIX			= 00_matrix_launcher.cpp \
 				  02_addition_tests.cpp \
 				  03_substraction_tests.cpp \
 				  04_scale_tests.cpp \
+				  05_linear_interpolation_tests.cpp \
 
 
 SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))

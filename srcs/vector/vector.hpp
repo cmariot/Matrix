@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/07 15:21:58 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/11 10:14:20 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,42 +140,46 @@ namespace ft
             }
 
             // Linear combination : Linear combination of two vectors
-            static Vector linear_combination(std::list<Vector<double> > u, std::list<double> v)
+            static Vector linear_combination(std::list<Vector<double> > &u, std::list<double> &v)
             {
                 /*
-                Linear combination of a list of vectors and a list of scalars.
-                Use std::fma()
+                Linear combination of two lists u and v is a vector w defined as:
+                w = v1 * u1 + v2 * u2 + ... + vn * un
 
-                Lets imagine we have a vector {1.0, 1.0}, we can perform a
-                linear interpolation with [2.0, 4.0] by multiplying the vector by the coefficients.
+                Example:
 
-                -> {2.0, 4.0}
+                    u = list({1, 0, 0}, {0, 1, 0}, {0, 0, 1})
+                    v = {10, -2, 0.5}
 
-                Now if we have more than 1 vectors, we need to addition the vector values.
-                Let's add a vector {2.0, 2.0} and coefficients [2.0, 1.0]
+                    w = 10 * u1 + (-2) * u2 + 0.5 * u3
+                    w = {10, -2, 0.5}
 
-                -> {2.0, 4.0} + {4.0, 2.0}
-                -> {6.0, 6.0}
+                It's used to get the span of a set of vectors.
+                The span of a set of vectors is the set of all possible linear combinations of the vectors.
 
-                1st : scale vector by the coefficients
-                2nd : addition of the scaled vectors
                 */
 
                 if (u.size() != v.size())
                     throw std::length_error("Lists are not the same size.");
 
-                // Linear combination
-                ft::Vector<double> result(u.size());
+                std::list<Vector<double>>::iterator it_u = u.begin();
+                std::list<double>::iterator         it_v = v.begin();
+                ft::Vector<double>                  lin_comb((*it_u).size());
 
-                while (u.size() > 0)
+                // For each element in u and v
+                for (; it_u != u.end(); ++it_u, ++it_v)
                 {
-                    result += u.front().scl(v.front());
-                    std::cout << "Step " << result << std::endl;
-                    u.pop_front();
-                    v.pop_front();
-                }
 
-                return (result);
+                    // Check if all vectors in u have the same size
+                    if ((*it_u).size() != lin_comb.size())
+                        throw std::length_error("Vectors are not the same size.");
+
+                    // Compute the linear combination
+                    for (size_type i = 0; i < lin_comb.size(); i++)
+                        lin_comb[i] = std::fma((*it_u)[i], *it_v, lin_comb[i]);
+
+                }
+                return lin_comb;
             }
 
             // Operator << : Display the vector
@@ -300,6 +304,7 @@ typename ft::Vector<T>::size_type ft::Vector<T>::size() const
 {
     return _vector.size();
 }
+
 
 
 #endif

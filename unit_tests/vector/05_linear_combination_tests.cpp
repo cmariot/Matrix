@@ -6,12 +6,27 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:09:50 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/07 15:03:21 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/08 12:37:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.hpp"
 #include <list>
+
+
+// Timer function with a static, first call launch the chrono, the second call stop and display the time.
+void timer(void)
+{
+    static std::chrono::time_point<std::chrono::system_clock> start, end;
+    if (start == std::chrono::time_point<std::chrono::system_clock>()) {
+        start = std::chrono::system_clock::now();
+    } else {
+        end = std::chrono::system_clock::now();
+        std::chrono::duration<double> elapsed_seconds = end-start;
+        std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+        start = std::chrono::time_point<std::chrono::system_clock>();
+    }
+}
 
 
 int v_linear_combination_test(void)
@@ -34,7 +49,7 @@ int v_linear_combination_test(void)
         ft::Vector<double> first_example = ft::Vector<double>::linear_combination(l1, l2);
         ft::Vector<double> expected = {10, -2, 0.5};
 
-        std::cout << first_example << std::endl;
+        // std::cout << first_example << std::endl;
         if (first_example != expected)
             return (-1);
 
@@ -51,9 +66,31 @@ int v_linear_combination_test(void)
         ft::Vector<double> second_example = ft::Vector<double>::linear_combination(l3, l4);
         ft::Vector<double> expected2 = {10, 0, 230};
 
-        std::cout << second_example << std::endl;
+        // std::cout << second_example << std::endl;
         if (second_example != expected2)
             return (-1);
+
+        // std::cout << "Optimized with FMA :" << std::endl;
+        // double result = 0.0;
+
+        // timer();
+        // for (size_t i = 0; i < 900000000; ++i)
+        // {
+        //     result = std::fma(42.0, 10.0, result);
+        // }
+        // std::cout << result << std::endl;
+        // timer();
+
+        // std::cout << "Without optimizisation :" << std::endl;
+        // result = 0.0;
+
+        // timer();
+        // for (size_t i = 0; i < 900000000; ++i)
+        // {
+        //     result += 42.0 * 10.0;
+        // }
+        // std::cout << result << std::endl;
+        // timer();
 
     }
 
