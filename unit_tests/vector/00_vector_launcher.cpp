@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:19:08 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/08 12:34:25 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/11 13:43:30 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	vector_launcher(void)
     load_test(&tests, function_name, "Scale                 ", (void *)&v_scale_test, "");
     load_test(&tests, function_name, "Linear combination    ", (void *)&v_linear_combination_test, "");
     load_test(&tests, function_name, "Linear interpolation  ", (void *)&v_linear_interpolation_test, "");
+    load_test(&tests, function_name, "Dot product           ", (void *)&v_dot_product_test, "");
 
 	return (launch_tests(&tests));
 }

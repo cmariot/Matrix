@@ -6,7 +6,7 @@
 #    By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 11:15:47 by cmariot           #+#    #+#              #
-#    Updated: 2023/12/11 09:53:49 by cmariot          ###   ########.fr        #
+#    Updated: 2023/12/11 11:07:57by cmariot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,11 @@ NAME			 = Matrix
 # **************************************************************************** #
 
 
-CC				 = c++
+CC				 = g++ --std=c++0x
 
 
-CFLAGS			 = -Wall -Wextra -Werror -pthread -g3 -stdlib=libc++ -std=c++0x
-LFLAGS			 = -Wall -Wextra -Werror -pthread -g3 -stdlib=libc++ -std=c++0x
+CFLAGS			 = -Wall -Wextra -Werror -pthread -g3
+LFLAGS			 = -Wall -Wextra -Werror -pthread -g3
 
 
 INCLUDES		= -I srcs
@@ -66,6 +66,7 @@ VECTOR			= 00_vector_launcher.cpp \
 				  04_scale_tests.cpp \
 				  05_linear_combination_tests.cpp \
 				  06_linear_interpolation_tests.cpp \
+				  07_dot_product_tests.cpp \
 
 
 

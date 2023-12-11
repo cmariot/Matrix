@@ -6,11 +6,12 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:54:13 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/06 13:57:40 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/11 11:14:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.hpp"
+# include <cstring>
 
 
 int m_substraction_test(void)
