@@ -67,6 +67,7 @@ VECTOR			= 00_vector_launcher.cpp \
 				  05_linear_combination_tests.cpp \
 				  06_linear_interpolation_tests.cpp \
 				  07_dot_product_tests.cpp \
+				  08_norm_tests.cpp \
 
 
 

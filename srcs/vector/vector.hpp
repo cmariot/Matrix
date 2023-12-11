@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/11 14:48:28 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/11 15:39:04 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,39 @@ namespace ft
                 return result;
             }
 
+            double norm_1() const
+            {
+                /*
+                The 1-norm is simply the sum of the absolute values of the columns.
+                */
+
+                double result = 0.0;
+
+                for (size_type i = 0; i < this->size(); i++)
+                    result += std::abs((*this)[i]);
+                return result;
+            }
+
+            double norm() const
+            {
+                /*
+                Euclidean norm is the square root of the sum of the squares of the elements.
+                */
+
+                double result = 0.0;
+
+                for (size_type i = 0; i < this->size(); i++)
+                    result = std::fma((*this)[i], (*this)[i], result);
+                return std::sqrt(result);
+            }
+
+            double norm_inf() const
+            {
+                /*
+                Infinity norm is the maximum absolute row sum of the matrix.
+                */
+               return std::abs((*this)[this->size() - 1]);
+            }
 
             // Operator << : Display the vector
             friend std::ostream &operator<<(std::ostream &os, const Vector &vector)

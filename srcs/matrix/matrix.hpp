@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/11 10:14:16 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/11 15:07:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <vector>
 #include <map>
 #include <initializer_list>
+#include <stdexcept>
+#include <iostream>
 #include "../vector/vector.hpp"
 
 namespace ft
