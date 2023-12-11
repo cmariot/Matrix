@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/11 10:14:20 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/11 15:39:04 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #include <vector>
 #include <list>
 #include <initializer_list>
-
+#include <cmath>
+#include <stdexcept>
+#include <iostream>
 
 namespace ft
 {
@@ -182,6 +184,53 @@ namespace ft
                 return lin_comb;
             }
 
+
+            // Dot product : Dot product of two vectors
+            double dot(const Vector<T> & rhs) const
+            {
+                double result = 0.0;
+
+                if (this->size() != rhs.size())
+                    throw std::length_error("Vectors are not the same size.");
+                for (size_type i = 0; i < this->size(); i++)
+                    result = std::fma((*this)[i], rhs[i], result);
+                return result;
+            }
+
+            double norm_1() const
+            {
+                /*
+                The 1-norm is simply the sum of the absolute values of the columns.
+                */
+
+                double result = 0.0;
+
+                for (size_type i = 0; i < this->size(); i++)
+                    result += std::abs((*this)[i]);
+                return result;
+            }
+
+            double norm() const
+            {
+                /*
+                Euclidean norm is the square root of the sum of the squares of the elements.
+                */
+
+                double result = 0.0;
+
+                for (size_type i = 0; i < this->size(); i++)
+                    result = std::fma((*this)[i], (*this)[i], result);
+                return std::sqrt(result);
+            }
+
+            double norm_inf() const
+            {
+                /*
+                Infinity norm is the maximum absolute row sum of the matrix.
+                */
+               return std::abs((*this)[this->size() - 1]);
+            }
+
             // Operator << : Display the vector
             friend std::ostream &operator<<(std::ostream &os, const Vector &vector)
             {
@@ -224,10 +273,20 @@ namespace ft
             bool operator==(const Vector &rhs) const
             {
                 if (_vector.size() != rhs._vector.size())
+                {
+                    std::cout << "Size is different" << std::endl;
                     return false;
+                }
                 for (size_type i = 0; i < _vector.size(); i++)
+                {
                     if (_vector[i] != rhs._vector[i])
+                    {
+                        std::cout << "Element " << i << " is different" << std::endl;
+                        std::cout << "lhs = " << _vector[i] << std::endl;
+                        std::cout << "rhs = " << rhs._vector[i] << std::endl;
                         return false;
+                    }
+                }
                 return true;
             }
 

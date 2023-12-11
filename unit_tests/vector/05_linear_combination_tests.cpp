@@ -6,12 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:09:50 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/08 12:37:54 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/11 11:12:36 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.hpp"
 #include <list>
+#include <chrono>
 
 
 // Timer function with a static, first call launch the chrono, the second call stop and display the time.

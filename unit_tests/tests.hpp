@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 15:03:15 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/11 09:09:28 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/11 15:03:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int     v_substraction_test(void);
 int     v_scale_test(void);
 int     v_linear_combination_test(void);
 int     v_linear_interpolation_test(void);
+int     v_dot_product_test(void);
+int     v_norm_test(void);
+
 
 
 /* ************************************************************************** */
