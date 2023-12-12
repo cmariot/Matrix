@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/11 15:39:04 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/12 14:00:57 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ namespace ft
             }
 
             // Linear combination : Linear combination of two vectors
-            static Vector linear_combination(std::list<Vector<double> > &u, std::list<double> &v)
+            static Vector linear_combination(const std::list<Vector<double> > &u, const std::list<double> &v)
             {
                 /*
                 Linear combination of two lists u and v is a vector w defined as:
@@ -163,10 +163,12 @@ namespace ft
 
                 if (u.size() != v.size())
                     throw std::length_error("Lists are not the same size.");
+                else if (u.size() == 0)
+                    throw std::length_error("Lists are empty.");
 
-                std::list<Vector<double>>::iterator it_u = u.begin();
-                std::list<double>::iterator         it_v = v.begin();
-                ft::Vector<double>                  lin_comb((*it_u).size());
+                std::list<Vector<double>>::const_iterator it_u = u.begin();
+                std::list<double>::const_iterator         it_v = v.begin();
+                ft::Vector<double>                        lin_comb((*it_u).size());
 
                 // For each element in u and v
                 for (; it_u != u.end(); ++it_u, ++it_v)
@@ -174,7 +176,9 @@ namespace ft
 
                     // Check if all vectors in u have the same size
                     if ((*it_u).size() != lin_comb.size())
-                        throw std::length_error("Vectors are not the same size.");
+                        throw std::length_error("Vectors are not the same dimension.");
+                    else if ((*it_u).size() == 0)
+                        throw std::length_error("Vectors are empty.");
 
                     // Compute the linear combination
                     for (size_type i = 0; i < lin_comb.size(); i++)

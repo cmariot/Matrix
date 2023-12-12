@@ -6,92 +6,157 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:09:50 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/11 11:12:36 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/12 14:12:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.hpp"
 #include <list>
-#include <chrono>
+// #include <chrono>
 
 
-// Timer function with a static, first call launch the chrono, the second call stop and display the time.
-void timer(void)
-{
-    static std::chrono::time_point<std::chrono::system_clock> start, end;
-    if (start == std::chrono::time_point<std::chrono::system_clock>()) {
-        start = std::chrono::system_clock::now();
-    } else {
-        end = std::chrono::system_clock::now();
-        std::chrono::duration<double> elapsed_seconds = end-start;
-        std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
-        start = std::chrono::time_point<std::chrono::system_clock>();
-    }
-}
+// // Timer function with a static, first call launch the chrono, the second call stop and display the time.
+// void timer(void)
+// {
+//     static std::chrono::time_point<std::chrono::system_clock> start, end;
+//     if (start == std::chrono::time_point<std::chrono::system_clock>()) {
+//         start = std::chrono::system_clock::now();
+//     } else {
+//         end = std::chrono::system_clock::now();
+//         std::chrono::duration<double> elapsed_seconds = end-start;
+//         std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+//         start = std::chrono::time_point<std::chrono::system_clock>();
+//     }
+// }
 
 
 int v_linear_combination_test(void)
 {
+
+
+    {
+        ft::Vector<double> v1 = {3, 4};
+        ft::Vector<double> v2 = {5, -3};
+
+        ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+            std::list<ft::Vector<double> >({v1, v2}),
+            std::list<double>({0.5, 0.5})
+        );
+
+        ft::Vector<double> expected = {4, 0.5};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+
     {
         ft::Vector<double> e1 = {1, 0, 0};
         ft::Vector<double> e2 = {0, 1, 0};
         ft::Vector<double> e3 = {0, 0, 1};
 
-        std::list<ft::Vector<double> > l1;
-        l1.push_back(e1);
-        l1.push_back(e2);
-        l1.push_back(e3);
+        ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+            std::list<ft::Vector<double>>({e1, e2, e3}),
+            std::list<double>({10, -2, 0.5}));
 
-        std::list<double> l2;
-        l2.push_back(10);
-        l2.push_back(-2);
-        l2.push_back(0.5);
-
-        ft::Vector<double> first_example = ft::Vector<double>::linear_combination(l1, l2);
         ft::Vector<double> expected = {10, -2, 0.5};
 
-        // std::cout << first_example << std::endl;
-        if (first_example != expected)
+        if (ret != expected)
             return (-1);
+    }
 
-        ft::Vector<double> v1 = {1, 2, 3};
-        ft::Vector<double> v2 = {0, 10, -100};
-        std::list<ft::Vector<double> > l3;
-        l3.push_back(v1);
-        l3.push_back(v2);
 
-        std::list<double> l4;
-        l4.push_back(10);
-        l4.push_back(-2);
+    {
+        ft::Vector<double> e1 = {1, 2, 3};
+        ft::Vector<double> e2 = {0, 10, -100};
 
-        ft::Vector<double> second_example = ft::Vector<double>::linear_combination(l3, l4);
-        ft::Vector<double> expected2 = {10, 0, 230};
+        ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+            std::list<ft::Vector<double>>({e1, e2}),
+            std::list<double>({10, -2}));
 
-        // std::cout << second_example << std::endl;
-        if (second_example != expected2)
+        ft::Vector<double> expected = {10, 0, 230};
+
+        if (ret != expected)
             return (-1);
+    }
 
-        // std::cout << "Optimized with FMA :" << std::endl;
-        // double result = 0.0;
 
-        // timer();
-        // for (size_t i = 0; i < 900000000; ++i)
-        // {
-        //     result = std::fma(42.0, 10.0, result);
-        // }
-        // std::cout << result << std::endl;
-        // timer();
+    // Exceptions :
+    {
 
-        // std::cout << "Without optimizisation :" << std::endl;
-        // result = 0.0;
+        int nb_exception = 0;
 
-        // timer();
-        // for (size_t i = 0; i < 900000000; ++i)
-        // {
-        //     result += 42.0 * 10.0;
-        // }
-        // std::cout << result << std::endl;
-        // timer();
+        // The vectors and the scalars lists must have the same size.
+        try
+        {
+            ft::Vector<double> e1 = {1, 2, 3};
+            ft::Vector<double> e2 = {0, 10, -100};
+
+            ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+                std::list<ft::Vector<double>>({e1, e2}),
+                std::list<double>({10, -2.0, 0.5}));
+            return (-1);
+        }
+        catch (std::exception &e)
+        {
+            if (strcmp(e.what(), "Lists are not the same size.") != 0)
+                return (-1);
+            nb_exception++;
+        }
+
+        // All the vectors in the list must be of the same dimension.
+        try
+        {
+            ft::Vector<double> e1 = {1, 2, 3};
+            ft::Vector<double> e2 = {0, 10};
+
+            ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+                std::list<ft::Vector<double>>({e1, e2}),
+                std::list<double>({10, -2}));
+            return (-1);
+        }
+        catch (std::exception &e)
+        {
+            if (strcmp(e.what(), "Vectors are not the same dimension.") != 0)
+                return (-1);
+            nb_exception++;
+        }
+
+        // Empty vectors.
+        try
+        {
+            ft::Vector<double> e1 = {};
+            ft::Vector<double> e2 = {};
+
+            ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+                std::list<ft::Vector<double>>({e1, e2}),
+                std::list<double>({10, -2}));
+            return (-1);
+        }
+        catch (std::exception &e)
+        {
+            if (strcmp(e.what(), "Vectors are empty.") != 0)
+                return (-1);
+            nb_exception++;
+        }
+
+        // Empty lists.
+        try
+        {
+            ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+                std::list<ft::Vector<double>>({}),
+                std::list<double>({}));
+            return (-1);
+        }
+        catch (std::exception &e)
+        {
+            if (strcmp(e.what(), "Lists are empty.") != 0)
+                return (-1);
+            nb_exception++;
+        }
+
+        if (nb_exception != 4)
+            return (-1);
 
     }
 

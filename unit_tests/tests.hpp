@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 15:03:15 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/11 15:03:41 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/12 11:23:26 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,17 @@
 
 # include "vector.hpp"
 
-int		vector_launcher(void);
-
-int		v_constructor_test(void);
-
-int     v_addition_test(void);
-int     v_substraction_test(void);
-int     v_scale_test(void);
-int     v_linear_combination_test(void);
-int     v_linear_interpolation_test(void);
-int     v_dot_product_test(void);
-int     v_norm_test(void);
-
-
+int	vector_launcher(void);
+int	v_constructor_test(void);
+int v_addition_test(void);
+int v_substraction_test(void);
+int v_scale_test(void);
+int v_linear_combination_test(void);
+int v_linear_interpolation_test(void);
+int v_dot_product_test(void);
+int v_norm_test(void);
+int v_cosine_test(void);
+int v_cross_product_test(void);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -44,14 +42,21 @@ int     v_norm_test(void);
 /* ************************************************************************** */
 
 
-int		matrix_launcher(void);
+int	matrix_launcher(void);
+int	m_constructor_test(void);
+int m_addition_test(void);
+int m_substraction_test(void);
+int m_scale_test(void);
+int m_linear_interpolation_test(void);
+int m_multiplication_test(void);
+int m_trace_test(void);
+int m_transpose_test(void);
+int m_row_echelon_test(void);
+int m_determinant_test(void);
+int m_inverse_test(void);
+int m_rank_test(void);
+int m_projection_test(void);
 
-int		m_constructor_test(void);
-
-int     m_addition_test(void);
-int     m_substraction_test(void);
-int     m_scale_test(void);
-int     m_linear_interpolation_test(void);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:19:08 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/11 15:06:59 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/11 19:17:47 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	vector_launcher(void)
     load_test(&tests, function_name, "Linear interpolation  ", (void *)&v_linear_interpolation_test, "");
     load_test(&tests, function_name, "Dot product           ", (void *)&v_dot_product_test, "");
     load_test(&tests, function_name, "Norm                  ", (void *)&v_norm_test, "");
+    load_test(&tests, function_name, "Cosine                ", (void *)&v_cosine_test, "");
+    load_test(&tests, function_name, "Cross product         ", (void *)&v_cross_product_test, "");
 
 	return (launch_tests(&tests));
 }

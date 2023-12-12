@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:08:52 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/11 13:25:43 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/12 15:30:30 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int m_linear_interpolation_test(void)
         double expected = 0.0;
 
         if (ret != expected)
-            return (1);
+            return (-1);
     }
 
 
@@ -35,7 +35,7 @@ int m_linear_interpolation_test(void)
         double expected = 1.0;
 
         if (ret != expected)
-            return (2);
+            return (-1);
     }
 
     // Test 3 : double with 0.5
@@ -44,7 +44,7 @@ int m_linear_interpolation_test(void)
         double expected = 0.5;
 
         if (ret != expected)
-            return (3);
+            return (-1);
     }
 
     // Test 5 : Linear interpolation of a Matrix
@@ -52,11 +52,8 @@ int m_linear_interpolation_test(void)
         ft::Matrix<double> ret = lerp<ft::Matrix<double> >(
             ft::Matrix<double>({{2., 1.}, {3., 4.}}),
             ft::Matrix<double>({{20., 10.}, {30., 40.}}),
-            0.3);
+            0.5);
         ft::Matrix<double> expected = ft::Matrix<double>({{11., 5.5}, {16.5, 22.}});
-
-        std::cout << "ret = " << ret << std::endl;
-        std::cout << "expected = " << expected << std::endl;
 
         if (ret != expected)
             return (-1);

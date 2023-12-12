@@ -68,6 +68,8 @@ VECTOR			= 00_vector_launcher.cpp \
 				  06_linear_interpolation_tests.cpp \
 				  07_dot_product_tests.cpp \
 				  08_norm_tests.cpp \
+				  09_cosine_tests.cpp \
+				  10_cross_product_tests.cpp \
 
 
 
@@ -77,6 +79,14 @@ MATRIX			= 00_matrix_launcher.cpp \
 				  03_substraction_tests.cpp \
 				  04_scale_tests.cpp \
 				  05_linear_interpolation_tests.cpp \
+				  06_multiplication_tests.cpp \
+				  07_trace_tests.cpp \
+				  08_transpose_tests.cpp \
+				  09_row_echelon_form_tests.cpp \
+				  10_determinant_tests.cpp \
+				  11_inverse_tests.cpp \
+				  12_rank_tests.cpp \
+				  13_projection_tests.cpp \
 
 
 SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
