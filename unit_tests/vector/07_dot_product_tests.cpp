@@ -6,13 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 13:42:20 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 16:27:18 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/13 11:05:32 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.hpp"
 #include "vector.hpp"
 #include <iostream>
+#include <cstring>
 
 int v_dot_product_test(void)
 {

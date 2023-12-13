@@ -6,12 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:09:50 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 14:12:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/13 11:05:13 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.hpp"
 #include <list>
+#include <cstring>
+
 // #include <chrono>
 
 

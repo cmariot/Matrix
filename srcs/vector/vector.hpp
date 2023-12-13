@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 19:19:04 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/13 14:33:11 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 
 namespace ft
 {
+
+    template <typename T>
+    class Matrix;
 
     template <typename T>
     class Vector
@@ -229,6 +232,9 @@ namespace ft
             {
                 /*
                 Euclidean norm is the square root of the sum of the squares of the elements.
+
+                pythagore : a^2 + b^2 = c^2
+                -> c = sqrt(a^2 + b^2)
                 */
 
                 typename std::vector<T>::const_iterator it = this->_vector.begin();

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/13 10:17:01 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/13 13:44:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,49 @@ namespace ft
             {
                 return (*this *= rhs);
             }
+
+            T trace() const
+            {
+                /*
+                Sum of the elements on the main diagonal of a square matrix.
+                */
+
+                T result = 0;
+
+                if (!is_square())
+                    throw std::length_error("The matrix must be square.");
+
+                for (size_type i = 0; i < size()[0]; i++)
+                    result += (*this)[i][i];
+                return result;
+            }
+
+            Matrix transpose() const
+            {
+                /*
+                A matrix obtained from a given matrix by interchanging the rows and columns.
+                */
+
+               if (!is_square())
+                   throw std::length_error("The matrix must be square.");
+
+                Matrix result(size()[1], size()[0]);
+
+                for (size_type i = 0; i < size()[0]; i++)
+                    for (size_type j = 0; j < size()[1]; j++)
+                        result[j][i] = (*this)[i][j];
+                return result;
+            }
+
+            Matrix row_echelon() const
+            {
+                Matrix<T> result(*this);
+                
+
+
+                return result;
+            }
+
 
             // Operator << : Display the matrix
             friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix)

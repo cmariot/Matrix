@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:58:49 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 12:06:08 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/13 16:26:48 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,23 @@ int v_cosine_test(void)
         double expected = 0.974631846;
 
         if ((float)ret != (float)expected)
+            return (-1);
+    }
+
+    {
+        // Orthogonal vectors
+
+        ft::Vector<double> v1 = {1., 0.};
+        ft::Vector<double> v2 = {0., 1.};
+
+        double ret = angle_cos<double>(v1, v2);
+        double expected = 0.0;
+
+        if (ret != expected)
+            return (-1);
+
+        // conversion in degrees
+        if (std::acos(ret) * 180 / M_PI != 90)
             return (-1);
     }
 

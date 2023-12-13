@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 15:03:15 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 11:23:26 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/13 13:25:14 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int v_dot_product_test(void);
 int v_norm_test(void);
 int v_cosine_test(void);
 int v_cross_product_test(void);
+
 
 /* ************************************************************************** */
 /*                                                                            */

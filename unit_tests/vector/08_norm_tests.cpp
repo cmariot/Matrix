@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:57:55 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 12:09:35 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/13 14:21:01 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ int v_norm_test(void)
 
         if (v1.norm_inf() != 2.)
             return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {-2, 2};
+
+        if (v1.norm_1() != 4.)
+            return (-1);
+
+        
+
     }
 
     return (0);
