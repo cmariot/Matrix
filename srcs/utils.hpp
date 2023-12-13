@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:14:10 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 15:49:57 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/12 16:05:31 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,10 @@ T lerp(const T &a, const T &b, const double &t)
     Linearly interpolates between two points.
 
     Interpolates between the points a and b by the interpolant t.
-    The parameter t is clamped to the range [0, 1].
     This is most commonly used to find a point some fraction of the way along
     a line between two endpoints
     (e.g. to move an object gradually between those points).
     */
-
-    if (t < 0. || t > 1.)
-        throw std::out_of_range("t must be between 0 and 1.");
 
     return (a + (b - a) * t);
 }

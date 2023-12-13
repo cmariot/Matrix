@@ -3,3 +3,7 @@ en.subject.pdf
 Matrix
 objs/
 *.log
+*.a
+*.o
+a.out
+

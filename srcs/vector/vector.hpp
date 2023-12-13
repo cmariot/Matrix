@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 14:00:57 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/12 19:19:04 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,12 +192,19 @@ namespace ft
             // Dot product : Dot product of two vectors
             double dot(const Vector<T> & rhs) const
             {
-                double result = 0.0;
-
                 if (this->size() != rhs.size())
                     throw std::length_error("Vectors are not the same size.");
-                for (size_type i = 0; i < this->size(); i++)
-                    result = std::fma((*this)[i], rhs[i], result);
+
+                typename std::vector<T>::const_iterator it1 = this->_vector.begin();
+                typename std::vector<T>::const_iterator it2 = rhs._vector.begin();
+                double result = 0.0;
+
+                while (it1 != this->_vector.end())
+                {
+                    result = std::fma(*it1, *it2, result);
+                    ++it1;
+                    ++it2;
+                }
                 return result;
             }
 
@@ -207,10 +214,14 @@ namespace ft
                 The 1-norm is simply the sum of the absolute values of the columns.
                 */
 
+                typename std::vector<T>::const_iterator it = this->_vector.begin();
                 double result = 0.0;
 
-                for (size_type i = 0; i < this->size(); i++)
-                    result += std::abs((*this)[i]);
+                while (it != this->_vector.end())
+                {
+                    result += std::max(-*it, *it);
+                    ++it;
+                }
                 return result;
             }
 
@@ -220,19 +231,33 @@ namespace ft
                 Euclidean norm is the square root of the sum of the squares of the elements.
                 */
 
+                typename std::vector<T>::const_iterator it = this->_vector.begin();
                 double result = 0.0;
 
-                for (size_type i = 0; i < this->size(); i++)
-                    result = std::fma((*this)[i], (*this)[i], result);
-                return std::sqrt(result);
+                while (it != this->_vector.end())
+                {
+                    result = std::fma(*it, *it, result);
+                    ++it;
+                }
+                return std::pow(result, 0.5);
             }
 
             double norm_inf() const
             {
                 /*
-                Infinity norm is the maximum absolute row sum of the matrix.
+                Infinity norm is the maximum absolute value of the elements.
                 */
-               return std::abs((*this)[this->size() - 1]);
+
+                typename std::vector<T>::const_iterator it = this->_vector.begin();
+                double result = 0.0;
+
+                while (it != this->_vector.end())
+                {
+                    result = std::max(result, std::max(-*it, *it));
+                    ++it;
+                }
+                return result;
+
             }
 
             // Operator << : Display the vector

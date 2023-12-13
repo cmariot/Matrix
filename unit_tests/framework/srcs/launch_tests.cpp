@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 22:01:37 by cmariot           #+#    #+#             */
-/*   Updated: 2022/06/08 11:54:40 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/12 19:41:34 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	launch_tests(t_test **test)
 	int				succeeded = 0;
 	int				total = 0;
 
+	std::cout << std::endl;
 	std::cout << BOLDWHITE << (*test)->function
 		<< " TESTS :" << RESET << std::endl << std::endl;
 	log_file = create_log_file(*test);
