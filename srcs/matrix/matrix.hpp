@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/13 13:44:33 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/13 22:59:27 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,11 +252,11 @@ namespace ft
             Matrix row_echelon() const
             {
                 Matrix<T> result(*this);
-                
-
 
                 return result;
             }
+
+            
 
 
             // Operator << : Display the matrix

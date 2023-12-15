@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:08:52 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/13 13:37:46 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/14 16:23:19 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,23 @@ int m_transpose_test(void)
             }
         }
 
-        if (nb_exceptions != 2)
+        // Empty matrix
+        {
+            try
+            {
+                ft::Matrix<double> m1;
+                m1.transpose();
+                return (-1);
+            }
+            catch(const std::exception& e)
+            {
+                if (strcmp(e.what(), "The matrix must be square.") != 0)
+                    return (-1);
+                ++nb_exceptions;
+            }
+        }
+
+        if (nb_exceptions != 3)
             return (-1);
 
     }

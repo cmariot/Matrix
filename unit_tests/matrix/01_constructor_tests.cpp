@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:54 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/06 13:52:20 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/14 16:27:33 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ int m_constructor_test(void)
 
     {
         // Constructor with initializer list
-        ft::Matrix<int> ft_init_list = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        ft::Matrix<int> ft_init_list = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
 
         std::cout << ft_init_list << std::endl;
 
