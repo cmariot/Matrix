@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: make test
-      run: make test
+    - name: install valgrind
+      run: apt install -y valgrind
+    - name: make
+      run: make leaks
 
