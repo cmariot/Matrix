@@ -16,5 +16,5 @@ jobs:
     - name: install valgrind
       run: sudo apt install -y valgrind
     - name: make
-      run: make leaks
+      run: make showleaks
 
