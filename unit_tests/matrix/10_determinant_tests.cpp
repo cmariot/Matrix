@@ -6,11 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:08:52 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/16 23:54:19 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/18 14:12:57 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int m_determinant_test(void)
 {
-    return (0);
+    return (-1);
 }

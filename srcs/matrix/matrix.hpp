@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/15 11:52:51 by cmariot          ###   ########.fr       */
+/*   Updated: 2023/12/18 14:12:23 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,38 +257,7 @@ namespace ft
                 */
 
                 Matrix result(*this);
-                size_type i = 0;
-                size_type j = 0;
 
-                while (i < result.size()[0] && j < result.size()[1])
-                {
-                    // If the pivot is 0, we swap the line with the one below
-                    if (result[i][j] == 0)
-                    {
-                        for (size_type k = i + 1; k < result.size()[0]; k++)
-                        {
-                            if (result[k][j] != 0)
-                            {
-                                std::swap(result[i], result[k]);
-                                break ;
-                            }
-                        }
-                    }
-                    // If the pivot is not 0, we divide the line by the pivot
-                    if (result[i][j] != 0)
-                    {
-                        for (size_type k = j; k < result.size()[1]; k++)
-                            result[i][k] /= result[i][j];
-                        // We subtract the pivot line from the lines below
-                        // for (size_type k = i + 1; k < result.size()[0]; k++)
-                        // {
-                        //     for (size_type l = j; l < result.size()[1]; l++)
-                        //         result[k][l] -= result[i][l];
-                        // }
-                        i++;
-                    }
-                    j++;
-                }
                 return result;
             }
 
