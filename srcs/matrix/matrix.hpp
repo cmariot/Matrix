@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/18 14:12:23 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/07 10:17:11 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,18 +249,90 @@ namespace ft
                 return result;
             }
 
+            void swap_row(std::vector<T> row1, std::vector<T> row2)
+            {
+                std::swap(row1, row2);
+            }
 
             Matrix row_echelon() const
             {
-                /*
-                The function must return the row-echelon form of the matrix.
-                */
 
-                Matrix result(*this);
+                Matrix mat(*this);
 
-                return result;
+                size_t pivot_i = 0;
+                size_t pivot_j = 0;
+
+                size_t rows = size()[0];
+                size_t cols = size()[1];
+
+                while (pivot_i < rows && pivot_j < cols)
+                {
+                    size_t min_i = pivot_i;
+
+                    for (size_t i = pivot_i + 1; i < rows; i++)
+                    {
+                        if ((abs(mat[i][pivot_j]) < abs(mat[min_i][pivot_j]) && mat[i][pivot_j] != 0) || mat[min_i][pivot_j] == 0)
+                            min_i = i;
+                    }
+
+                    if (mat[min_i][pivot_j] == 0)
+                    {
+                        // No pivot, continue
+                        ++pivot_j;
+                        continue;
+                    }
+
+                    std::swap(mat[pivot_i], mat[min_i]);
+
+                    // c = value of the pivot
+                    value_type c = mat[pivot_i][pivot_j];
+                    for (size_t j = pivot_j; j < cols; j++)
+                        mat[pivot_i][j] /= c;
+
+
+                    for (size_t i = pivot_i + 1; i < rows; i++)
+                    {
+                        value_type c = mat[i][pivot_j] / mat[pivot_i][pivot_j];
+                        for (size_t j = pivot_j; j < cols; j++)
+                            mat[i][j] -= mat[pivot_i][j] * c;
+                    }
+                    pivot_i++;
+                    pivot_j++;
+                }
+
+                for (size_t i = rows - 1; i > 0; i--)
+                {
+                    for (size_t j = 0; j < cols; j++)
+                    {
+                        if (mat[i][j] != 0)
+                        {
+                            for (size_t k = i - 1; k < i; k--)
+                            {
+                                value_type c = mat[k][j] / mat[i][j];
+                                for (size_t l = j; l < cols; l++)
+                                    mat[k][l] -= mat[i][l] * c;
+                            }
+                            break;
+                        }
+                    }
+                }
+                return mat;
             }
 
+            Matrix determinamt() const
+            {
+                Matrix A = *this;
+                Matrix B = row_echelon();
+
+                // If Gaussian elimination applied to a square matrix A produces a row echelon matrix B, let d be the product of the scalars by which the determinant has been multiplied, using the above rules.Then the determinant of A is the quotient by d of the product of the elements of the diagonal of B :
+
+                if (!is_square())
+                    throw std::exception();
+
+                d =
+
+                return mat;
+            }
 
             // Operator << : Display the matrix
             friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
@@ -312,11 +384,13 @@ namespace ft
             // Operator == : Compare content
             bool operator==(const Matrix &rhs) const
             {
+                double epsilon = 10e-5;
+
                 if (this->size() != rhs.size())
                     return false;
                 for (size_type i = 0; i < this->size()[0]; i++)
                     for (size_type j = 0; j < this->size()[1]; j++)
-                        if ((*this)[i][j] != rhs[i][j])
+                        if (abs((*this)[i][j] - rhs[i][j]) > epsilon)
                             return false;
                 return true;
             }
