@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:08:52 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/06 12:56:57 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/11 13:35:53 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int m_row_echelon_test(void)
         if (m1.row_echelon() != expected)
             return (-1);
 
-        std::cout << "1 OK" << std::endl;
     }
 
     {
@@ -45,13 +44,9 @@ int m_row_echelon_test(void)
             {0, 1}
         };
 
-        std::cout << m1.row_echelon() << std::endl;
-        std::cout << expected << std::endl;
-
         if (m1.row_echelon() != expected)
             return (-1);
 
-        std::cout << "2 OK" << std::endl;
     }
 
     {
@@ -68,7 +63,6 @@ int m_row_echelon_test(void)
         if (m1.row_echelon() != expected)
             return (-1);
 
-        std::cout << "3 OK" << std::endl;
     }
 
     {
@@ -83,13 +77,9 @@ int m_row_echelon_test(void)
             {0.0, 0.0, 1.0, 0.0, -3.66667},
             {0.0, 0.0, 0.0, 1.0, 29.5}};
 
-        std::cout << m1.row_echelon() << std::endl;
-        std::cout << expected << std::endl;
-
         if (m1.row_echelon() != expected)
             return (-1);
 
-        std::cout << "4 OK" << std::endl;
     }
 
     return (0);

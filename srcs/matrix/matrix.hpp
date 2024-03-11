@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/07 10:17:11 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/11 13:40:48 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,70 +254,26 @@ namespace ft
                 std::swap(row1, row2);
             }
 
-            Matrix row_echelon() const
+            Matrix row_echelon() const;
+
+            // Determinant
+            T determinant() const
             {
+                /*
+                The determinant of a square matrix is a value derived arithmetically from the coefficients of the matrix, and it summarizes a multivariable phenomenon.
+                */
 
-                Matrix mat(*this);
+                if (!is_square())
+                    throw std::length_error("The matrix must be square.");
 
-                size_t pivot_i = 0;
-                size_t pivot_j = 0;
+                Matrix tmp = row_echelon();
 
-                size_t rows = size()[0];
-                size_t cols = size()[1];
-
-                while (pivot_i < rows && pivot_j < cols)
-                {
-                    size_t min_i = pivot_i;
-
-                    for (size_t i = pivot_i + 1; i < rows; i++)
-                    {
-                        if ((abs(mat[i][pivot_j]) < abs(mat[min_i][pivot_j]) && mat[i][pivot_j] != 0) || mat[min_i][pivot_j] == 0)
-                            min_i = i;
-                    }
-
-                    if (mat[min_i][pivot_j] == 0)
-                    {
-                        // No pivot, continue
-                        ++pivot_j;
-                        continue;
-                    }
-
-                    std::swap(mat[pivot_i], mat[min_i]);
-
-                    // c = value of the pivot
-                    value_type c = mat[pivot_i][pivot_j];
-                    for (size_t j = pivot_j; j < cols; j++)
-                        mat[pivot_i][j] /= c;
-
-
-                    for (size_t i = pivot_i + 1; i < rows; i++)
-                    {
-                        value_type c = mat[i][pivot_j] / mat[pivot_i][pivot_j];
-                        for (size_t j = pivot_j; j < cols; j++)
-                            mat[i][j] -= mat[pivot_i][j] * c;
-                    }
-                    pivot_i++;
-                    pivot_j++;
-                }
-
-                for (size_t i = rows - 1; i > 0; i--)
-                {
-                    for (size_t j = 0; j < cols; j++)
-                    {
-                        if (mat[i][j] != 0)
-                        {
-                            for (size_t k = i - 1; k < i; k--)
-                            {
-                                value_type c = mat[k][j] / mat[i][j];
-                                for (size_t l = j; l < cols; l++)
-                                    mat[k][l] -= mat[i][l] * c;
-                            }
-                            break;
-                        }
-                    }
-                }
-                return mat;
+                T result = 1;
+                for (size_type i = 0; i < size()[0]; i++)
+                    result *= tmp[i][i];
+                return result;
             }
+
 
             Matrix determinamt() const
             {
@@ -329,9 +285,7 @@ namespace ft
                 if (!is_square())
                     throw std::exception();
 
-                d =
-
-                return mat;
+                return A;
             }
 
             // Operator << : Display the matrix
@@ -500,12 +454,8 @@ std::map<bool, size_t> ft::Matrix<T>::size() const
     return std::map<bool, size_t> {{0, _matrix.size()}, {1, _matrix[0].size()}};
 }
 
-// is_square
-template <typename T>
-bool ft::Matrix<T>::is_square() const
-{
-    return (_matrix.size() == _matrix[0].size());
-}
 
+#include "./srcs/is_square.tpp"
+#include "./srcs/row_echelon.tpp"
 
 #endif
