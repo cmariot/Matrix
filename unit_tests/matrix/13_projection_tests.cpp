@@ -6,14 +6,31 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:08:52 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 11:20:25 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/12 16:04:00 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "matrix.hpp"
 
 int m_projection_test(void)
 {
 
-    return (-1);
+    {
+        ft::Matrix<double> m = {
+            { 1.0, 0.0, 0.0 },
+            { 0.0, 1.0, 0.0 },
+            { 0.0, 0.0, 1.0 }
+        };
+
+        ft::Matrix<double> expected = {
+            { 1.0, 0.0, 0.0 },
+            { 0.0, 1.0, 0.0 },
+            { 0.0, 0.0, 1.0 }
+        };
+
+        if (m.projection(0., 0., 0., 0) != expected)
+            return (-1);
+    }
 
     return (0);
 }

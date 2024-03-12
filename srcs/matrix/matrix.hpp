@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/12 13:58:09 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/12 16:00:38 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,8 @@ namespace ft
 
             Matrix adjoint() const;
 
+            Matrix projection(float fov, float ratio, float near, float far) const;
+
             // Operator << : Display the matrix
             friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
             {
@@ -439,5 +441,6 @@ std::map<bool, size_t> ft::Matrix<T>::size() const
 #include "./srcs/determinant.tpp"
 #include "./srcs/rank.tpp"
 #include "./srcs/inverse.tpp"
+#include "./srcs/projection.tpp"
 
 #endif

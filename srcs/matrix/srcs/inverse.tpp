@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:53:06 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/12 14:08:22 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/12 15:42:18 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ ft::Matrix<T> ft::Matrix<T>::adjoint() const
     }
     result = result.transpose();
     return result;
-}
-
+};
 
 template <typename T>
 ft::Matrix<T> ft::Matrix<T>::inverse() const
@@ -55,4 +54,4 @@ ft::Matrix<T> ft::Matrix<T>::inverse() const
 
 
     return result;
-}
+};
