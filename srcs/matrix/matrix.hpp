@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/12 10:20:09 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/12 12:13:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,9 @@ namespace ft
             Matrix row_echelon() const;
 
             T determinant() const;
+
+            T cofactor(size_type i, size_type j) const;
+            T minor(size_type i, size_type j) const;
 
             size_type rank() const;
 
