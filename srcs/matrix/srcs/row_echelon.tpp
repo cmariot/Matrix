@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:39:22 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/12 11:39:23 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/12 16:57:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ ft::Matrix<T>   ft::Matrix<T>::row_echelon() const
 
     while (i < rows && j < cols)
     {
+
         // Find the pivot row
         size_t max_row = i;
         for (size_t k = i + 1; k < rows; k++)
