@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/12 12:13:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/12 13:58:09 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,6 +263,10 @@ namespace ft
 
             size_type rank() const;
 
+            Matrix inverse() const;
+
+            Matrix adjoint() const;
+
             // Operator << : Display the matrix
             friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
             {
@@ -434,5 +438,6 @@ std::map<bool, size_t> ft::Matrix<T>::size() const
 #include "./srcs/row_echelon.tpp"
 #include "./srcs/determinant.tpp"
 #include "./srcs/rank.tpp"
+#include "./srcs/inverse.tpp"
 
 #endif
