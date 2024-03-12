@@ -1,5 +1,3 @@
-
-// is_square
 template <typename T>
 bool ft::Matrix<T>::is_square() const
 {

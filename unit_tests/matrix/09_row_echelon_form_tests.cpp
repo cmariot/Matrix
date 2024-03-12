@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:08:52 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/11 13:35:53 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/12 09:39:30 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,59 @@ int m_row_echelon_test(void)
         if (m1.row_echelon() != expected)
             return (-1);
 
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 1, 1},
+            {-2, 4, -2},
+            {-1, 0, 1}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        };
+
+        if (m1.row_echelon() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {2, 0, 4, 0},
+            {0, 1, 1, 3},
+            {1, 1, 3, 3}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 0, 2, 0},
+            {0, 1, 1, 3},
+            {0, 0, 0, 0}
+        };
+
+        if (m1.row_echelon() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 1, 2},
+            {1, 2, 1},
+            {2, 3, 3},
+            {3, 3, 3},
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1},
+            {0, 0, 0},
+        };
+
+        if (m1.row_echelon() != expected)
+            return (-1);
     }
 
     return (0);

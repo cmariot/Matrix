@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/11 13:40:48 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/12 10:20:09 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,37 +256,9 @@ namespace ft
 
             Matrix row_echelon() const;
 
-            // Determinant
-            T determinant() const
-            {
-                /*
-                The determinant of a square matrix is a value derived arithmetically from the coefficients of the matrix, and it summarizes a multivariable phenomenon.
-                */
+            T determinant() const;
 
-                if (!is_square())
-                    throw std::length_error("The matrix must be square.");
-
-                Matrix tmp = row_echelon();
-
-                T result = 1;
-                for (size_type i = 0; i < size()[0]; i++)
-                    result *= tmp[i][i];
-                return result;
-            }
-
-
-            Matrix determinamt() const
-            {
-                Matrix A = *this;
-                Matrix B = row_echelon();
-
-                // If Gaussian elimination applied to a square matrix A produces a row echelon matrix B, let d be the product of the scalars by which the determinant has been multiplied, using the above rules.Then the determinant of A is the quotient by d of the product of the elements of the diagonal of B :
-
-                if (!is_square())
-                    throw std::exception();
-
-                return A;
-            }
+            size_type rank() const;
 
             // Operator << : Display the matrix
             friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
@@ -457,5 +429,7 @@ std::map<bool, size_t> ft::Matrix<T>::size() const
 
 #include "./srcs/is_square.tpp"
 #include "./srcs/row_echelon.tpp"
+#include "./srcs/determinant.tpp"
+#include "./srcs/rank.tpp"
 
 #endif
