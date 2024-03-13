@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:08:52 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/12 16:50:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/13 09:48:48 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int m_projection_test(void)
             { 0.0, 0.0, 1.0 }
         };
 
-        if (m.projection(0., 0., 0., 0) != expected)
+        if (m.projection(60., 16/9., 1., 5) != expected)
             return (-1);
     }
 
