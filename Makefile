@@ -48,12 +48,13 @@ LIBRARY			 = -L unit_tests/framework -lunit
 # **************************************************************************** #
 
 
-SRC_ROOTDIR		= unit_tests/
+SRC_ROOTDIR		= ./
 
 
-SRC_SUBDIR	    = $(MAIN) \
-				  $(addprefix vector/, $(VECTOR)) \
-				  $(addprefix matrix/, $(MATRIX)) \
+SRC_SUBDIR	    = unit_tests/$(MAIN) \
+				  $(addprefix unit_tests/vector/, $(VECTOR)) \
+				  $(addprefix unit_tests/matrix/, $(MATRIX)) \
+				  $(addprefix srcs/, matrix/srcs/projection.cpp)
 
 
 MAIN			= main.cpp
@@ -101,7 +102,9 @@ OBJ_ROOTDIR		= objs/
 
 OBJ_SUBDIR		= $(SRC_SUBDIR:.cpp=.o)
 
-OBJ_DIR 		= $(shell find ./unit_tests -type d | sed s/".\/unit_tests"/".\/objs"/g)
+OBJ_DIRS		= objs/unit_tests/matrix/ \
+				  objs/unit_tests/vector/ \
+				  objs/srcs/matrix/srcs
 
 OBJS			= $(addprefix $(OBJ_ROOTDIR), $(OBJ_SUBDIR))
 
@@ -109,34 +112,6 @@ DEPENDS			:= $(OBJS:.o=.d)
 
 
 
-# **************************************************************************** #
-#                              UTILS SOURCE FILES                              #
-# **************************************************************************** #
-
-
-SRC_ROOTDIR		= srcs/
-
-
-SRC_SUBDIR	    = 
-
-
-SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
-
-
-# **************************************************************************** #
-#                                OBJECT FILES                                  #
-# **************************************************************************** #
-
-
-OBJ_ROOTDIR		= objs/
-
-OBJ_SUBDIR		= $(SRC_SUBDIR:.cpp=.o)
-
-OBJ_DIR 		= $(shell find ./unit_tests -type d | sed s/".\/unit_tests"/".\/objs"/g)
-
-OBJS			= $(addprefix $(OBJ_ROOTDIR), $(OBJ_SUBDIR))
-
-DEPENDS			:= $(OBJS:.o=.d)
 # **************************************************************************** #
 #                                  COLORS                                      #
 # **************************************************************************** #
@@ -160,13 +135,12 @@ all : 			header $(NAME) footer
 
 
 $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.cpp
-				@mkdir -p $(OBJ_DIR)
+				@mkdir -p $(OBJ_DIRS)
 				$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
 
 $(NAME)	: 		$(OBJS)
 				@make -C unit_tests/framework --no-print-directory
-
 				$(CC) $(LFLAGS) $(OBJS) $(LIBRARY) -o $(NAME)
 				@printf "\n"
 
@@ -193,7 +167,6 @@ clean :
 
 
 fclean :
-				@rm -rf ft std ft.log std.log
 				@-rm -f $(NAME)
 				@rm -rf VECTOR.log MATRIX.log valgrind.log
 				@-rm -rf $(OBJ_ROOTDIR) $(DEPENDS)

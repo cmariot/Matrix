@@ -440,11 +440,12 @@ std::map<bool, size_t> ft::Matrix<T>::size() const
     };
 }
 
+ft::Matrix<float> projection(float fov, float ratio, float near, float far);
 
 #include "./srcs/is_square.tpp"
 #include "./srcs/determinant.tpp"
 #include "./srcs/rank.tpp"
 #include "./srcs/inverse.tpp"
-#include "./srcs/projection.tpp"
+#include "./srcs/row_echelon.tpp"
 
 #endif

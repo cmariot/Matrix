@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projection.tpp                                     :+:      :+:    :+:   */
+/*   projection.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:46:41 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/13 17:24:09 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/13 20:20:32 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ ft::Matrix<float>   projection(float fov, float ratio, float near, float far)
         The display software expects the input matrix to be in row-major
         order. Its Normalized Device Coordinates are in the ranges [−1, 1]
         for the X and Y axes, and [0, 1] for the Z axis
-       
+
         http://learnwebgl.brown37.net/08_projections/projections_perspective.html
 
     */
