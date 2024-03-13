@@ -92,7 +92,6 @@ MATRIX			= 00_matrix_launcher.cpp \
 SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
 
 
-
 # **************************************************************************** #
 #                                OBJECT FILES                                  #
 # **************************************************************************** #
@@ -110,6 +109,34 @@ DEPENDS			:= $(OBJS:.o=.d)
 
 
 
+# **************************************************************************** #
+#                              UTILS SOURCE FILES                              #
+# **************************************************************************** #
+
+
+SRC_ROOTDIR		= srcs/
+
+
+SRC_SUBDIR	    = 
+
+
+SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
+
+
+# **************************************************************************** #
+#                                OBJECT FILES                                  #
+# **************************************************************************** #
+
+
+OBJ_ROOTDIR		= objs/
+
+OBJ_SUBDIR		= $(SRC_SUBDIR:.cpp=.o)
+
+OBJ_DIR 		= $(shell find ./unit_tests -type d | sed s/".\/unit_tests"/".\/objs"/g)
+
+OBJS			= $(addprefix $(OBJ_ROOTDIR), $(OBJ_SUBDIR))
+
+DEPENDS			:= $(OBJS:.o=.d)
 # **************************************************************************** #
 #                                  COLORS                                      #
 # **************************************************************************** #
@@ -139,6 +166,7 @@ $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.cpp
 
 $(NAME)	: 		$(OBJS)
 				@make -C unit_tests/framework --no-print-directory
+
 				$(CC) $(LFLAGS) $(OBJS) $(LIBRARY) -o $(NAME)
 				@printf "\n"
 
@@ -150,11 +178,6 @@ leaks :			all
 showleaks :		all
 				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=66 ./$(NAME)
 
-ft :
-				$(CC) $(CFLAGS) -I containers -D FT=1 main.cpp -o ft
-				$(CC) $(CFLAGS) -I containers main.cpp -o std
-				./ft > ft.log
-				./std > std.log
 
 test :			all
 				@./$(NAME)

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/12 16:00:38 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/13 11:58:29y cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdexcept>
 #include <iostream>
 #include "../vector/vector.hpp"
+#include <iomanip>
 
 namespace ft
 {
@@ -273,21 +274,22 @@ namespace ft
             friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
             {
 
-                os << "[";
+                os << "[" << std::endl;
                 for (size_type i = 0; i < matrix.size()[0] ; i++)
                 {
-                    os << "[";
+                    os << "\t[";
                     for (size_type j = 0; j < matrix.size()[1]; j++)
                     {
+                        os << std::fixed << std::setprecision(2) << std::setw(5);
                         os << matrix._matrix[i][j];
                         if (j < matrix.size()[1] - 1)
                             os << ", ";
                     }
                     os << "]";
                     if (i < matrix.size()[0] - 1)
-                        os << ", ";
+                        os << ", " << std::endl;
                 }
-                os << "]";
+                os << std::endl << "]";
                 return (os);
             }
 
@@ -432,12 +434,14 @@ ft::Matrix<T>::~Matrix()
 template <typename T>
 std::map<bool, size_t> ft::Matrix<T>::size() const
 {
-    return std::map<bool, size_t> {{0, _matrix.size()}, {1, _matrix[0].size()}};
+    return std::map<bool, size_t> {
+        {0, _matrix.size()},
+        {1, _matrix[0].size()}
+    };
 }
 
 
 #include "./srcs/is_square.tpp"
-#include "./srcs/row_echelon.tpp"
 #include "./srcs/determinant.tpp"
 #include "./srcs/rank.tpp"
 #include "./srcs/inverse.tpp"
