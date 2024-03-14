@@ -6,24 +6,26 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 09:08:52 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/13 21:24:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/14 14:48:01 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.hpp"
 #include <fstream>
 #include <string>
+#include <unistd.h>
+
 
 
 int m_projection_test(void)
 {
 
     {
-        ft::Matrix<float> perspective_projection = projection(190., 16 / 9., 1, 100);
+        ft::Matrix<float> perspective_projection = projection(80., 16/9, 0.00001, 50);
 
         // Save the matrix in a file called 'proj'
 
-        std::ofstream file("proj", std::ios::trunc);
+        std::ofstream file("matrix_display/proj", std::ios::trunc);
         if (file.is_open())
         {
             for (int i = 0; i < 4; i++)
@@ -38,10 +40,6 @@ int m_projection_test(void)
             }
             file.close();
         }
-
-        // TODO : move display in $PATH
-
-        // system("display proj &");
 
     }
 
