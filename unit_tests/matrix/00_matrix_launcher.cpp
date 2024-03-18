@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:14:43 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/14 16:26:34 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:57:16 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	matrix_launcher(void)
 
 	load_test(&tests, function_name, "Constructor           ", (void *)&m_constructor_test, NULL);
     load_test(&tests, function_name, "Addition              ", (void *)&m_addition_test, "");
-    load_test(&tests, function_name, "Substraction          ", (void *)&m_substraction_test, "");
+    load_test(&tests, function_name, "Subtraction           ", (void *)&m_subtraction_test, "");
     load_test(&tests, function_name, "Scale                 ", (void *)&m_scale_test, "");
     load_test(&tests, function_name, "Linear interpolation  ", (void *)&m_linear_interpolation_test, "");
     load_test(&tests, function_name, "Multiplication        ", (void *)&m_multiplication_test, "");

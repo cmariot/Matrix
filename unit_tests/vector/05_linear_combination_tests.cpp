@@ -6,10 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:09:50 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/13 11:05:13 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 13:21:55 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.hpp"
 #include "tests.hpp"
 #include <list>
 #include <cstring>
@@ -40,7 +41,7 @@ int v_linear_combination_test(void)
         ft::Vector<double> v1 = {3, 4};
         ft::Vector<double> v2 = {5, -3};
 
-        ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+        ft::Vector<double> ret = ft::linear_combination<double>(
             std::list<ft::Vector<double> >({v1, v2}),
             std::list<double>({0.5, 0.5})
         );
@@ -57,7 +58,7 @@ int v_linear_combination_test(void)
         ft::Vector<double> e2 = {0, 1, 0};
         ft::Vector<double> e3 = {0, 0, 1};
 
-        ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+        ft::Vector<double> ret = ft::linear_combination<double>(
             std::list<ft::Vector<double>>({e1, e2, e3}),
             std::list<double>({10, -2, 0.5}));
 
@@ -72,7 +73,7 @@ int v_linear_combination_test(void)
         ft::Vector<double> e1 = {1, 2, 3};
         ft::Vector<double> e2 = {0, 10, -100};
 
-        ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+        ft::Vector<double> ret = ft::linear_combination<double>(
             std::list<ft::Vector<double>>({e1, e2}),
             std::list<double>({10, -2}));
 
@@ -94,7 +95,7 @@ int v_linear_combination_test(void)
             ft::Vector<double> e1 = {1, 2, 3};
             ft::Vector<double> e2 = {0, 10, -100};
 
-            ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+            ft::Vector<double> ret = ft::linear_combination<double>(
                 std::list<ft::Vector<double>>({e1, e2}),
                 std::list<double>({10, -2.0, 0.5}));
             return (-1);
@@ -112,7 +113,7 @@ int v_linear_combination_test(void)
             ft::Vector<double> e1 = {1, 2, 3};
             ft::Vector<double> e2 = {0, 10};
 
-            ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+            ft::Vector<double> ret = ft::linear_combination<double>(
                 std::list<ft::Vector<double>>({e1, e2}),
                 std::list<double>({10, -2}));
             return (-1);
@@ -130,7 +131,7 @@ int v_linear_combination_test(void)
             ft::Vector<double> e1 = {};
             ft::Vector<double> e2 = {};
 
-            ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+            ft::Vector<double> ret = ft::linear_combination<double>(
                 std::list<ft::Vector<double>>({e1, e2}),
                 std::list<double>({10, -2}));
             return (-1);
@@ -145,7 +146,7 @@ int v_linear_combination_test(void)
         // Empty lists.
         try
         {
-            ft::Vector<double> ret = ft::Vector<double>::linear_combination(
+            ft::Vector<double> ret = ft::linear_combination<double>(
                 std::list<ft::Vector<double>>({}),
                 std::list<double>({}));
             return (-1);

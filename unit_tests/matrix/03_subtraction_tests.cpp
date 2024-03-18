@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   03_substraction_tests.cpp                          :+:      :+:    :+:   */
+/*   03_subtraction_tests.cpp                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:54:13 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 16:08:54 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:57:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # include <cstring>
 
 
-int m_substraction_test(void)
+int m_subtraction_test(void)
 {
     {
         // Operator -

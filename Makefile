@@ -63,7 +63,7 @@ MAIN			= main.cpp
 VECTOR			= 00_vector_launcher.cpp \
 				  01_constructor_tests.cpp \
 				  02_addition_tests.cpp \
-				  03_substraction_tests.cpp \
+				  03_subtraction_tests.cpp \
 				  04_scale_tests.cpp \
 				  05_linear_combination_tests.cpp \
 				  06_linear_interpolation_tests.cpp \
@@ -77,7 +77,7 @@ VECTOR			= 00_vector_launcher.cpp \
 MATRIX			= 00_matrix_launcher.cpp \
 				  01_constructor_tests.cpp \
 				  02_addition_tests.cpp \
-				  03_substraction_tests.cpp \
+				  03_subtraction_tests.cpp \
 				  04_scale_tests.cpp \
 				  05_linear_interpolation_tests.cpp \
 				  06_multiplication_tests.cpp \

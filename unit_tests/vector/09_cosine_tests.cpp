@@ -6,13 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:58:49 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/13 16:26:48 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 17:23:28y cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.hpp"
 #include "utils.hpp"
-
+#include <cstring>
 
 int v_cosine_test(void)
 {
@@ -87,6 +87,24 @@ int v_cosine_test(void)
         // conversion in degrees
         if (std::acos(ret) * 180 / M_PI != 90)
             return (-1);
+    }
+
+    {
+        try
+        {
+            // Angle between 2 vectors of non-numeric type
+
+            ft::Vector<char> v1 = {'a', 'b'};
+            ft::Vector<char> v2 = {'b', 'a'};
+
+            angle_cos<char>(v1, v2);
+        }
+        catch (std::invalid_argument &e)
+        {
+            if (strcmp(e.what(), "The type T must be a numeric type.") != 0)
+                return (-1);
+        }
+
     }
 
     return (0);

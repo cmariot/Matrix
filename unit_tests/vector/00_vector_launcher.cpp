@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:19:08 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/12 19:41:26 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 16:58:42 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	vector_launcher(void)
 
 	load_test(&tests, function_name, "Constructor           ", (void *)&v_constructor_test, NULL);
 	load_test(&tests, function_name, "Addition              ", (void *)&v_addition_test, "");
-    load_test(&tests, function_name, "Substraction          ", (void *)&v_substraction_test, "");
+    load_test(&tests, function_name, "Subtraction           ", (void *)&v_subtraction_test, "");
     load_test(&tests, function_name, "Scale                 ", (void *)&v_scale_test, "");
     load_test(&tests, function_name, "Linear combination    ", (void *)&v_linear_combination_test, "");
     load_test(&tests, function_name, "Linear interpolation  ", (void *)&v_linear_interpolation_test, "");

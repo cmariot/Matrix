@@ -6,12 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:13:45 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/17 16:26:00 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:59:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.hpp"
+#ifndef SUBTRACTION_TPP
+# define SUBTRACTION_TPP
 
+# include "vector.hpp"
 
 // Subtraction : Subtract two vectors
 template <typename T>
@@ -44,3 +46,5 @@ ft::Vector<T> & ft::Vector<T>::sub(const Vector &rhs)
     *this = *this - rhs;
     return *this;
 }
+
+#endif

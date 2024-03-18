@@ -6,11 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:13:51 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/17 16:24:40 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 14:55:12 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.hpp"
+#ifndef ADDITION_TPP
+# define ADDITION_TPP
+
+# include "vector.hpp"
 
 
 // Addition : Add two vectors and return the result
@@ -44,3 +47,5 @@ ft::Vector<T> & ft::Vector<T>::add(const Vector &rhs)
     *this = *this + rhs;
     return *this;
 }
+
+#endif
