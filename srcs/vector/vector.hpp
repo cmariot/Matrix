@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/13 14:33:11 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/17 16:17:14 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,95 +52,40 @@ namespace ft
 
             ~Vector();
 
-            size_type size() const;
+            size_type   size() const;
 
-            // Addition : Add two vectors
-            Vector operator+(const Vector &rhs) const
-            {
-                Vector result(*this);
+            Vector      operator +(const Vector &rhs) const;
+            Vector &    operator +=(const Vector &rhs);
+            Vector &    add(const Vector &rhs);
 
-                if (result.size() != rhs.size())
-                    throw std::length_error("Vectors are not the same size.");
-                for (size_type i = 0; i < result.size(); i++)
-                    result[i] += rhs[i];
-                return result;
-            }
+            Vector      operator -(const Vector &rhs) const;
+            Vector &    operator -=(const Vector &rhs);
+            Vector &    sub(const Vector &rhs);
 
-            // Operator += : Add two vectors
-            Vector &operator+=(const Vector &rhs)
-            {
-                if (this->size() != rhs.size())
-                    throw std::length_error("Vectors are not the same size.");
-                for (size_type i = 0; i < this->size(); i++)
-                    (*this)[i] += rhs[i];
-                return *this;
-            }
-
-            // add : Add two vectors
-            Vector &add(const Vector &rhs)
-            {
-                if (this->size() != rhs.size())
-                    throw std::length_error("Vectors are not the same size.");
-                for (size_type i = 0; i < this->size(); i++)
-                    (*this)[i] += rhs[i];
-                return *this;
-            }
-
-            // Substraction : Substract two vectors
-            Vector operator-(const Vector &rhs) const
-            {
-                Vector result(*this);
-
-                if (result.size() != rhs.size())
-                    throw std::length_error("Vectors are not the same size.");
-                for (size_type i = 0; i < result.size(); i++)
-                    result[i] -= rhs[i];
-                return result;
-            }
-
-            // Operator -= : Substract two vectors
-            Vector &operator-=(const Vector &rhs)
-            {
-                if (this->size() != rhs.size())
-                    throw std::length_error("Vectors are not the same size.");
-                for (size_type i = 0; i < this->size(); i++)
-                    (*this)[i] -= rhs[i];
-                return *this;
-            }
-
-            // Substract : Substract two vectors
-            Vector &sub(const Vector &rhs)
-            {
-                if (this->size() != rhs.size())
-                    throw std::length_error("Vectors are not the same size.");
-                for (size_type i = 0; i < this->size(); i++)
-                    (*this)[i] -= rhs[i];
-                return *this;
-            }
 
             // Operator * : Scale a vector by a scalar
-            Vector operator*(const_reference rhs) const
+            Vector operator *(const_reference scalar) const
             {
                 Vector result(*this);
 
                 for (size_type i = 0; i < result.size(); i++)
-                    result[i] *= rhs;
+                    result[i] *= scalar;
                 return result;
             }
 
             // Operator *= : Scale a vector
-            Vector operator*=(const_reference rhs)
+            Vector operator *=(const_reference scalar)
             {
                 for (size_type i = 0; i < this->size(); i++)
-                    (*this)[i] *= rhs;
+                    (*this)[i] *= scalar;
                 return *this;
             }
 
             // Scale : Scale a vector
-            Vector &scl(const_reference rhs)
+            Vector &scl(const_reference scalar)
             {
                 for (size_type i = 0; i < this->size(); i++)
-                    (*this)[i] *= rhs;
+                    (*this)[i] *= scalar;
                 return *this;
             }
 
@@ -339,6 +284,9 @@ namespace ft
 
 
 }
+
+#include "implementations/addition.tpp"
+#include "implementations/subtraction.tpp"
 
 // Constructor : Default
 template <typename T>
