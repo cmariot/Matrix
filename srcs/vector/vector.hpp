@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 16:54:35 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 19:06:11 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ namespace ft
 
         public:
 
-            typedef T               value_type;
-            typedef T &             reference;
-            typedef const T &       const_reference;
-            typedef size_t          size_type;
+            typedef T                           value_type;
+            typedef T &                         reference;
+            typedef const T &                   const_reference;
+            typedef size_t                      size_type;
+            typedef std::vector<value_type>     std_vec;
 
             Vector();
             Vector(size_type size);
@@ -65,7 +66,7 @@ namespace ft
             Vector &        operator *= (const_reference scalar);
             Vector &        scl(const_reference scalar);
 
-            value_type      dot(const Vector<T> & rhs) const;
+            double          dot(const Vector<T> & rhs) const;
 
             value_type      norm() const;
             value_type      norm_1() const;
@@ -97,6 +98,21 @@ namespace ft
                 return os;
             }
 
+            typedef typename std_vec::iterator                  iterator;
+            typedef typename std_vec::const_iterator            const_iterator;
+            typedef typename std_vec ::reverse_iterator         reverse_iterator;
+            typedef typename std_vec::const_reverse_iterator    const_reverse_iterator;
+
+            iterator                begin();
+            iterator                end();
+            const_iterator          begin() const;
+            const_iterator          end() const;
+            reverse_iterator        rbegin();
+            reverse_iterator        rend();
+            const_reverse_iterator  rbegin() const;
+            const_reverse_iterator  rend() const;
+
+
         private:
 
             std::vector<T>  _vector;
@@ -115,5 +131,7 @@ namespace ft
 # include "implementations/access.tpp"
 # include "implementations/assign.tpp"
 # include "implementations/compare.tpp"
+# include "implementations/iterators.tpp"
+
 
 #endif

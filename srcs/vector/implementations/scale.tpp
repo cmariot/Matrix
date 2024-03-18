@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:58:12 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 14:58:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 18:57:43 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@
 template <typename T>
 ft::Vector<T>   ft::Vector<T>::operator * (const_reference scalar) const
 {
-    Vector result(*this);
+    Vector      result(*this);
+    iterator    it = result.begin();
 
-    for (size_type i = 0; i < result.size(); i++)
-        result[i] *= scalar;
+    while (it != result.end())
+    {
+        *it *= scalar;
+        ++it;
+    }
     return result;
 }
 

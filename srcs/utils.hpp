@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:14:10 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 17:28:17 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 19:08:48 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ namespace ft
                 throw std::length_error("Vectors are empty.");
 
             // Compute the linear combination
-            for ( typename ft::Vector<T>::size_type i = 0; i < result.size(); i++)
+            for (typename ft::Vector<T>::size_type i = 0; i < result.size(); i++)
                 result[i] = std::fma((*it_u)[i], *it_v, result[i]);
 
             // Move to the next element
@@ -116,21 +116,6 @@ double angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
     /*
     Cosine of the angle between two vectors
     */
-
-
-
-
-   /* ************************************************************************** */
-
-   // Check if T is a numeric type (int, float, double, etc.)
-   if (std::numeric_limits<T>::is_integer)
-       throw std::invalid_argument("The type T must be a numeric type.");
-
-   /* ************************************************************************** */
-
-
-
-
 
     if (u.size() != v.size())
         throw std::length_error("The two vectors must have the same size.");

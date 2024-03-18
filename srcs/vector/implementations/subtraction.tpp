@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:13:45 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 14:59:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 19:00:32 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,26 @@
 
 // Subtraction : Subtract two vectors
 template <typename T>
-ft::Vector<T>   ft::Vector<T>::operator -(const Vector &rhs) const
+ft::Vector<T>   ft::Vector<T>::operator - (const Vector &rhs) const
 {
-    // Check if the vectors are the same size
     const size_type _size = this->size();
     if (_size != rhs.size())
         throw std::length_error("Vectors are not the same size.");
-
-    // Subtract the vectors
-    Vector result(*this);
-    for (size_type i = 0; i < _size; i++)
-        result[i] -= rhs[i];
+    Vector          result(*this);
+    const_iterator  it_rhs = rhs.begin();
+    iterator        it_result = result.begin();
+    while (it_result != result.end())
+    {
+        *it_result -= *it_rhs;
+        ++it_result;
+        ++it_rhs;
+    }
     return result;
 }
 
 // Operator -= : Subtract two vectors
 template <typename T>
-ft::Vector<T> & ft::Vector<T>::operator -=(const Vector &rhs)
+ft::Vector<T> & ft::Vector<T>::operator -= (const Vector &rhs)
 {
     *this = *this - rhs;
     return *this;

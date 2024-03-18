@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:56:33 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 14:57:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 18:18:39 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ ft::Vector<T>::Vector(size_type size, const_reference val)
 template <typename T>
 ft::Vector<T>::Vector(const Vector &copy)
 {
-    _vector = copy._vector;
+    _vector = std::vector<T>(copy._vector);
 }
 
 // Constructor : Copy from Matrix
