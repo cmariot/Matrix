@@ -5,35 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 14:58:47 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 12:14:57 by cmariot          ###   ########.fr       */
+/*   Created: 2024/03/19 11:07:06 by cmariot           #+#    #+#             */
+/*   Updated: 2024/03/19 11:08:00 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIZE_TPP
-# define SIZE_TPP
-
-# include "vector.hpp"
+#include "matrix.hpp"
 
 // Size
 template <typename T>
-typename ft::Vector<T>::size_type  ft::Vector<T>::size() const
+std::map<bool, size_t> ft::Matrix<T>::size() const
 {
-    return _vector.size();
+    return std::map<bool, size_t> {
+        {0, _matrix.size()},
+        {1, _matrix[0].size()}
+    };
 }
-
-// Resize
-template <typename T>
-void  ft::Vector<T>::resize(size_type n)
-{
-    _vector.resize(n, T());
-}
-
-// Clear
-template <typename T>
-void  ft::Vector<T>::clear()
-{
-    _vector.clear();
-}
-
-#endif

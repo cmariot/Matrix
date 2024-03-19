@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 09:32:00 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/19 12:14:44 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ namespace ft
             ~Vector();
 
             size_type        size() const;
+            void             resize (size_type n);
+            void             clear();
 
             Vector           operator + (const Vector & rhs) const;
             Vector &         operator += (const Vector & rhs);

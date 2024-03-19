@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   size.tpp                                           :+:      :+:    :+:   */
+/*   trace.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 14:58:47 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 12:14:57 by cmariot          ###   ########.fr       */
+/*   Created: 2024/03/19 11:52:53 by cmariot           #+#    #+#             */
+/*   Updated: 2024/03/19 11:52:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIZE_TPP
-# define SIZE_TPP
+#include "matrix.hpp"
 
-# include "vector.hpp"
-
-// Size
 template <typename T>
-typename ft::Vector<T>::size_type  ft::Vector<T>::size() const
+T ft::Matrix<T>::trace() const
 {
-    return _vector.size();
-}
+    /*
+    Sum of the elements on the main diagonal of a square matrix.
+    */
 
-// Resize
-template <typename T>
-void  ft::Vector<T>::resize(size_type n)
-{
-    _vector.resize(n, T());
-}
+    T result = 0;
 
-// Clear
-template <typename T>
-void  ft::Vector<T>::clear()
-{
-    _vector.clear();
-}
+    if (!is_square())
+        throw std::length_error("The matrix must be square.");
 
-#endif
+    for (size_type i = 0; i < size()[0]; i++)
+        result += (*this)[i][i];
+    return result;
+}
