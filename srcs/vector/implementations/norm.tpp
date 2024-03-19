@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:57:56 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 18:55:26 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/19 09:40:51 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # include "vector.hpp"
 
+// Norms always return real numbers, even for complex-valued vectors.
+
 template <typename T>
-T ft::Vector<T>::norm() const
+float  ft::Vector<T>::norm() const
 {
     /*
     Euclidean norm is the square root of the sum of the squares of the elements.
@@ -25,8 +27,8 @@ T ft::Vector<T>::norm() const
     -> c = sqrt(a^2 + b^2)
     */
 
-    const_iterator it = this->begin();
-    double result = 0.0;
+    float           result = T();
+    const_iterator  it = this->begin();
 
     while (it != this->end())
     {
@@ -37,14 +39,14 @@ T ft::Vector<T>::norm() const
 }
 
 template <typename T>
-T ft::Vector<T>::norm_1() const
+float  ft::Vector<T>::norm_1() const
 {
     /*
     The 1-norm is simply the sum of the absolute values of the columns.
     */
 
-    const_iterator it = this->begin();
-    double result = 0.0;
+    float           result = T();
+    const_iterator  it = this->begin();
 
     while (it != this->end())
     {
@@ -55,14 +57,14 @@ T ft::Vector<T>::norm_1() const
 }
 
 template <typename T>
-T ft::Vector<T>::norm_inf() const
+float ft::Vector<T>::norm_inf() const
 {
     /*
     Infinity norm is the maximum absolute value of the elements.
     */
 
-    const_iterator it = this->begin();
-    double result = 0.0;
+    float           result = T();
+    const_iterator  it = this->begin();
 
     while (it != this->end())
     {

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:13:45 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 19:00:32 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 21:15:26 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 template <typename T>
 ft::Vector<T>   ft::Vector<T>::operator - (const Vector &rhs) const
 {
-    const size_type _size = this->size();
-    if (_size != rhs.size())
+    if (this->size() != rhs.size())
         throw std::length_error("Vectors are not the same size.");
     Vector          result(*this);
     const_iterator  it_rhs = rhs.begin();

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:57:55 by cmariot           #+#    #+#             */
-/*   Updated: 2023/12/19 23:56:37 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/19 09:35:03 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int v_norm_test(void)
 {
 
     {
-        ft::Vector<double> v1 = {0., 0., 0.};
+        ft::Vector<float> v1 = {0., 0., 0.};
 
         if (v1.norm_1() != 0.)
             return (-1);
@@ -31,7 +31,7 @@ int v_norm_test(void)
     }
 
     {
-        ft::Vector<double> v1 = {1, 2., 3.};
+        ft::Vector<float> v1 = {1, 2., 3.};
 
         if (v1.norm_1() != 6.)
             return (-1);
@@ -44,7 +44,7 @@ int v_norm_test(void)
     }
 
     {
-        ft::Vector<double> v1 = {-1, -2};
+        ft::Vector<float> v1 = {-1, -2};
 
         if (v1.norm_1() != 3.)
             return (-1);
@@ -57,7 +57,7 @@ int v_norm_test(void)
     }
 
     {
-        ft::Vector<double> v1 = {-2, 2};
+        ft::Vector<float> v1 = {-2, 2};
 
         if (v1.norm_1() != 4.)
             return (-1);
@@ -67,7 +67,7 @@ int v_norm_test(void)
 
     {
 
-        // Vector 
+        // Vector
 
     }
 

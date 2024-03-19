@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:13:51 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 18:51:11 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 21:14:10 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,20 @@
 
 // Addition : Add two vectors and return the result
 template <typename T>
-ft::Vector<T> ft::Vector<T>::operator + (const Vector<T> &rhs) const
+ft::Vector<T>  ft::Vector<T>::operator + (const Vector<T> &rhs) const
 {
     // Check if the vectors are the same size
-    const size_type _size = this->size();
-    if (_size != rhs.size())
+    if (this->size() != rhs.size())
         throw std::length_error("Vectors are not the same size.");
 
     Vector          result(*this);
-    const_iterator  it = this->begin();
-    const_iterator  it_rhs = rhs.begin();
     iterator        it_result = result.begin();
-    while (it != this->end())
+    const_iterator  it_rhs = rhs.begin();
+    while (it_result != result.end())
     {
-        *it_result = *it + *it_rhs;
-        ++it;
-        ++it_rhs;
+        *it_result += + *it_rhs;
         ++it_result;
+        ++it_rhs;
     }
     return result;
 }

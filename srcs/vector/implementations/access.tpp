@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:56:31 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 18:41:03 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 20:31:34 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 // Operator [] : Access element
 template <typename T>
-typename ft::Vector<T>::reference ft::Vector<T>::operator [] (size_type pos)
+inline typename ft::Vector<T>::reference ft::Vector<T>::operator [] (const size_type & pos)
 {
     return _vector[pos];
 }
 
 template <typename T>
-typename ft::Vector<T>::const_reference ft::Vector<T>::operator [] (size_type pos) const
+inline typename ft::Vector<T>::const_reference ft::Vector<T>::operator [] (const size_type &pos) const
 {
     return _vector[pos];
 }

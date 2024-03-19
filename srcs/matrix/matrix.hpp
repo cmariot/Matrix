@@ -442,10 +442,10 @@ std::map<bool, size_t> ft::Matrix<T>::size() const
 
 ft::Matrix<float> projection(float fov, float ratio, float near, float far);
 
-#include "./srcs/is_square.tpp"
-#include "./srcs/determinant.tpp"
-#include "./srcs/rank.tpp"
-#include "./srcs/inverse.tpp"
-#include "./srcs/row_echelon.tpp"
+#include "implementations/is_square.tpp"
+#include "implementations/determinant.tpp"
+#include "implementations/rank.tpp"
+#include "implementations/inverse.tpp"
+#include "implementations/row_echelon.tpp"
 
 #endif

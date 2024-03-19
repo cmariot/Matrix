@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:58:47 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 14:58:53 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/18 21:01:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 // Size
 template <typename T>
-typename ft::Vector<T>::size_type ft::Vector<T>::size() const
+typename ft::Vector<T>::size_type  ft::Vector<T>::size() const
 {
     return _vector.size();
 }

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:57:38 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 18:54:17 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/19 09:39:27 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 # include "vector.hpp"
 
 template <typename T>
-double ft::Vector<T>::dot(const ft::Vector<T> & rhs) const
+T  ft::Vector<T>::dot(const ft::Vector<T> & rhs) const
 {
     if (this->size() != rhs.size())
         throw std::length_error("Vectors are not the same size.");
 
     const_iterator  it1 = this->begin();
     const_iterator  it2 = rhs.begin();
-    double          result = 0;
+    T               result = T();
 
     while (it1 != this->end())
     {
-        result = std::fma(*it1, *it2, result);
+        result = std::fma(*it1, *it2, result);  // result += *it1 * *it2;
         ++it1;
         ++it2;
     }

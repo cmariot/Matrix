@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:14:10 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 19:08:48 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/19 10:09:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ namespace ft
             u = list({1, 0, 0}, {0, 1, 0}, {0, 0, 1})
             v = {10, -2, 0.5}
 
-            w = 10 * u1 + (-2) * u2 + 0.5 * u3
-            w = {10, -2, 0.5}
+            result = 10 * u1 + (-2) * u2 + 0.5 * u3
+            result = {10, -2, 0.5}
 
         It's used to get the span of a set of vectors.
         The span of a set of vectors is the set of all possible linear combinations of the vectors.
@@ -65,9 +65,16 @@ namespace ft
             else if (it_u->size() == 0)
                 throw std::length_error("Vectors are empty.");
 
+            typename ft::Vector<T>::const_iterator it_vec = it_u->begin();
+            typename ft::Vector<T>::iterator it_res = result.begin();
+
             // Compute the linear combination
-            for (typename ft::Vector<T>::size_type i = 0; i < result.size(); i++)
-                result[i] = std::fma((*it_u)[i], *it_v, result[i]);
+            while (it_res != result.end())
+            {
+                *it_res = std::fma(*it_vec, *it_v, *it_res);
+                ++it_res;
+                ++it_vec;
+            }
 
             // Move to the next element
             ++it_u;
@@ -111,7 +118,7 @@ ft::Vector<T> cross_product(const ft::Vector<T> & u, const ft::Vector<T> & v)
 
 
 template <typename T>
-double angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
+float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
 {
     /*
     Cosine of the angle between two vectors
@@ -124,11 +131,17 @@ double angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
     double norm_u = 0;
     double norm_v = 0;
 
-    for (size_t i = 0; i < u.size(); i++)
+    typename ft::Vector<T>::const_iterator it1 = u.begin();
+    typename ft::Vector<T>::const_iterator it2 = v.begin();
+
+    while (it1 != u.end())
     {
-        dot_product = std::fma(u[i], v[i], dot_product);
-        norm_u = std::fma(u[i], u[i], norm_u);
-        norm_v = std::fma(v[i], v[i], norm_v);
+        dot_product = std::fma(*it1, *it2, dot_product);
+        // dot += *it1 * *it2
+        norm_u = std::fma(*it1, *it1, norm_u);
+        norm_v = std::fma(*it2, *it2, norm_v);
+        ++it1;
+        ++it2;
     }
 
     return (dot_product / (std::sqrt(norm_u) * std::sqrt(norm_v)));
