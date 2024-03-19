@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:05:42 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 12:14:04 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/19 14:07:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ft::Matrix<T>::Matrix()
 
 // Constructor : (rows, columns)
 template <typename T>
-ft::Matrix<T>::Matrix(size_type rows, size_type columns)
+ft::Matrix<T>::Matrix(const size_type & rows, const size_type & columns)
 {
     _matrix.resize(rows);
     for (size_type i = 0; i < rows; i++)
@@ -32,7 +32,7 @@ ft::Matrix<T>::Matrix(size_type rows, size_type columns)
 
 // Constructor : (rows, columns, val)
 template <typename T>
-ft::Matrix<T>::Matrix(size_type rows, size_type columns, const_reference val)
+ft::Matrix<T>::Matrix(const size_type & rows, const size_type & columns, const_reference val)
 {
     _matrix.resize(rows);
     for (size_type i = 0; i < rows; i++)
@@ -45,7 +45,7 @@ ft::Matrix<T>::Matrix(size_type rows, size_type columns, const_reference val)
 
 // Constructor : Initializer list
 template <typename T>
-ft::Matrix<T>::Matrix(std::initializer_list<std::initializer_list<T> > initList)
+ft::Matrix<T>::Matrix(const std::initializer_list<std::initializer_list<T> > & initList)
 {
     size_type first_line_len = initList.begin()[0].size();
 
@@ -62,7 +62,7 @@ ft::Matrix<T>::Matrix(std::initializer_list<std::initializer_list<T> > initList)
 
 // Constructor : Copy
 template <typename T>
-ft::Matrix<T>::Matrix(const Matrix &copy)
+ft::Matrix<T>::Matrix(const Matrix & copy)
 {
     _matrix.resize(copy.size()[0]);
     for (size_type i = 0; i < copy.size()[0]; i++)

@@ -28,6 +28,9 @@ namespace ft
     class Vector;
 
     template <typename T>
+    class matrix_iterator;
+
+    template <typename T>
     class Matrix
     {
 
@@ -40,52 +43,48 @@ namespace ft
         public:
 
             Matrix();
-            Matrix(size_type rows, size_type columns);
-            Matrix(size_type rows, size_type columns, const_reference val);
-            Matrix(std::initializer_list<std::initializer_list<T> > initList);
-            Matrix(const Matrix &copy);
-            Matrix(const ft::Vector<T> &copy);
+            Matrix(const size_type & rows, const size_type & columns);
+            Matrix(const size_type & rows, const size_type & columns, const_reference val);
+            Matrix(const std::initializer_list<std::initializer_list<T> > & initList);
+            Matrix(const Matrix & copy);
+            Matrix(const ft::Vector<T> & copy);
             ~Matrix();
+
+            Matrix                  operator + (const Matrix & rhs) const;
+            Matrix &                operator += (const Matrix & rhs);
+            Matrix &                add(const Matrix & rhs);
+
+            Matrix                  operator - (const Matrix & rhs) const;
+            Matrix &                operator -= (const Matrix & rhs);
+            Matrix &                sub(const Matrix & rhs);
+
+            Matrix                  operator * (const_reference rhs) const;
+            Matrix &                operator *= (const_reference rhs);
+            Matrix &                scl(const_reference rhs);
+
+            Matrix                  operator * (const Matrix & rhs) const;
+            Matrix &                operator *= (const Matrix<T> & rhs);
+            Matrix &                mul_mat(const Matrix & rhs);
+
+            Vector<T>               operator * (const Vector<T> & rhs) const;
+            Matrix &                operator *= (const Vector<T> & rhs);
+            Matrix &                mul_vec(const Vector<T> & rhs);
 
             std::map<bool, size_t>  size() const;
             bool                    is_square() const;
 
-            Matrix                  operator + (const Matrix &rhs) const;
-            Matrix &                operator += (const Matrix &rhs);
-            Matrix &                add(const Matrix &rhs);
-
-            Matrix                  operator - (const Matrix &rhs) const;
-            Matrix &                operator -= (const Matrix &rhs);
-            Matrix &                sub(const Matrix &rhs);
-
-            Matrix                  operator * (const_reference rhs) const;
-            Matrix                  operator * (const Matrix &rhs) const;
-            Vector<T>               operator * (const Vector<T> &rhs) const;
-            Matrix &                operator *= (const_reference rhs);
-            Matrix &                operator *= (const Matrix<T> &rhs);
-            Matrix &                operator *= (const Vector<T> &rhs);
-            Matrix &                scl(const_reference rhs);
-            Matrix &                mul_mat(const Matrix &rhs);
-            Matrix &                mul_vec(const Vector<T> &rhs);
-
             T                       trace() const;
             Matrix                  transpose() const;
-
             Matrix                  row_echelon() const;
-
             T                       determinant() const;
-
             T                       cofactor(size_type i, size_type j) const;
             T                       minor(size_type i, size_type j) const;
-
             size_type               rank() const;
-
             Matrix                  inverse() const;
-
             Matrix                  adjoint() const;
 
-            ft::Vector<T> &         operator [] (size_type pos);
-            const ft::Vector<T> &  operator [] (size_type pos) const;
+            ft::Vector<T> &         operator [] (const size_type & pos);
+            const ft::Vector<T> &   operator [] (const size_type & pos) const;
 
             Matrix &                operator = (const Matrix &rhs);
 
@@ -115,17 +114,63 @@ namespace ft
                 return (os);
             }
 
+            // Iterator
+            typedef matrix_iterator<T> iterator;
+
+            iterator                begin()
+            {
+                iterator it(_matrix, 0, 0);
+                return it;
+            }
+
+            iterator                end()
+            {
+                iterator it(_matrix, size()[0] + 1, size()[1] + 1);
+                return it;
+            }
+
+
         private:
 
             ft::Vector<ft::Vector<T> > _matrix;
 
     };
 
+    template <typename T>
+    class matrix_iterator
+    {
+
+        typedef T                               value_type;
+        typedef T &                             reference;
+        typedef const T &                       const_reference;
+        typedef size_t                          size_type;
+
+        public:
+
+            matrix_iterator(ft::Vector<ft::Vector<T> > & matrix, size_type i, size_type j);
+            matrix_iterator(const matrix_iterator & copy);
+            ~matrix_iterator();
+
+            matrix_iterator &   operator = (const matrix_iterator & rhs);
+            bool                operator == (const matrix_iterator & rhs) const;
+            bool                operator != (const matrix_iterator & rhs) const;
+            matrix_iterator &   operator ++ ();
+            matrix_iterator     operator ++ (int);
+            matrix_iterator &   operator -- ();
+            matrix_iterator     operator -- (int);
+            reference           operator * ();
+
+        private:
+
+            ft::Vector<ft::Vector<T> > & _matrix;
+            size_type                   _i;
+            size_type                   _j;
+
+    };
+
 }
 
-
 ft::Matrix<float> projection(float fov, float ratio, float near, float far);
-
 
 #include "implementations/constructors.tpp"
 #include "implementations/assign.tpp"
@@ -142,6 +187,6 @@ ft::Matrix<float> projection(float fov, float ratio, float near, float far);
 #include "implementations/rank.tpp"
 #include "implementations/inverse.tpp"
 #include "implementations/row_echelon.tpp"
-
+#include "implementations/iterators.tpp"
 
 #endif
