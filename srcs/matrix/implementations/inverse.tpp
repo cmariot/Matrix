@@ -6,9 +6,11 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:53:06 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/12 15:42:18 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 09:30:51 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "matrix.hpp"
 
 template <typename T>
 ft::Matrix<T> ft::Matrix<T>::adjoint() const

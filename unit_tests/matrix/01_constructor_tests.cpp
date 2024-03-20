@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:54 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 15:20:25 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/19 16:20:17 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,25 +93,6 @@ int m_constructor_test(void)
         ft::Matrix<int> ft_copy2(ft_copy);
 
         std::cout << ft_copy2 << std::endl;
-    }
-
-    {
-
-        ft::Matrix<int> ft_copy = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        typename ft::Matrix<int>::iterator it = ft_copy.begin();
-        typename ft::Matrix<int>::iterator it_end = ft_copy.end();
-
-        std::cout << ft_copy << std::endl;
-
-        std::cout << *it << std::endl;
-
-        while (it != it_end)
-        {
-            std::cout << *it << std::endl;
-            it++;
-        }
-
-
     }
 
     return (0);

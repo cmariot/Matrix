@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:05:42 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 14:07:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 10:07:45 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@ ft::Matrix<T>::Matrix(const size_type & rows, const size_type & columns)
 
 // Constructor : (rows, columns, val)
 template <typename T>
-ft::Matrix<T>::Matrix(const size_type & rows, const size_type & columns, const_reference val)
+ft::Matrix<T>::Matrix(const size_type & rows, const size_type & columns, const_reference val) : Matrix(rows, columns)
 {
-    _matrix.resize(rows);
-    for (size_type i = 0; i < rows; i++)
+    iterator it = begin();
+    while (it != end())
     {
-        _matrix[i].resize(columns);
-        for (size_type j = 0; j < columns; j++)
-            _matrix[i][j] = val;
+        *it = val;
+        ++it;
     }
 }
 

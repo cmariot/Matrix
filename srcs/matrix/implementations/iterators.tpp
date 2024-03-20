@@ -1,94 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   iterators.tpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/19 16:25:41 by cmariot           #+#    #+#             */
+/*   Updated: 2024/03/20 09:47:07 by cmariot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "matrix.hpp"
 
-
-// matrix_iterator(ft::Vector<ft::Vector<T> > * matrix, size_type i, size_type j);
 template <typename T>
-ft::matrix_iterator<T>::matrix_iterator(ft::Vector<ft::Vector<T> > & matrix, size_type i, size_type j) : _matrix(matrix), _i(i), _j(j) {}
-
-
-// matrix_iterator(const matrix_iterator & copy);
-template <typename T>
-ft::matrix_iterator<T>::matrix_iterator(const matrix_iterator & copy) : _matrix(copy._matrix), _i(copy._i), _j(copy._j) {}
-
-// ~matrix_iterator();
-template <typename T>
-ft::matrix_iterator<T>::~matrix_iterator() {}
-
-// matrix_iterator &   operator = (const matrix_iterator & rhs);
-template <typename T>
-ft::matrix_iterator<T> & ft::matrix_iterator<T>::operator = (const matrix_iterator & rhs)
+typename ft::Matrix<T>::iterator ft::Matrix<T>::begin()
 {
-    _matrix = rhs._matrix;
-    _i = rhs._i;
-    _j = rhs._j;
-    return *this;
+    iterator it(_matrix, 0, 0);
+    return it;
 }
 
-// bool                operator == (const matrix_iterator & rhs) const;
 template <typename T>
-bool ft::matrix_iterator<T>::operator == (const matrix_iterator & rhs) const
+typename ft::Matrix<T>::iterator ft::Matrix<T>::end()
 {
-    return (_matrix == rhs._matrix && _i == rhs._i && _j == rhs._j);
+    iterator it(_matrix, size()[0], size()[1]);
+    return it;
 }
 
-// bool                operator != (const matrix_iterator & rhs) const;
 template <typename T>
-bool ft::matrix_iterator<T>::operator != (const matrix_iterator & rhs) const
+typename ft::Matrix<T>::const_iterator ft::Matrix<T>::begin() const
 {
-    return (_matrix != rhs._matrix || _i != rhs._i || _j != rhs._j);
+    const_iterator it(_matrix, 0, 0);
+    return it;
 }
 
-// matrix_iterator &   operator ++ ();
 template <typename T>
-ft::matrix_iterator<T> & ft::matrix_iterator<T>::operator ++ ()
+typename ft::Matrix<T>::const_iterator ft::Matrix<T>::end() const
 {
-    if (_j < this->_matrix[0].size() - 1)
-        _j++;
-    else
-    {
-        _j = 0;
-        _i++;
-    }
-    return *this;
+    const_iterator it(_matrix, size()[0], size()[1]);
+    return it;
 }
-
-// matrix_iterator     operator ++ (int);
-template <typename T>
-ft::matrix_iterator<T> ft::matrix_iterator<T>::operator ++ (int)
-{
-    matrix_iterator tmp(*this);
-    operator++();
-    return tmp;
-}
-
-// matrix_iterator &   operator -- ();
-template <typename T>
-ft::matrix_iterator<T> & ft::matrix_iterator<T>::operator -- ()
-{
-    if (_j > 0)
-        _j--;
-    else
-    {
-        _j = this->_matrix[0].size() - 1;
-        _i--;
-    }
-    return *this;
-}
-
-// matrix_iterator     operator -- (int);
-template <typename T>
-ft::matrix_iterator<T> ft::matrix_iterator<T>::operator -- (int)
-{
-    matrix_iterator tmp(*this);
-    operator--();
-    return tmp;
-}
-
-// reference           operator * ();
-template <typename T>
-T & ft::matrix_iterator<T>::operator * ()
-{
-    return (_matrix)[_i][_j];
-}
-

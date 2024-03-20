@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:07:06 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 11:08:00 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 10:01:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,18 @@ std::map<bool, size_t> ft::Matrix<T>::size() const
         {0, _matrix.size()},
         {1, _matrix[0].size()}
     };
+}
+
+// const size_type get_nb_columns() const;
+template <typename T>
+typename ft::Matrix<T>::size_type ft::Matrix<T>::get_nb_columns() const
+{
+    return _matrix[0].size();
+}
+
+// const size_type get_nb_lines() const;
+template <typename T>
+typename ft::Matrix<T>::size_type ft::Matrix<T>::get_nb_lines() const
+{
+    return _matrix.size();
 }

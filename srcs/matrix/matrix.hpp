@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 14:48:37 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/13 11:58:29y cmariot          ###   ########.fr       */
+/*   Created: 2024/03/20 09:50:26 by cmariot           #+#    #+#             */
+/*   Updated: 2024/03/20 10:01:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
@@ -18,17 +19,14 @@
 #include <initializer_list>
 #include <stdexcept>
 #include <iostream>
-#include "../vector/vector.hpp"
 #include <iomanip>
+
+#include "vector.hpp"
+#include "iterators/matrix_const_iterators.hpp"
+#include "iterators/matrix_iterators.hpp"
 
 namespace ft
 {
-
-    template <typename T>
-    class Vector;
-
-    template <typename T>
-    class matrix_iterator;
 
     template <typename T>
     class Matrix
@@ -38,7 +36,8 @@ namespace ft
         typedef T &                             reference;
         typedef const T &                       const_reference;
         typedef size_t                          size_type;
-
+        typedef matrix_iterator<T>              iterator;
+        typedef matrix_const_iterator<T>        const_iterator;
 
         public:
 
@@ -91,12 +90,20 @@ namespace ft
             bool                    operator == (const Matrix &rhs) const;
             bool                    operator != (const Matrix &rhs) const;
 
+            iterator                begin();
+            iterator                end();
+            const_iterator          begin() const;
+            const_iterator          end() const;
+
+            size_type               get_nb_columns() const;
+            size_type               get_nb_lines() const;
+
             // Operator << : Display the matrix
-            friend std::ostream &   operator << (std::ostream &os, const Matrix &matrix)
+            friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
             {
 
                 os << "[" << std::endl;
-                for (size_type i = 0; i < matrix.size()[0] ; i++)
+                for (size_type i = 0; i < matrix.size()[0]; i++)
                 {
                     os << "\t[";
                     for (size_type j = 0; j < matrix.size()[1]; j++)
@@ -110,61 +117,14 @@ namespace ft
                     if (i < matrix.size()[0] - 1)
                         os << ", " << std::endl;
                 }
-                os << std::endl << "]";
+                os << std::endl
+                   << "]";
                 return (os);
             }
-
-            // Iterator
-            typedef matrix_iterator<T> iterator;
-
-            iterator                begin()
-            {
-                iterator it(_matrix, 0, 0);
-                return it;
-            }
-
-            iterator                end()
-            {
-                iterator it(_matrix, size()[0] + 1, size()[1] + 1);
-                return it;
-            }
-
 
         private:
 
             ft::Vector<ft::Vector<T> > _matrix;
-
-    };
-
-    template <typename T>
-    class matrix_iterator
-    {
-
-        typedef T                               value_type;
-        typedef T &                             reference;
-        typedef const T &                       const_reference;
-        typedef size_t                          size_type;
-
-        public:
-
-            matrix_iterator(ft::Vector<ft::Vector<T> > & matrix, size_type i, size_type j);
-            matrix_iterator(const matrix_iterator & copy);
-            ~matrix_iterator();
-
-            matrix_iterator &   operator = (const matrix_iterator & rhs);
-            bool                operator == (const matrix_iterator & rhs) const;
-            bool                operator != (const matrix_iterator & rhs) const;
-            matrix_iterator &   operator ++ ();
-            matrix_iterator     operator ++ (int);
-            matrix_iterator &   operator -- ();
-            matrix_iterator     operator -- (int);
-            reference           operator * ();
-
-        private:
-
-            ft::Vector<ft::Vector<T> > & _matrix;
-            size_type                   _i;
-            size_type                   _j;
 
     };
 

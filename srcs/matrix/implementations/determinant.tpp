@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:39:35 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 10:20:29 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 00:00:59 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ T ft::Matrix<T>::determinant() const
     // Volume of the parallelepiped formed by the vectors (a, b, c), (d, e, f) and (g, h, i)
     if (_size == 3)
     {
-        return (_matrix[0][0] * (_matrix[1][1] * _matrix[2][2] - _matrix[1][2] * _matrix[2][1]) -
-                _matrix[0][1] * (_matrix[1][0] * _matrix[2][2] - _matrix[1][2] * _matrix[2][0]) +
-                _matrix[0][2] * (_matrix[1][0] * _matrix[2][1] - _matrix[1][1] * _matrix[2][0]));
+        return (
+            _matrix[0][0] * (_matrix[1][1] * _matrix[2][2] - _matrix[1][2] * _matrix[2][1]) -
+            _matrix[0][1] * (_matrix[1][0] * _matrix[2][2] - _matrix[1][2] * _matrix[2][0]) +
+            _matrix[0][2] * (_matrix[1][0] * _matrix[2][1] - _matrix[1][1] * _matrix[2][0])
+        );
     }
 
     // If the matrix is larger than 3x3, the determinant is calculated using the Laplace expansion

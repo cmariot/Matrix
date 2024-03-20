@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:14:43 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 14:19:09 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/19 16:20:24 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	matrix_launcher(void)
 	s_test	*tests = NULL;
 	std::string function_name = "MATRIX";
 
-	load_test(&tests, function_name, "Constructor           ", (void *)&m_constructor_test, "");
+	load_test(&tests, function_name, "Constructor           ", (void *)&m_constructor_test, NULL);
     load_test(&tests, function_name, "Addition              ", (void *)&m_addition_test, "");
     load_test(&tests, function_name, "Subtraction           ", (void *)&m_subtraction_test, "");
     load_test(&tests, function_name, "Scale                 ", (void *)&m_scale_test, "");
