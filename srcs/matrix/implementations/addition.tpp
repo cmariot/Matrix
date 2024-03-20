@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:10:18 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 23:57:57 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 15:55:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ ft::Matrix<T> ft::Matrix<T>::operator + (const Matrix & rhs) const
 
 // Operator += : Add two matrix
 template <typename T>
-ft::Matrix<T> & ft::Matrix<T>::operator+=(const Matrix & rhs)
+ft::Matrix<T> & ft::Matrix<T>::operator += (const Matrix & rhs)
 {
     *this = *this + rhs;
     return (*this);

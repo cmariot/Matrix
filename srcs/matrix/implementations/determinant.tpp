@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:39:35 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 00:00:59 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 15:54:26 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 
 template <typename T>
-T ft::Matrix<T>::minor(size_type i, size_type j) const
+T ft::Matrix<T>::minor(const size_type & i, const size_type & j) const
 {
     if (is_square() == false)
         throw std::invalid_argument("The matrix must be square to have a minor.");
@@ -49,7 +49,7 @@ T ft::Matrix<T>::minor(size_type i, size_type j) const
 
 
 template <typename T>
-T ft::Matrix<T>::cofactor(size_type i, size_type j) const
+T ft::Matrix<T>::cofactor(const size_type & i, const size_type & j) const
 {
     return (std::pow(-1, i + j) * minor(i, j));
 }
@@ -94,10 +94,8 @@ T ft::Matrix<T>::determinant() const
     {
         size_type zeros = 0;
         for (size_type j = 0; j < _size; j++)
-        {
             if (_matrix[i][j] == 0)
                 zeros++;
-        }
         if (zeros > max_zeros)
         {
             max_zeros = zeros;
@@ -106,12 +104,7 @@ T ft::Matrix<T>::determinant() const
     }
 
     for (size_type i = 0; i < _size; i++)
-    {
         if (_matrix[max_zeros_index][i] != 0)
-        {
             det += _matrix[max_zeros_index][i] * cofactor(max_zeros_index, i);
-        }
-    }
-
     return (det);
 }

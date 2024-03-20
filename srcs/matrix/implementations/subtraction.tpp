@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:10:31 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 10:10:19 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 15:52:24 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Operator - : Subtract two matrix
 template <typename T>
-ft::Matrix<T> ft::Matrix<T>::operator-(const Matrix &rhs) const
+ft::Matrix<T> ft::Matrix<T>::operator - (const Matrix & rhs) const
 {
     if (size() != rhs.size())
         throw std::length_error("Matrices are not the same size.");
@@ -34,7 +34,7 @@ ft::Matrix<T> ft::Matrix<T>::operator-(const Matrix &rhs) const
 
 // Operator -= : Subtract two matrix
 template <typename T>
-ft::Matrix<T> &ft::Matrix<T>::operator-=(const Matrix &rhs)
+ft::Matrix<T> &ft::Matrix<T>::operator -= (const Matrix & rhs)
 {
     *this = *this - rhs;
     return (*this);
@@ -42,7 +42,7 @@ ft::Matrix<T> &ft::Matrix<T>::operator-=(const Matrix &rhs)
 
 // Method sub : Subtract two matrix
 template <typename T>
-ft::Matrix<T> &ft::Matrix<T>::sub(const Matrix &rhs)
+ft::Matrix<T> &ft::Matrix<T>::sub(const Matrix & rhs)
 {
     return (*this -= rhs);
 }

@@ -25,7 +25,7 @@ ft::Matrix<T>   ft::Matrix<T>::row_echelon() const
     - Find the row with the largest absolute value in the first column and swap
       that row with the first row.
     - Divide the first row by the pivot element to make it equal to 1.
-    - Use the first row to eliminate the first column in all other rows by
+    - Use the first row to eliminate the first column in all other lines by
       subtracting the appropriate multiple of the first row from each row.
     - Repeat steps 2-4 for the remaining columns, using the row with the largest
       absolute value as the pivot row for each column.
@@ -35,18 +35,18 @@ ft::Matrix<T>   ft::Matrix<T>::row_echelon() const
 
     Matrix mat(*this);
 
-    size_t rows = mat.size()[0];
-    size_t cols = mat.size()[1];
+    size_t lines = mat.get_nb_lines();
+    size_t cols = mat.get_nb_columns();
 
     size_t i = 0;
     size_t j = 0;
 
-    while (i < rows && j < cols)
+    while (i < lines && j < cols)
     {
 
         // Find the pivot row
         size_t max_row = i;
-        for (size_t k = i + 1; k < rows; k++)
+        for (size_t k = i + 1; k < lines; k++)
         {
             if (std::abs(mat[k][j]) > std::abs(mat[max_row][j]))
                 max_row = k;
@@ -68,8 +68,8 @@ ft::Matrix<T>   ft::Matrix<T>::row_echelon() const
         for (size_t k = j; k < cols; k++)
             mat[i][k] /= pivot;
 
-        // Use the pivot row to eliminate the first column in all other rows
-        for (size_t k = 0; k < rows; k++)
+        // Use the pivot row to eliminate the first column in all other lines
+        for (size_t k = 0; k < lines; k++)
         {
             if (k == i)
                 continue;

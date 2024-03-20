@@ -71,6 +71,7 @@ VECTOR			= 00_vector_launcher.cpp \
 				  08_norm_tests.cpp \
 				  09_cosine_tests.cpp \
 				  10_cross_product_tests.cpp \
+				  11_complex_tests.cpp
 
 
 
@@ -88,6 +89,7 @@ MATRIX			= 00_matrix_launcher.cpp \
 				  11_inverse_tests.cpp \
 				  12_rank_tests.cpp \
 				  13_projection_tests.cpp \
+				  14_complex_tests.cpp
 
 
 SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))

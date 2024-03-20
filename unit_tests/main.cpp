@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 14:42:37 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 20:35:20 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 12:58:52 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,15 @@
 int	main(void)
 {
 
-    // start a timer
-    clock_t start = clock();
-
 	// LAUNCH VECTOR TESTS
+    clock_t start = clock();
 	vector_launcher();
-
-    // stop the timer
-    clock_t end = clock();
-
-    // calculate the elapsed time
-    double elapsed_time = double(end - start) / CLOCKS_PER_SEC;
-
-    std::cout << "\nElapsed time for vector tests: " << elapsed_time << "s" << std::endl;
+    std::cout << "\nElapsed time for vector tests: " << double(clock() - start) / CLOCKS_PER_SEC << "s" << std::endl;
 
     // LAUNCH MATRIX TESTS
+    start = clock();
     matrix_launcher();
-
+    std::cout << "\nElapsed time for matrix tests: " << double(clock() - start) / CLOCKS_PER_SEC << "s" << std::endl;
 
 	return (0);
 }

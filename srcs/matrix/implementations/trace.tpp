@@ -6,14 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:52:53 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 10:16:50 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 12:47:05 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.hpp"
 
 template <typename T>
-T ft::Matrix<T>::trace() const
+typename ft::Matrix<T>::value_type ft::Matrix<T>::trace() const
 {
     /*
     Sum of the elements on the main diagonal of a square matrix.

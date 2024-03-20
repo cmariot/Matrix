@@ -6,10 +6,9 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:25:41 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 09:47:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 12:27:37 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "matrix.hpp"
 
@@ -21,16 +20,16 @@ typename ft::Matrix<T>::iterator ft::Matrix<T>::begin()
 }
 
 template <typename T>
-typename ft::Matrix<T>::iterator ft::Matrix<T>::end()
+typename ft::Matrix<T>::const_iterator ft::Matrix<T>::begin() const
 {
-    iterator it(_matrix, size()[0], size()[1]);
+    const_iterator it(_matrix, 0, 0);
     return it;
 }
 
 template <typename T>
-typename ft::Matrix<T>::const_iterator ft::Matrix<T>::begin() const
+typename ft::Matrix<T>::iterator ft::Matrix<T>::end()
 {
-    const_iterator it(_matrix, 0, 0);
+    iterator it(_matrix, size()[0], size()[1]);
     return it;
 }
 

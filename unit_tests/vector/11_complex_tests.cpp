@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_square.tpp                                      :+:      :+:    :+:   */
+/*   11_complex_tests.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 11:39:30 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 12:26:39 by cmariot          ###   ########.fr       */
+/*   Created: 2024/03/20 15:48:51 by cmariot           #+#    #+#             */
+/*   Updated: 2024/03/20 15:49:09 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.hpp"
+#include "vector.hpp"
 
-template <typename T>
-bool ft::Matrix<T>::is_square() const
+int v_complex_test(void)
 {
-    return (get_nb_columns() == get_nb_lines());
+    return (-1);
 }

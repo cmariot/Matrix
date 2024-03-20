@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 09:34:53 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 09:53:43 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 16:40:50 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ namespace ft
             matrix_const_iterator operator++(int);
             matrix_const_iterator &operator--();
             matrix_const_iterator operator--(int);
+            matrix_const_iterator operator+(const size_type &rhs) const;
             const_reference operator*() const;
 
         private:
@@ -127,6 +128,15 @@ namespace ft
             _i--;
         }
         return *this;
+    }
+
+    template <typename T>
+    matrix_const_iterator<T> matrix_const_iterator<T>::operator+(const size_type &rhs) const
+    {
+        matrix_const_iterator tmp(*this);
+        for (size_type i = 0; i < rhs; i++)
+            tmp.operator++();
+        return tmp;
     }
 
     template <typename T>

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 09:50:26 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 10:01:54 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 16:43:15 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,55 +70,59 @@ namespace ft
             Matrix &                mul_vec(const Vector<T> & rhs);
 
             std::map<bool, size_t>  size() const;
+            size_type               get_nb_columns() const;
+            size_type               get_nb_lines() const;
+
             bool                    is_square() const;
 
             T                       trace() const;
+
             Matrix                  transpose() const;
+
             Matrix                  row_echelon() const;
+
+            T                       minor(const size_type & i, const size_type & j) const;
+            T                       cofactor(const size_type & i, const size_type & j) const;
             T                       determinant() const;
-            T                       cofactor(size_type i, size_type j) const;
-            T                       minor(size_type i, size_type j) const;
+
             size_type               rank() const;
-            Matrix                  inverse() const;
+
             Matrix                  adjoint() const;
+            Matrix                  inverse() const;
 
             ft::Vector<T> &         operator [] (const size_type & pos);
             const ft::Vector<T> &   operator [] (const size_type & pos) const;
 
-            Matrix &                operator = (const Matrix &rhs);
+            Matrix &                operator = (const Matrix & rhs);
 
-            bool                    operator == (const Matrix &rhs) const;
-            bool                    operator != (const Matrix &rhs) const;
+            bool                    operator == (const Matrix & rhs) const;
+            bool                    operator != (const Matrix & rhs) const;
 
             iterator                begin();
             iterator                end();
             const_iterator          begin() const;
             const_iterator          end() const;
 
-            size_type               get_nb_columns() const;
-            size_type               get_nb_lines() const;
 
             // Operator << : Display the matrix
             friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix)
             {
 
+                const_iterator it = matrix.begin();
+
                 os << "[" << std::endl;
-                for (size_type i = 0; i < matrix.size()[0]; i++)
+
+                while (it != matrix.end())
                 {
-                    os << "\t[";
-                    for (size_type j = 0; j < matrix.size()[1]; j++)
-                    {
-                        os << std::fixed << std::setprecision(2) << std::setw(5);
-                        os << matrix._matrix[i][j];
-                        if (j < matrix.size()[1] - 1)
-                            os << ", ";
-                    }
+                    os << " [";
+                    std::cout << std::fixed << std::setprecision(2) << std::setw(5);
+                    std::cout << *it;
                     os << "]";
-                    if (i < matrix.size()[0] - 1)
-                        os << ", " << std::endl;
+                    if (it + 1 != matrix.end())
+                        os << ", ";
+                    ++it;
                 }
-                os << std::endl
-                   << "]";
+                os << std::endl << "]";
                 return (os);
             }
 

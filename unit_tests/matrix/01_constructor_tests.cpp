@@ -6,12 +6,13 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:54 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 16:20:17 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 15:45:57 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.hpp"
 
+#include <complex>
 
 int m_constructor_test(void)
 {

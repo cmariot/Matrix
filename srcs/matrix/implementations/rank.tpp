@@ -6,13 +6,18 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:39:14 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/12 11:42:32 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 12:29:37 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 template <typename T>
 typename ft::Matrix<T>::size_type ft::Matrix<T>::rank() const
 {
+
+    /*
+    The rank of a matrix is the number of non-zero rows in its row echelon form.
+    */
+
     Matrix<T> row_echelon_form = row_echelon();
 
     size_type rank_value = 0;

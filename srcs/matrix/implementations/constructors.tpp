@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:05:42 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 10:07:45 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 15:54:54 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,4 @@ ft::Matrix<T>::Matrix(const ft::Vector<T> &copy)
 // Destructor
 template <typename T>
 ft::Matrix<T>::~Matrix()
-{
-    // _matrix.clear();
-}
+{}

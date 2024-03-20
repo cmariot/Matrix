@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 15:03:15 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 16:57:42 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/20 15:48:14 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int v_dot_product_test(void);
 int v_norm_test(void);
 int v_cosine_test(void);
 int v_cross_product_test(void);
+int v_complex_test(void);
 
 
 /* ************************************************************************** */
@@ -57,6 +58,7 @@ int m_determinant_test(void);
 int m_inverse_test(void);
 int m_rank_test(void);
 int m_projection_test(void);
+int m_complex_test(void);
 
 
 
