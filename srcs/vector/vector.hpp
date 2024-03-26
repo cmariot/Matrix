@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:48:41 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 12:14:44 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 10:22:41 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "matrix.hpp"
 # include <vector>
-# include <iostream>
-# include <cmath>
 # include <initializer_list>
 
 namespace ft
@@ -136,6 +134,5 @@ namespace ft
 # include "implementations/assign.tpp"
 # include "implementations/compare.tpp"
 # include "implementations/iterators.tpp"
-
 
 #endif

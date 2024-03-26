@@ -6,13 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 11:39:35 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 15:54:26 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 09:52:59 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MATRIX_DETERMINANT_TPP
+# define MATRIX_DETERMINANT_TPP
 
-#include <cmath>
-
+# include "matrix.hpp"
 
 template <typename T>
 T ft::Matrix<T>::minor(const size_type & i, const size_type & j) const
@@ -43,7 +44,6 @@ T ft::Matrix<T>::minor(const size_type & i, const size_type & j) const
             y = 0;
         }
     }
-
     return (minor_matrix.determinant());
 }
 
@@ -51,7 +51,15 @@ T ft::Matrix<T>::minor(const size_type & i, const size_type & j) const
 template <typename T>
 T ft::Matrix<T>::cofactor(const size_type & i, const size_type & j) const
 {
-    return (std::pow(-1, i + j) * minor(i, j));
+    size_type power = i + j;
+    T result = 1;
+
+    while (power > 0)
+    {
+        result *= -1;
+        power--;
+    }
+    return (result * minor(i, j));
 }
 
 
@@ -108,3 +116,5 @@ T ft::Matrix<T>::determinant() const
             det += _matrix[max_zeros_index][i] * cofactor(max_zeros_index, i);
     return (det);
 }
+
+#endif

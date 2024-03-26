@@ -6,24 +6,20 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 09:50:26 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 16:43:15 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 09:56:17 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
-#include <vector>
-#include <map>
-#include <initializer_list>
-#include <stdexcept>
-#include <iostream>
-#include <iomanip>
+# include <map>
+# include <iomanip>
+# include <iostream>
 
-#include "vector.hpp"
-#include "iterators/matrix_const_iterators.hpp"
-#include "iterators/matrix_iterators.hpp"
+# include "vector.hpp"
+# include "iterators/matrix_iterators.hpp"
+# include "iterators/matrix_const_iterators.hpp"
 
 namespace ft
 {
@@ -111,13 +107,9 @@ namespace ft
                 const_iterator it = matrix.begin();
 
                 os << "[" << std::endl;
-
                 while (it != matrix.end())
                 {
-                    os << " [";
-                    std::cout << std::fixed << std::setprecision(2) << std::setw(5);
-                    std::cout << *it;
-                    os << "]";
+                    os << " [" << std::fixed << std::setprecision(2) << std::setw(5) << *it << "]";
                     if (it + 1 != matrix.end())
                         os << ", ";
                     ++it;
@@ -136,21 +128,21 @@ namespace ft
 
 ft::Matrix<float> projection(float fov, float ratio, float near, float far);
 
-#include "implementations/constructors.tpp"
-#include "implementations/assign.tpp"
-#include "implementations/access.tpp"
-#include "implementations/compare.tpp"
-#include "implementations/size.tpp"
-#include "implementations/is_square.tpp"
-#include "implementations/addition.tpp"
-#include "implementations/subtraction.tpp"
-#include "implementations/multiplication.tpp"
-#include "implementations/trace.tpp"
-#include "implementations/transpose.tpp"
-#include "implementations/determinant.tpp"
-#include "implementations/rank.tpp"
-#include "implementations/inverse.tpp"
-#include "implementations/row_echelon.tpp"
-#include "implementations/iterators.tpp"
+# include "implementations/constructors.tpp"
+# include "implementations/assign.tpp"
+# include "implementations/access.tpp"
+# include "implementations/compare.tpp"
+# include "implementations/size.tpp"
+# include "implementations/is_square.tpp"
+# include "implementations/addition.tpp"
+# include "implementations/subtraction.tpp"
+# include "implementations/multiplication.tpp"
+# include "implementations/trace.tpp"
+# include "implementations/transpose.tpp"
+# include "implementations/determinant.tpp"
+# include "implementations/rank.tpp"
+# include "implementations/inverse.tpp"
+# include "implementations/row_echelon.tpp"
+# include "implementations/iterators.tpp"
 
 #endif

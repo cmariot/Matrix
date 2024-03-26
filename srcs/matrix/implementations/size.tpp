@@ -6,11 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:07:06 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 15:23:46 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 09:52:13 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.hpp"
+#ifndef MATRIX_SIZE_TPP
+# define MATRIX_SIZE_TPP
+
+# include "matrix.hpp"
 
 // Size
 template <typename T>
@@ -35,3 +38,5 @@ typename ft::Matrix<T>::size_type ft::Matrix<T>::get_nb_lines() const
 {
     return _matrix.size();
 }
+
+#endif

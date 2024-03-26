@@ -6,11 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:10:26 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 15:53:10 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 09:52:36 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.hpp"
+#ifndef MATRIX_MULTIPLICATION_TPP
+# define MATRIX_MULTIPLICATION_TPP
+
+# include "matrix.hpp"
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -146,3 +149,5 @@ ft::Matrix<T> &ft::Matrix<T>::mul_vec(const Vector<T> & rhs)
 {
     return (*this *= rhs);
 }
+
+#endif

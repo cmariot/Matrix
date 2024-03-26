@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.hpp"
+#ifndef MATRIX_ROW_ECHELON_TPP
+# define MATRIX_ROW_ECHELON_TPP
+
+# include "matrix.hpp"
 
 
 template <typename T>
@@ -33,55 +36,52 @@ ft::Matrix<T>   ft::Matrix<T>::row_echelon() const
 
     */
 
-    Matrix mat(*this);
+    Matrix result(*this);
 
-    size_t lines = mat.get_nb_lines();
-    size_t cols = mat.get_nb_columns();
+    size_t lines = result.get_nb_lines();
+    size_t cols = result.get_nb_columns();
 
-    size_t i = 0;
-    size_t j = 0;
+    size_t current_line = 0;
+    size_t current_col = 0;
 
-    while (i < lines && j < cols)
+    while (current_line < lines && current_col < cols)
     {
 
-        // Find the pivot row
-        size_t max_row = i;
-        for (size_t k = i + 1; k < lines; k++)
-        {
-            if (std::abs(mat[k][j]) > std::abs(mat[max_row][j]))
-                max_row = k;
-        }
+        // Find the pivot line index
+        size_t pivot_line_index = current_line;
+        for (size_t k = current_line + 1; k < lines; k++)
+            if (std::abs(result[k][current_col]) > std::abs(result[pivot_line_index][current_col]))
+                pivot_line_index = k;
 
-        // Swap the pivot row with the current row
-        if (max_row != i)
-            std::swap(mat[i], mat[max_row]);
+        // Swap the pivot line with the current line if a pivot was found
+        if (pivot_line_index != current_line)
+            std::swap(result[current_line], result[pivot_line_index]);
 
-        // If the pivot element is zero, move to the next column
-        if (mat[i][j] == 0)
+        // Divide all the elements of the line by the pivot value
+        T pivot_value = result[current_line][current_col];
+        if (pivot_value == 0)
         {
-            j++;
+            current_col++;
             continue;
         }
-
-        // Divide the pivot row by the pivot element
-        T pivot = mat[i][j];
-        for (size_t k = j; k < cols; k++)
-            mat[i][k] /= pivot;
+        for (size_t k = current_col; k < cols; k++)
+            result[current_line][k] /= pivot_value;
 
         // Use the pivot row to eliminate the first column in all other lines
         for (size_t k = 0; k < lines; k++)
         {
-            if (k == i)
+            if (k == current_line)
                 continue;
-
-            T factor = mat[k][j];
-            for (size_t l = j; l < cols; l++)
-                mat[k][l] -= factor * mat[i][l];
+            T factor = result[k][current_col];
+            for (size_t l = current_col; l < cols; l++)
+                result[k][l] -= factor * result[current_line][l];
         }
 
-        i++;
-        j++;
+        current_line++;
+        current_col++;
     }
 
-    return mat;
+    return result;
 }
+
+#endif

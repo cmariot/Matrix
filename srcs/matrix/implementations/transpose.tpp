@@ -6,11 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:52:50 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 10:15:01 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 09:50:42 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.hpp"
+#ifndef MATRIX_TRANSPOSE_TPP
+# define MATRIX_TRANSPOSE_TPP
+
+# include "matrix.hpp"
 
 template <typename T>
 ft::Matrix<T> ft::Matrix<T>::transpose() const
@@ -30,3 +33,5 @@ ft::Matrix<T> ft::Matrix<T>::transpose() const
             result[j][i] = (*this)[i][j];
     return result;
 }
+
+#endif

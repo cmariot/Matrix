@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:57:16 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/18 21:07:13 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 10:18:35 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 template <typename T>
 bool ft::Vector<T>::operator == (const Vector & rhs) const
 {
+    if (this->size() != rhs.size())
+        return false;
+
     const_iterator  it = this->begin();
     const_iterator  rhs_it = rhs.begin();
 
-    if (this->size() != rhs.size())
-        return false;
     while (it != this->end())
     {
         if (*it != *rhs_it)

@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:56:33 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 10:12:01 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 10:20:26 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 // Constructor : Default
 template <typename T>
 ft::Vector<T>::Vector() : _vector()
-{
-}
+{}
 
 // Constructor : Size
 template <typename T>
@@ -47,11 +46,11 @@ ft::Vector<T>::Vector(const Vector &copy)
 template <typename T>
 ft::Vector<T>::Vector(const Matrix<T> &copy)
 {
-    const size_type n_rows = copy.size()[0];
-    const size_type n_cols = copy.size()[1];
+    const size_type n_lines = copy.get_nb_lines();
+    const size_type n_cols = copy.get_nb_columns();
 
-    _vector.reserve(n_rows * n_cols);
-    for (size_type i = 0; i < n_rows; i++)
+    _vector.reserve(n_lines * n_cols);
+    for (size_type i = 0; i < n_lines; i++)
         for (size_type j = 0; j < n_cols; j++)
             _vector.emplace_back(copy[i][j]);
 }

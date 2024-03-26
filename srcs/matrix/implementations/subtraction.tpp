@@ -6,11 +6,14 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:10:31 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 15:52:24 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 09:52:02 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "matrix.hpp"
+#ifndef MATRIX_SUBTRACTION_TPP
+# define MATRIX_SUBTRACTION_TPP
+
+# include "matrix.hpp"
 
 // Operator - : Subtract two matrix
 template <typename T>
@@ -46,3 +49,4 @@ ft::Matrix<T> &ft::Matrix<T>::sub(const Matrix & rhs)
 {
     return (*this -= rhs);
 }
+#endif

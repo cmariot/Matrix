@@ -6,7 +6,7 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 16:49:56 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/20 09:52:07 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/03/26 09:55:30 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include "matrix.hpp"
 
 namespace ft {
+
+    template <typename T>
+    class Vector;
+
+    template <typename T>
+    class Matrix;
 
     template <typename T>
     class matrix_iterator
