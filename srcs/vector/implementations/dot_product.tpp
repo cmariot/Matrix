@@ -6,28 +6,29 @@
 /*   By: cmariot <cmariot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:57:38 by cmariot           #+#    #+#             */
-/*   Updated: 2024/03/19 09:39:27 by cmariot          ###   ########.fr       */
+/*   Updated: 2024/06/05 18:20:07 by cmariot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOT_PRODUCT_TPP
-# define DOT_PRODUCT_TPP
+#define DOT_PRODUCT_TPP
 
-# include "vector.hpp"
+#include "vector.hpp"
+#include <cmath>
 
 template <typename T>
-T  ft::Vector<T>::dot(const ft::Vector<T> & rhs) const
+T ft::Vector<T>::dot(const ft::Vector<T> &rhs) const
 {
     if (this->size() != rhs.size())
         throw std::length_error("Vectors are not the same size.");
 
-    const_iterator  it1 = this->begin();
-    const_iterator  it2 = rhs.begin();
-    T               result = T();
+    const_iterator it1 = this->begin();
+    const_iterator it2 = rhs.begin();
+    T result = T();
 
     while (it1 != this->end())
     {
-        result = std::fma(*it1, *it2, result);  // result += *it1 * *it2;
+        result = std::fma(*it1, *it2, result); // result += *it1 * *it2;
         ++it1;
         ++it2;
     }
