@@ -13,6 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: update apt
+      run: sudo apt update --yes --fix-missing
+    - name: upgrade apt
+      run: sudo apt upgrade --yes
     - name: install valgrind
       run: sudo apt install -y valgrind
     - name: make
