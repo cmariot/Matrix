@@ -81,23 +81,32 @@ namespace ft
             // Operator << : Display the vector
             friend std::ostream & operator << (std::ostream & os, const Vector & vector)
             {
-                os << "[";
                 const_iterator it = vector.begin();
+                const int cell_width = 10;
+                size_t cols = vector.size();
 
-                if (it != vector.end())
+                if (cols == 0)
+                    return os << "Empty Vector";
+
+
+                os << std::setprecision(2) << std::fixed;
+                auto print_separator = [&]() {
+                    os << "  +";
+                    for (size_t j = 0; j < cols; ++j)
+                        os << std::string(cell_width, '-') << "+";
+                    os << "\n";
+                };
+
+                print_separator();
+                os << "  |";
+                for (size_t j = 0; j < cols; ++j)
                 {
-                    while (it != vector.end() - 1)
-                    {
-                        os << *it << ", ";
-                        ++it;
-                    }
-                    os << *it;
+                    os << std::setw(cell_width) << *it << "|";
+                    ++it;
                 }
-                else
-                {
-                    os << "Empty Vector";
-                }
-                os << "]";
+                os << "\n";
+                print_separator();
+
                 return os;
             }
 

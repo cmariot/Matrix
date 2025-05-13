@@ -104,22 +104,43 @@ namespace ft
         {
 
             const_iterator it = matrix.begin();
+            const int cell_width = 10;
+            os << std::setprecision(2) << std::fixed;
+            size_t rows = matrix.get_nb_lines();
+            size_t cols = matrix.get_nb_columns();
 
-            os << "[" << std::endl;
-            while (it != matrix.end())
+            if (rows == 0 || cols == 0)
+                return os << "Empty Matrix";
+            
+            auto print_separator = [&]() {
+                os << "  +";
+                for (size_t j = 0; j < cols; ++j)
+                    os << std::string(cell_width, '-') << "+";
+                os << "\n";
+            };
+
+            print_separator();
+            for (size_t i = 0; i < rows; ++i)
             {
-                os << " [" << std::fixed << std::setprecision(2) << std::setw(5) << *it << "]";
-                if (it + 1 != matrix.end())
-                    os << ", ";
-                ++it;
+                os << "  |";
+                for (size_t j = 0; j < cols; ++j)
+                {
+                    os << std::setw(cell_width) << *it << "|";
+                    ++it;
+                }
+                os << "\n";
+                print_separator();
             }
-            os << std::endl
-               << "]";
+
             return (os);
         }
 
     private:
         ft::Vector<ft::Vector<T>> _matrix;
+
+        // std::vector<T> _matrix_flat;
+        // size_type _rows;
+        // size_type _columns;
     };
 
 }
