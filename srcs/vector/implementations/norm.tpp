@@ -33,7 +33,7 @@ float ft::Vector<T>::norm() const
 
     while (it != this->end())
     {
-        result += std::norm(*it);
+        result += std::pow(*it, 2);
         ++it;
     }
     return std::pow(result, 0.5);
@@ -51,7 +51,7 @@ float ft::Vector<T>::norm_1() const
 
     while (it != this->end())
     {
-        result += std::norm(*it);
+        result += std::max(-*it, *it);
         ++it;
     }
     return result;
@@ -69,7 +69,7 @@ float ft::Vector<T>::norm_inf() const
 
     while (it != this->end())
     {
-        result += std::norm(*it);
+        result = std::max(result, std::max(-*it, *it));
         ++it;
     }
     return result;

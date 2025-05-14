@@ -7,3 +7,4 @@ objs/
 *.o
 a.out
 videos/
+executables/

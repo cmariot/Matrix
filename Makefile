@@ -92,6 +92,25 @@ MATRIX			= 00_matrix_launcher.cpp \
 				  14_complex_tests.cpp
 
 
+EXERCICES		= exercises/ex00.cpp \
+				  exercises/ex01.cpp \
+				  exercises/ex02.cpp \
+				  exercises/ex03.cpp \
+				  exercises/ex04.cpp \
+				  exercises/ex05.cpp \
+				  exercises/ex06.cpp \
+				  exercises/ex07.cpp \
+				  exercises/ex08.cpp \
+				  exercises/ex09.cpp \
+				  exercises/ex10.cpp
+
+# Liste des exécutables ex00, ex01, ...
+EXECS = $(patsubst exercises/%.cpp,executables/%, $(EXERCICES))
+
+# Objets pour les exercices
+EXO_OBJDIR = objs/exercises/
+EXO_OBJS = $(patsubst exercises/%.cpp,objs/exercises/%.o, $(EXERCICES))
+
 SRCS			= $(addprefix $(SRC_ROOTDIR), $(SRC_SUBDIR))
 
 
@@ -133,7 +152,7 @@ RESET			= \033[0m
 .SILENT : 		all
 
 
-all : 			header $(NAME) footer
+all : 			header $(NAME) all_exos footer
 
 
 $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.cpp
@@ -159,9 +178,22 @@ test :			all
 				@./$(NAME)
 
 
+all_exos: $(EXECS)
+
+executables/%: objs/exercises/%.o
+	@mkdir -p executables
+	$(CC) $(CFLAGS) $(INCLUDES) $< -o $@
+
+objs/exercises/%.o: exercises/%.cpp
+	@mkdir -p objs/exercises
+	$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+
+
 clean :
 				@rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@rm -rf VECTOR.log MATRIX.log valgrind.log
+					@rm -rf objs/exercises
+					@rm -rf executables
 				@make clean -C unit_tests/framework --no-print-directory
 				@printf "$(RED)"
 				@printf "Object files removed\n"
@@ -172,6 +204,8 @@ fclean :
 				@-rm -f $(NAME)
 				@rm -rf VECTOR.log MATRIX.log valgrind.log
 				@-rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
+					@rm -rf objs/exercises
+					@rm -rf executables
 				@make fclean -C unit_tests/framework --no-print-directory
 				@printf "$(RED)"
 				@printf "Binary and object files removed\n"
@@ -203,4 +237,4 @@ footer :
 -include $(DEPENDS)
 
 
-.PHONY : 		all clean fclean bonus re
+.PHONY : 		all clean fclean bonus re all_exos

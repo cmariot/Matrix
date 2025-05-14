@@ -15,6 +15,9 @@ int main()
     ft::Vector<double> b = {0, 10};
 
     // L'interpolation linéaire est un concept qui consiste à approximer une valeur intermédiaire entre deux points connus par une droite (c’est-à-dire une fonction affine).
+    // Par exemple, on a un point A = (0, 0) et un point B = (0, 10).
+    // Si on veut trouver le point C qui est à mi-chemin entre A et B, on peut utiliser l'interpolation linéaire.
+    // lerp(A, B, 0.5) = A + (B - A) * 0.5
 
     try {
         ft::Vector<double> result = lerp(a, b, 0.5);

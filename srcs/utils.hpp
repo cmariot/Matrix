@@ -102,22 +102,6 @@ T lerp(const T &a, const T &b, const double &t)
 
 
 template <typename T>
-ft::Vector<T> cross_product(const ft::Vector<T> & u, const ft::Vector<T> & v)
-{
-    if (u.size() != 3 || v.size() != 3)
-        throw std::length_error("The two vectors must be 3 dimension vectors.");
-
-    return ft::Vector<T>(
-        {
-            std::fma(u[1], v[2], -u[2] * v[1]),
-            std::fma(u[2], v[0], -u[0] * v[2]),
-            std::fma(u[0], v[1], -u[1] * v[0])
-        }
-    );
-}
-
-
-template <typename T>
 float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
 {
     /*
@@ -126,6 +110,9 @@ float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
 
     if (u.size() != v.size())
         throw std::length_error("The two vectors must have the same size.");
+    else if (u.size() == 0)
+        throw std::length_error("The two vectors must not be empty.");
+
 
     double dot_product = 0;
     double norm_u = 0;
@@ -144,8 +131,25 @@ float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
         ++it2;
     }
 
+    if (norm_u == 0 || norm_v == 0)
+        throw std::invalid_argument("The two vectors must not be null.");
+
     return (dot_product / (std::sqrt(norm_u) * std::sqrt(norm_v)));
 }
 
 
+template <typename T>
+ft::Vector<T> cross_product(const ft::Vector<T> & u, const ft::Vector<T> & v)
+{
+    if (u.size() != 3 || v.size() != 3)
+        throw std::length_error("The two vectors must be 3 dimension vectors.");
+
+    return ft::Vector<T>(
+        {
+            std::fma(u[1], v[2], -u[2] * v[1]),
+            std::fma(u[2], v[0], -u[0] * v[2]),
+            std::fma(u[0], v[1], -u[1] * v[0])
+        }
+    );
+}
 #endif

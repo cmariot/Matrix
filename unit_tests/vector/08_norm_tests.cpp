@@ -63,16 +63,5 @@ int v_norm_test(void)
             return (-1);
     }
 
-    {
-
-        // Vector of complex number
-        ft::Vector<std::complex<float>> v1 = {std::complex<float>(1, 1), std::complex<float>(1, 1)};
-
-        std::cout << "v1 = " << v1 << std::endl;
-        std::cout << "v1.norm_1() = " << v1.norm_1() << std::endl;
-        std::cout << "v1.norm() = " << v1.norm() << std::endl;
-        std::cout << "v1.norm_inf() = " << v1.norm_inf() << std::endl;
-    }
-
     return (0);
 }
