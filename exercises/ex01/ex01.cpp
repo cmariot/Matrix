@@ -1,30 +1,3 @@
-// v = [ 2 ; 3 ]
-// w = [ -3 ; 2]
-
-// a * v + b * w = [ 7 ; 4 ]
-// a * [ 2 ; 3 ] + b * [ -3 ; 2] = [ 7 ; 4 ]
-
-// 1/
-// a = 1
-// b = -2
-
-// a * v + b * w = [ 7 ; 4 ]
-// [ 2 ; 3 ] + [ 6 ; -4] KO
-
-// 2/
-// a = -1
-// b = 2
-// a * v + b * w = [ 7 ; 4 ]
-// [ -2 ; -3 ] + [ 6 ; -4] = [ 4 ; -7] KO
-
-// 3/
-// a = 2
-// b = -1
-// a * v + b * w = [ 7 ; 4 ]
-// [ 4 ; 6 ] + [ 3 ; -2] = [ 7 ; 4] OK
-
-
-
 /*
 Exercise 01 : Linear Combination
 */
@@ -35,14 +8,19 @@ Exercise 01 : Linear Combination
 #include "utils.hpp"
 #include <list>
 
-
 int main()
 {
-    // Linear combination
-    ft::Vector v1 = {1, 0};
-    ft::Vector v2 = {0, 1};
-    std::list<ft::Vector<int>> u = {v1, v2};
-    std::list<int> v = {10, -2};
+    ft::Vector i = {1, 0};  // length 1 pointing to the right
+    ft::Vector j = {0, 1};  // length 1 pointing upwards
+
+    // The vectors i and j are special unit vectors, they are called the basis vectors of the 2D space.
+    // They are used to define the 2D space and any vector in this space can be expressed as a linear combination of i and j.
+    // A linear combination of two vectors is a vector that can be expressed as a sum of the two vectors multiplied by scalars.
+    // For example, the vector v = [2 ; 3] can be expressed as a linear combination of i and j:
+    // v = 2 * i + 3 * j
+
+    std::list<ft::Vector<int>> u = {i, j};  // list of vectors
+    std::list<int> v = {2, 3};              // list of scalars
 
     try {
         ft::Vector result = ft::linear_combination(u, v);
@@ -50,6 +28,8 @@ int main()
     } catch (const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
+
+    // The set of all possible vectors you can reach with linear combinations of a given pair of vectors is called the "span" of those two vectors.
 
     return 0;
 }

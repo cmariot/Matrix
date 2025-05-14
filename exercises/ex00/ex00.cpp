@@ -1,12 +1,10 @@
 /*
 Exercise 00 : Add, Subtract and Scale
-
 */
 
 #include <iostream>
 #include "matrix.hpp"
 #include "vector.hpp"
-
 
 void vector_tests()
 {
