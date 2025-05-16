@@ -1,6 +1,6 @@
 en.subject.pdf
 .vscode
-./Matrix
+Matrix
 objs/
 *.log
 *.a

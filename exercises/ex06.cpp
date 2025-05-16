@@ -14,8 +14,8 @@ int main()
     // The direction of the resulting vector is determined by the right-hand rule.
     // The norm of the resulting vector is equal to the area of the parallelogram formed by the two original vectors.
 
-    ft::Vector<float> v1 = {0, 0, 1};
-    ft::Vector<float> v2 = {1, 0, 0};
+    ft::Vector<float> v1 = {1, 0, 0};
+    ft::Vector<float> v2 = {0, 1, 0};
 
     ft::Vector<float> result = cross_product(v1, v2);
 

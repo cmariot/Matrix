@@ -18,18 +18,13 @@
 template <typename T>
 ft::Matrix<T> ft::Matrix<T>::transpose() const
 {
-    /*
-    A matrix obtained from a given matrix by interchanging the rows and columns.
-    */
+    // Transpose any m x n matrix to n x m
+    const size_type nb_lines = get_nb_lines();
+    const size_type nb_columns = get_nb_columns();
+    Matrix result(nb_columns, nb_lines);
 
-    if (!is_square())
-        throw std::length_error("The matrix must be square.");
-
-    const size_type _size = get_nb_lines();
-    Matrix          result(_size, _size);
-
-    for (size_type i = 0; i < _size; i++)
-        for (size_type j = 0; j < _size; j++)
+    for (size_type i = 0; i < nb_lines; ++i)
+        for (size_type j = 0; j < nb_columns; ++j)
             result[j][i] = (*this)[i][j];
     return result;
 }

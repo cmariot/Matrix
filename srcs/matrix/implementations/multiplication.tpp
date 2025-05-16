@@ -72,19 +72,20 @@ ft::Matrix<T> &ft::Matrix<T>::scl(const_reference rhs)
 template <typename T>
 ft::Matrix<T> ft::Matrix<T>::operator * (const Matrix & rhs) const
 {
-    const size_type nb_row = size()[0];
-    const size_type nb_col = rhs.size()[1];
+    const size_type nb_row = get_nb_lines();
+    const size_type nb_col = rhs.get_nb_columns();
+    const size_type n = get_nb_columns();
 
-    if (nb_col != rhs.size()[0])
+    if (n != rhs.get_nb_lines())
         throw std::length_error(
             "The number of columns in the first matrix must be equal to the number of rows in the second matrix"
         );
 
     Matrix  result = Matrix(nb_row, nb_col, 0);
 
-    for (size_type i = 0; i < nb_col; i++)
-        for (size_type j = 0; j < nb_row; j++)
-            for (size_type k = 0; k < nb_row; k++)
+    for (size_type i = 0; i < nb_row; i++)
+        for (size_type j = 0; j < nb_col; j++)
+            for (size_type k = 0; k < n; k++)
                 result[i][j] += (*this)[i][k] * rhs[k][j];
     return result;
 }

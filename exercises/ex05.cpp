@@ -10,7 +10,7 @@ Exercise 5 : Cosine
 int main()
 {
 
-    // In the previous exercise, we saw the dot product of two vectors.
+    // In the previous exercises, we saw the dot product of two vectors and the norm.
     // The dot product is a measure of how similar the directions of the two vectors are.
     // Another way to mesure the dot product is to use the cosine of the angle between the two vectors.
 

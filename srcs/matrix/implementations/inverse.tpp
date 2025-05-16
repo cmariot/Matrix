@@ -46,17 +46,11 @@ ft::Matrix<T> ft::Matrix<T>::inverse() const
         throw std::invalid_argument("Matrix must have a non-zero determinant to be inversed");
 
     Matrix<T> adj = adjoint();
-
     Matrix<T> result(adj);
 
     for (size_t i = 0; i < size()[0]; i++)
-    {
         for (size_t j = 0; j < size()[1]; j++)
-        {
             result[i][j] = adj[i][j] / det;
-        }
-    }
-
 
     return result;
 };
