@@ -13,9 +13,7 @@
 #ifndef MATRIX_DETERMINANT_TPP
 # define MATRIX_DETERMINANT_TPP
 
-# include "matrix/epsilon.hpp"
-# include <cmath>
-# include "vector.hpp"
+# include "matrix.hpp"
 
 template <typename T>
 T ft::Matrix<T>::minor(const size_type & i, const size_type & j) const
@@ -104,7 +102,7 @@ T ft::Matrix<T>::determinant() const
     {
         size_type zeros = 0;
         for (size_type j = 0; j < _size; j++)
-            if (std::abs(_matrix[i][j]) < epsilon)
+            if (_matrix[i][j] == 0)
                 zeros++;
         if (zeros > max_zeros)
         {
@@ -114,7 +112,7 @@ T ft::Matrix<T>::determinant() const
     }
 
     for (size_type i = 0; i < _size; i++)
-        if (std::abs(_matrix[max_zeros_index][i]) > epsilon)
+        if (_matrix[max_zeros_index][i] != 0)
             det += _matrix[max_zeros_index][i] * cofactor(max_zeros_index, i);
     return (det);
 }

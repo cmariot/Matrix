@@ -18,7 +18,7 @@
 #include <iostream>
 #include <cmath>
 
-#include "../vector/vector.hpp"
+#include "vector.hpp"
 #include "iterators/matrix_iterators.hpp"
 #include "iterators/matrix_const_iterators.hpp"
 
@@ -111,7 +111,7 @@ namespace ft
 
             if (rows == 0 || cols == 0)
                 return os << "Empty Matrix";
-
+            
             auto print_separator = [&]() {
                 os << "  +";
                 for (size_t j = 0; j < cols; ++j)

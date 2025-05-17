@@ -14,8 +14,6 @@
 # define MATRIX_INVERSE_TPP
 
 # include "matrix.hpp"
-# include "matrix/epsilon.hpp"
-# include <cmath>
 
 template <typename T>
 ft::Matrix<T> ft::Matrix<T>::adjoint() const
@@ -44,7 +42,7 @@ ft::Matrix<T> ft::Matrix<T>::inverse() const
 
     T det = determinant();
 
-    if (std::abs(det) < epsilon)
+    if (det == 0)
         throw std::invalid_argument("Matrix must have a non-zero determinant to be inversed");
 
     Matrix<T> adj = adjoint();
