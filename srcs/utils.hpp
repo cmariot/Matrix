@@ -13,12 +13,13 @@
 #ifndef UTILS_HPP
 # define UTILS_HPP
 
-# include "vector.hpp"
+# include "vector/vector.hpp"
 # include <iostream>
 # include <list>
 # include <cmath>
 # include <stdexcept>
 # include <limits>
+# include <complex>
 
 
 namespace ft
@@ -71,7 +72,7 @@ namespace ft
             // Compute the linear combination
             while (it_res != result.end())
             {
-                *it_res = std::fma(*it_vec, *it_v, *it_res);
+                *it_res = (*it_vec) * (*it_v) + (*it_res);
                 ++it_res;
                 ++it_vec;
             }
@@ -113,8 +114,11 @@ float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
     else if (u.size() == 0)
         throw std::length_error("The two vectors must not be empty.");
 
-
-    double dot_product = 0;
+    using std::abs;
+    using std::norm;
+    using std::sqrt;
+    using std::conj;
+    std::complex<double> dot_product = 0;
     double norm_u = 0;
     double norm_v = 0;
 
@@ -123,10 +127,9 @@ float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
 
     while (it1 != u.end())
     {
-        dot_product = std::fma(*it1, *it2, dot_product);
-        // dot += *it1 * *it2
-        norm_u = std::fma(*it1, *it1, norm_u);
-        norm_v = std::fma(*it2, *it2, norm_v);
+        dot_product += std::conj(*it1) * (*it2);
+        norm_u += std::norm(*it1);
+        norm_v += std::norm(*it2);
         ++it1;
         ++it2;
     }
@@ -134,7 +137,16 @@ float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
     if (norm_u == 0 || norm_v == 0)
         throw std::invalid_argument("The two vectors must not be null.");
 
-    return (dot_product / (std::sqrt(norm_u) * std::sqrt(norm_v)));
+    // Pour les complexes, on veut un résultat réel pour la norme et le dot product
+    // linear_combination reste inchangé car il retourne un vecteur de même type
+
+    // Suppression du typedef inutile
+    float norm_u_sqrt = static_cast<float>(sqrt(norm_u));
+    float norm_v_sqrt = static_cast<float>(sqrt(norm_v));
+    // Le résultat doit être réel : prise de la partie réelle du produit hermitien
+    double numerator = std::real(dot_product);
+    double denominator = static_cast<double>(norm_u_sqrt) * static_cast<double>(norm_v_sqrt);
+    return static_cast<float>(numerator / denominator);
 }
 
 
@@ -144,12 +156,10 @@ ft::Vector<T> cross_product(const ft::Vector<T> & u, const ft::Vector<T> & v)
     if (u.size() != 3 || v.size() != 3)
         throw std::length_error("The two vectors must be 3 dimension vectors.");
 
-    return ft::Vector<T>(
-        {
-            std::fma(u[1], v[2], -u[2] * v[1]),
-            std::fma(u[2], v[0], -u[0] * v[2]),
-            std::fma(u[0], v[1], -u[1] * v[0])
-        }
-    );
+    return ft::Vector<T>({
+        u[1] * v[2] - u[2] * v[1],
+        u[2] * v[0] - u[0] * v[2],
+        u[0] * v[1] - u[1] * v[0]
+    });
 }
 #endif

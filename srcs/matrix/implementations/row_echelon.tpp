@@ -14,7 +14,8 @@
 # define MATRIX_ROW_ECHELON_TPP
 
 # include "matrix.hpp"
-
+# include "matrix/epsilon.hpp"
+# include <cmath>
 
 template <typename T>
 ft::Matrix<T>   ft::Matrix<T>::row_echelon() const
@@ -59,7 +60,7 @@ ft::Matrix<T>   ft::Matrix<T>::row_echelon() const
 
         // Divide all the elements of the line by the pivot value
         T pivot_value = result[current_line][current_col];
-        if (pivot_value == 0)
+        if (std::abs(pivot_value) < epsilon)
         {
             current_col++;
             continue;

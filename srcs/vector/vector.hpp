@@ -13,7 +13,7 @@
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 
-# include "matrix.hpp"
+# include "matrix/matrix.hpp"
 # include <vector>
 # include <initializer_list>
 

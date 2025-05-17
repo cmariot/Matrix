@@ -14,6 +14,8 @@
 # define MATRIX_RANK_TPP
 
 # include "matrix.hpp"
+# include "matrix/epsilon.hpp"
+# include <cmath>
 
 template <typename T>
 typename ft::Matrix<T>::size_type ft::Matrix<T>::rank() const
@@ -32,7 +34,7 @@ typename ft::Matrix<T>::size_type ft::Matrix<T>::rank() const
 
         for (size_type j = 0; j < row_echelon_form.size()[1]; j++)
         {
-            if (row_echelon_form[i][j] != 0)
+            if (std::abs(row_echelon_form[i][j]) > epsilon)
             {
                 full_zero = false;
                 break;

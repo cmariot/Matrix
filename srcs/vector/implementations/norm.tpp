@@ -15,61 +15,61 @@
 
 #include "vector.hpp"
 #include <complex>
+#include <cmath>
 
 // Norms always return real numbers, even for complex-valued vectors.
 
+// Helper for norm: get squared modulus for complex, square for real
+namespace ft {
+    template<typename T>
+    float squared_modulus(const T& x) { return x * x; }
+    template<typename T>
+    float abs_value(const T& x) { return std::abs(x); }
+    template<typename T>
+    float abs_value(const std::complex<T>& x) { return std::abs(x); }
+    template<typename T>
+    float squared_modulus(const std::complex<T>& x) { return std::norm(x); }
+}
+
+// Euclidean norm
 template <typename T>
 float ft::Vector<T>::norm() const
 {
-    /*
-    Euclidean norm is the square root of the sum of the squares of the elements.
-
-    pythagoras : a^2 + b^2 = c^2
-    -> c = sqrt(a^2 + b^2)
-    */
-
     float result = 0;
     const_iterator it = this->begin();
-
     while (it != this->end())
     {
-        result += std::pow(*it, 2);
+        result += ft::squared_modulus(*it);
         ++it;
     }
-    return std::pow(result, 0.5);
+    return std::sqrt(result);
 }
 
+// 1-norm
 template <typename T>
 float ft::Vector<T>::norm_1() const
 {
-    /*
-    The 1-norm is simply the sum of the absolute values of the columns.
-    */
-
     float result = 0;
     const_iterator it = this->begin();
-
     while (it != this->end())
     {
-        result += std::max(-*it, *it);
+        result += ft::abs_value(*it);
         ++it;
     }
     return result;
 }
 
+// Infinity norm
 template <typename T>
 float ft::Vector<T>::norm_inf() const
 {
-    /*
-    Infinity norm is the maximum absolute value of the elements.
-    */
-
     float result = 0;
     const_iterator it = this->begin();
-
     while (it != this->end())
     {
-        result = std::max(result, std::max(-*it, *it));
+        float absval = ft::abs_value(*it);
+        if (absval > result)
+            result = absval;
         ++it;
     }
     return result;
