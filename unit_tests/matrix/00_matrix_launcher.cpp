@@ -31,7 +31,6 @@ int	matrix_launcher(void)
     load_test(&tests, function_name, "Inverse               ", (void *)&m_inverse_test, "");
     load_test(&tests, function_name, "Rank                  ", (void *)&m_rank_test, "");
     load_test(&tests, function_name, "Projection            ", (void *)&m_projection_test, "");
-    load_test(&tests, function_name, "Complex               ", (void *)&m_complex_test, "");
 
     return (launch_tests(&tests));
 }

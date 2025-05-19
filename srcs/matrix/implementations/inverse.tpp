@@ -42,7 +42,7 @@ ft::Matrix<T> ft::Matrix<T>::inverse() const
 
     T det = determinant();
 
-    if (det == 0)
+    if (det == T())
         throw std::invalid_argument("Matrix must have a non-zero determinant to be inversed");
 
     Matrix<T> adj = adjoint();

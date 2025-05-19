@@ -17,18 +17,18 @@
 #include <cmath>
 
 template <typename T>
-float ft::Vector<T>::dot(const ft::Vector<T> &rhs) const
+T ft::Vector<T>::dot(const ft::Vector<T> &rhs) const
 {
     if (this->size() != rhs.size())
         throw std::length_error("Vectors are not the same size.");
 
     const_iterator it1 = this->begin();
     const_iterator it2 = rhs.begin();
-    double result = 0.0;
+    T result = T();
 
     while (it1 != this->end())
     {
-        result = std::fma(*it1, *it2, result); // result += *it1 * *it2;
+        result += (*it1) * (*it2);
         ++it1;
         ++it2;
     }

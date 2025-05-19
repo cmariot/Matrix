@@ -64,7 +64,7 @@ namespace ft
             Vector &         operator *= (const_reference scalar);
             Vector &         scl(const_reference scalar);
 
-            float            dot(const Vector<T> & rhs) const;
+            T                dot(const Vector<T> & rhs) const;
 
             float            norm() const;
             float            norm_1() const;

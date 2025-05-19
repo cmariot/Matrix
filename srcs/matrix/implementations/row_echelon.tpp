@@ -59,7 +59,7 @@ ft::Matrix<T>   ft::Matrix<T>::row_echelon() const
 
         // Divide all the elements of the line by the pivot value
         T pivot_value = result[current_line][current_col];
-        if (pivot_value == 0)
+        if (pivot_value == T())
         {
             current_col++;
             continue;

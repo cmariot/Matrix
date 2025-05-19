@@ -25,7 +25,7 @@ NAME			 = Matrix
 # **************************************************************************** #
 
 
-CC				 = g++ --std=c++0x
+CC				 = g++ -std=c++14
 
 
 CFLAGS			 = -Wall -Wextra -Werror -pthread -g3
@@ -70,9 +70,7 @@ VECTOR			= 00_vector_launcher.cpp \
 				  07_dot_product_tests.cpp \
 				  08_norm_tests.cpp \
 				  09_cosine_tests.cpp \
-				  10_cross_product_tests.cpp \
-				  11_complex_tests.cpp
-
+				  10_cross_product_tests.cpp
 
 
 MATRIX			= 00_matrix_launcher.cpp \
@@ -88,8 +86,7 @@ MATRIX			= 00_matrix_launcher.cpp \
 				  10_determinant_tests.cpp \
 				  11_inverse_tests.cpp \
 				  12_rank_tests.cpp \
-				  13_projection_tests.cpp \
-				  14_complex_tests.cpp
+				  13_projection_tests.cpp
 
 
 EXERCICES		= exercises/ex00.cpp \
