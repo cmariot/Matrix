@@ -135,5 +135,48 @@ int v_addition_test(void)
             return (-1);
     }
 
+    {
+        ft::Vector<double> v1 = {0, 0};
+        ft::Vector<double> v2 = {0, 0};
+
+        if (v1 + v2 != ft::Vector<double>({0, 0}))
+            return (-1);
+    }
+    {
+        ft::Vector<double> v1 = {1, 0};
+        ft::Vector<double> v2 = {0, 1};
+
+        if (v1 + v2 != ft::Vector<double>({1, 1}))
+            return (-1);
+    }
+    {
+        ft::Vector<double> v1 = {1, 1};
+        ft::Vector<double> v2 = {1, 1};
+
+        if (v1 + v2 != ft::Vector<double>({2, 2}))
+            return (-1);
+    }
+    {
+        ft::Vector<double> v1 = {21, 21};
+        ft::Vector<double> v2 = {21, 21};
+
+        if (v1 + v2 != ft::Vector<double>({42, 42}))
+            return (-1);
+    }
+    {
+        ft::Vector<double> v1 = {-21, 21};
+        ft::Vector<double> v2 = {21, -21};
+
+        if (v1 + v2 != ft::Vector<double>({0, 0}))
+            return (-1);
+    }
+    {
+        ft::Vector<double> v1 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        ft::Vector<double> v2 = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+
+        if (v1 + v2 != ft::Vector<double>({9, 9, 9, 9, 9, 9, 9, 9, 9, 9}))
+            return (-1);
+    }
+
     return (0);
 }

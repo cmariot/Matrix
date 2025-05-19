@@ -57,5 +57,30 @@ int m_scale_test(void)
 
     }
 
+    {
+        ft::Matrix<double> m1 = {{0, 0}, {0, 0}};
+
+        if (m1 * 0 != ft::Matrix<double>({{0, 0}, {0, 0}}))
+            return (1);
+    }
+    {
+        ft::Matrix<double> m1 = {{1, 0}, {0, 1}};
+
+        if (m1 * 1 != ft::Matrix<double>({{1, 0}, {0, 1}}))
+            return (1);
+    }
+    {
+        ft::Matrix<double> m1 = {{1, 2}, {3, 4}};
+
+        if (m1 * 2 != ft::Matrix<double>({{2, 4}, {6, 8}}))
+            return (1);
+    }
+    {
+        ft::Matrix<double> m1 = {{21, 21}, {21, 21}};
+
+        if (m1 * 0.5 != ft::Matrix<double>({{10.5, 10.5}, {10.5, 10.5}}))
+            return (1);
+    }
+
     return (0);
 }

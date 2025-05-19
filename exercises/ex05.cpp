@@ -20,7 +20,7 @@ int main()
     // To find the angle theta based on the dot product, we can rearrange the equation:
     // cos(theta) = dot product / (||u|| * ||v||)
 
-    ft::Vector<float> v1 = {1, 0};  // length 1 pointing to the right
+    ft::Vector<float> v1 = {0, -1};  // length 1 pointing to the right
     ft::Vector<float> v2 = {0, 1};  // length 1 pointing upwards
 
     try {

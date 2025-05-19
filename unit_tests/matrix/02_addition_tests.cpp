@@ -134,7 +134,34 @@ int m_addition_test(void)
             return (-1);
     }
 
-    
+    {
+        ft::Matrix<double> m1 = {{0, 0}, {0, 0}};
+        ft::Matrix<double> m2 = {{0, 0}, {0, 0}};
+
+        if (m1 + m2 != ft::Matrix<double>({{0, 0}, {0, 0}}))
+            return (-1);
+    }
+    {
+        ft::Matrix<double> m1 = {{1, 0}, {0, 1}};
+        ft::Matrix<double> m2 = {{0, 0}, {0, 0}};
+
+        if (m1 + m2 != ft::Matrix<double>({{1, 0}, {0, 1}}))
+            return (-1);
+    }
+    {
+        ft::Matrix<double> m1 = {{1, 1}, {1, 1}};
+        ft::Matrix<double> m2 = {{1, 1}, {1, 1}};
+
+        if (m1 + m2 != ft::Matrix<double>({{2, 2}, {2, 2}}))
+            return (-1);
+    }
+    {
+        ft::Matrix<double> m1 = {{21, 21}, {21, 21}};
+        ft::Matrix<double> m2 = {{21, 21}, {21, 21}};
+
+        if (m1 + m2 != ft::Matrix<double>({{42, 42}, {42, 42}}))
+            return (-1);
+    }
 
     return (0);
 }

@@ -190,6 +190,11 @@ dirs_exos:
 
 all_exos: dirs_exos $(EXECS)
 
+# Specific rule for ex14 to include projection.o
+executables/ex14: objs/exercises/ex14.o objs/srcs/matrix/srcs/projection.o
+	@mkdir -p executables
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
+
 executables/%: objs/exercises/%.o
 	@mkdir -p executables
 	$(CC) $(CFLAGS) $(INCLUDES) $< -o $@

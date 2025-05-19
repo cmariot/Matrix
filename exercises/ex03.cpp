@@ -9,6 +9,10 @@ Exercise 3: Dot Product
 int main()
 {
 
+    // Vectors orthogonal to each other
+    ft::Vector<double> a = {1, 0}; // length 1 pointing to the right
+    ft::Vector<double> b = {0, 1}; // length 1 pointing upwards
+
     /*
     Le produit scalaire (ou dot product) mesure à quel point deux vecteurs "pointent dans la même direction".
     Il peut être calculé en multipliant les composantes correspondantes des deux vecteurs et en additionnant les résultats.
@@ -18,9 +22,6 @@ int main()
     - Si le produit scalaire est négatif, cela signifie que les deux vecteurs pointent dans des directions opposées.
     */
 
-    // Vectors orthogonal to each other
-    ft::Vector<double> a = {1, 0}; // length 1 pointing to the right
-    ft::Vector<double> b = {0, 1}; // length 1 pointing upwards
     float result = a.dot(b);
     std::cout << "Dot product of orthogonal vectors: " << result << std::endl;
 

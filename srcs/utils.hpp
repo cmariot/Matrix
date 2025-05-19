@@ -23,19 +23,39 @@
 
 namespace ft
 {
+    template <typename T>
+    T sqrt(T n)
+    {
+        if (n < 0)
+            throw std::invalid_argument("Cannot calculate the square root of a negative number.");
+        if (n == 0)
+            return 0;
 
+        T x = n;
+        T y = 1;
+        // The desired precision for the result.
+        // std::numeric_limits<T>::epsilon() is the smallest representable positive value such that 1.0 + epsilon != 1.0.
+        T e = std::numeric_limits<T>::epsilon();
+
+        while (x - y > e)
+        {
+            x = (x + y) / 2;
+            y = n / x;
+        }
+        return x;
+    }
 
     template <typename T>
-    ft::Vector<T> linear_combination(const std::list<ft::Vector<T> > &u, const std::list<T> &v)
+    ft::Vector<T> linear_combination(const std::list<ft::Vector<T> > &u, const std::list<T> &coeffs)
     {
         /*
-        Linear combination of two lists u and v is a vector w defined as:
-        w = v1 * u1 + v2 * u2 + ... + vn * un
+        Linear combination of two lists u and coeffs is a vector w defined as:
+        w = c1 * u1 + c2 * u2 + ... + cn * un
 
         Example:
 
             u = list({1, 0, 0}, {0, 1, 0}, {0, 0, 1})
-            v = {10, -2, 0.5}
+            coeffs = {10, -2, 0.5}
 
             result = 10 * u1 + (-2) * u2 + 0.5 * u3
             result = {10, -2, 0.5}
@@ -45,16 +65,16 @@ namespace ft
 
         */
 
-        if (u.size() != v.size())
+        if (u.size() != coeffs.size())
             throw std::length_error("Lists are not the same size.");
         else if (u.size() == 0)
             throw std::length_error("Lists are empty.");
 
         typename std::list<ft::Vector<T>>::const_iterator   it_u = u.begin();
-        typename std::list<T>::const_iterator               it_v = v.begin();
+        typename std::list<T>::const_iterator               it_coeff = coeffs.begin();
         ft::Vector<T>                                       result(it_u->size());
 
-        // For each element in u and v
+        // For each element in u and coeffs
         while (it_u != u.end())
         {
 
@@ -71,14 +91,14 @@ namespace ft
             // Compute the linear combination
             while (it_res != result.end())
             {
-                *it_res = std::fma(*it_vec, *it_v, *it_res);
+                *it_res = std::fma(*it_vec, *it_coeff, *it_res);
                 ++it_res;
                 ++it_vec;
             }
 
             // Move to the next element
             ++it_u;
-            ++it_v;
+            ++it_coeff;
         }
         return result;
     }
@@ -86,7 +106,7 @@ namespace ft
 
 
 template <typename T>
-T lerp(const T &a, const T &b, const double &t)
+T lerp(const T &a, const T &b, const float &t)
 {
     /*
     Linearly interpolates between two points.
@@ -134,7 +154,7 @@ float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
     if (norm_u == 0 || norm_v == 0)
         throw std::invalid_argument("The two vectors must not be null.");
 
-    return (dot_product / (std::sqrt(norm_u) * std::sqrt(norm_v)));
+    return (dot_product / (ft::sqrt(norm_u) * ft::sqrt(norm_v)));
 }
 
 

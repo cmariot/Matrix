@@ -59,5 +59,36 @@ int v_scale_test(void)
 
     }
 
+    {
+        ft::Vector<double> v1 = {0, 0};
+
+        if (v1 * 1 != ft::Vector<double>({0, 0}))
+            return (-1);
+    }
+    {
+        ft::Vector<double> v1 = {1, 0};
+
+        if (v1 * 1 != ft::Vector<double>({1, 0}))
+            return (-1);
+    }
+    {
+        ft::Vector<double> v1 = {1, 1};
+
+        if (v1 * 2 != ft::Vector<double>({2, 2}))
+            return (-1);
+    }
+    {
+        ft::Vector<double> v1 = {21, 21};
+
+        if (v1 * 2 != ft::Vector<double>({42, 42}))
+            return (-1);
+    }
+    {
+        ft::Vector<double> v1 = {42, 42};
+
+        if (v1 * 0.5 != ft::Vector<double>({21, 21}))
+            return (-1);
+    }
+    
     return (0);
 }
