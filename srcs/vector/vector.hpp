@@ -82,7 +82,7 @@ namespace ft
             friend std::ostream & operator << (std::ostream & os, const Vector & vector)
             {
                 const_iterator it = vector.begin();
-                const int cell_width = 10;
+                const int cell_width = 15;
                 size_t cols = vector.size();
 
                 if (cols == 0)

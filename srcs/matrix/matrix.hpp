@@ -104,14 +104,14 @@ namespace ft
         {
 
             const_iterator it = matrix.begin();
-            const int cell_width = 10;
+            const int cell_width = 15;
             os << std::setprecision(2) << std::fixed;
             size_t rows = matrix.get_nb_lines();
             size_t cols = matrix.get_nb_columns();
 
             if (rows == 0 || cols == 0)
                 return os << "Empty Matrix";
-            
+
             auto print_separator = [&]() {
                 os << "  +";
                 for (size_t j = 0; j < cols; ++j)

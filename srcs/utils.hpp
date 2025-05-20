@@ -138,9 +138,9 @@ ft::Vector<T> cross_product(const ft::Vector<T> & u, const ft::Vector<T> & v)
 
     return ft::Vector<T>(
         {
-            std::fma(u[1], v[2], -u[2] * v[1]),
-            std::fma(u[2], v[0], -u[0] * v[2]),
-            std::fma(u[0], v[1], -u[1] * v[0])
+            u[1] * v[2] - u[2] * v[1],
+            u[2] * v[0] - u[0] * v[2],
+            u[0] * v[1] - u[1] * v[0]
         }
     );
 }

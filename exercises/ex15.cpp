@@ -6,9 +6,27 @@
 #include "../srcs/vector/vector.hpp"
 #include "../srcs/utils.hpp"
 
+
+/*
+Les nombres complexes sont une extension des nombres réels qui permettent de résoudre des équations comme
+x^2 + 1 = 0, qui n’ont pas de solution dans les réels.
+
+On peut représenter les nombres complexes dans un plan, appelé plan d’Argand ou plan complexe :
+
+    l’axe horizontal (x) représente la partie réelle
+    l’axe vertical (y) représente la partie imaginaire
+
+Ainsi, z=a+bi correspond au point (a,b) dans ce plan.
+
+
+*/
+
+
 void vector_complex_tests() {
+
     using cplx = std::complex<double>;
-    // Addition, soustraction, scaling
+
+    // ex00 : Addition, soustraction, scaling
     ft::Vector<cplx> v1 = {cplx(1,2), cplx(3,4), cplx(5,6)};
     ft::Vector<cplx> v2 = {cplx(6,-1), cplx(2,2), cplx(0,1)};
     std::cout << "Addition complexe:\n" << v1 << " +\n" << v2 << " =\n" << (v1+v2) << std::endl;
@@ -21,7 +39,8 @@ void vector_complex_tests() {
     } catch (const std::exception &e) {
         std::cerr << "Erreur attendue: " << e.what() << std::endl;
     }
-    // Linear combination
+
+    // ex01 : Linear combination
     std::list<ft::Vector<cplx>> u = { {cplx(1,0),cplx(0,1)}, {cplx(0,1),cplx(1,0)} };
     std::list<cplx> scal = {cplx(2,0), cplx(0,2)};
     try {
@@ -30,11 +49,13 @@ void vector_complex_tests() {
     } catch (const std::exception &e) {
         std::cerr << "Erreur: " << e.what() << std::endl;
     }
+
+    
     // Interpolation linéaire
     ft::Vector<cplx> a = {cplx(0,0), cplx(0,10)};
     ft::Vector<cplx> b = {cplx(10,0), cplx(0,0)};
     std::cout << "Lerp complexe (0.5):\n" << lerp(a, b, 0.5) << std::endl;
-    // Produit scalaire (attention: std::complex<double> produit hermitien)
+    // Produit scalaire
     ft::Vector<cplx> v5 = {cplx(1,0), cplx(0,1)};
     ft::Vector<cplx> v6 = {cplx(0,1), cplx(1,0)};
     std::cout << "Dot product complexe: " << v5.dot(v6) << std::endl;
@@ -42,7 +63,7 @@ void vector_complex_tests() {
     std::cout << "Norme 2 complexe: " << v1.norm() << std::endl;
     std::cout << "Norme 1 complexe: " << v1.norm_1() << std::endl;
     std::cout << "Norme inf complexe: " << v1.norm_inf() << std::endl;
-    // Cosine (attention: pour complexes, résultat non toujours réel)
+    // Cosine
     try {
         std::cout << "Cosine complexe: " << angle_cos(v5, v6) << std::endl;
     } catch (const std::exception &e) {
