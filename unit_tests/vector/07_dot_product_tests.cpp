@@ -93,5 +93,71 @@ int v_dot_product_test(void)
 
     }
 
+    {
+        ft::Vector<double> v1 = {0., 0.};
+        ft::Vector<double> v2 = {0., 0.};
+
+        double ret = v1.dot(v2);
+        double expected = 0.;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {1., 0.};
+        ft::Vector<double> v2 = {0., 0.};
+
+        double ret = v1.dot(v2);
+        double expected = 0.;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {1., 0.};
+        ft::Vector<double> v2 = {1., 0.};
+
+        double ret = v1.dot(v2);
+        double expected = 1.;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {1., 0.};
+        ft::Vector<double> v2 = {0., 1.};
+
+        double ret = v1.dot(v2);
+        double expected = 0.;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {1., 1.};
+        ft::Vector<double> v2 = {1., 1.};
+
+        double ret = v1.dot(v2);
+        double expected = 2.;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {4., 2.};
+        ft::Vector<double> v2 = {2., 1.};
+
+        double ret = v1.dot(v2);
+        double expected = 10.;
+
+        if (ret != expected)
+            return (-1);
+    }
+
     return (0);
 }

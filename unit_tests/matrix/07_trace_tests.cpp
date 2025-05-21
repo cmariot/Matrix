@@ -57,5 +57,74 @@ int m_trace_test(void)
             return (-1);
     }
 
+    {
+        ft::Matrix<double> m1 = {
+            {0, 0},
+            {0, 0}
+        };
+
+        double ret = m1.trace();
+        double expected = 0;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 0},
+            {0, 1}
+        };
+
+        double ret = m1.trace();
+        double expected = 2;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 2},
+            {3, 4}
+        };
+
+        double ret = m1.trace();
+        double expected = 5;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {8, -7},
+            {4, 2}
+        };
+
+        double ret = m1.trace();
+        double expected = 10;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        };
+
+        double ret = m1.trace();
+        double expected = 3;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+
+
+
     return (0);
 }

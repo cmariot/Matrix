@@ -84,5 +84,60 @@ int m_multiplication_test(void)
             return (-1);
     }
 
+    {
+        ft::Matrix<double> m1 = {{0, 0}, {0, 0}};
+        ft::Vector<double> v1 = {4, 2};
+
+        ft::Vector<double> ret = m1.mul_vec(v1);
+        ft::Vector<double> expected = {0, 0};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {{1, 0}, {0, 1}};
+        ft::Vector<double> v1 = {4, 2};
+
+        ft::Vector<double> ret = m1.mul_vec(v1);
+        ft::Vector<double> expected = {4, 2};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {{1, 1}, {1, 1}};
+        ft::Vector<double> v1 = {4, 2};
+
+        ft::Vector<double> ret = m1.mul_vec(v1);
+        ft::Vector<double> expected = {6, 6};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {{2, 0}, {0, 2}};
+        ft::Vector<double> v1 = {2, 1};
+
+        ft::Vector<double> ret = m1.mul_vec(v1);
+        ft::Vector<double> expected = {4, 2};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {{0.5, 0}, {0, 0.5}};
+        ft::Vector<double> v1 = {4, 2};
+
+        ft::Vector<double> ret = m1.mul_vec(v1);
+        ft::Vector<double> expected = {2, 1};
+
+        if (ret != expected)
+            return (-1);
+    }
+
     return (0);
 }

@@ -66,5 +66,84 @@ int m_transpose_test(void)
             return (-1);
     }
 
+    {
+        ft::Matrix<double> m1 = {
+            {0, 0},
+            {0, 0}
+        };
+
+        ft::Matrix<double> expected = {
+            {0, 0},
+            {0, 0}
+        };
+
+        if (m1.transpose() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 0},
+            {0, 1}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 0},
+            {0, 1}
+        };
+
+        if (m1.transpose() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 2},
+            {3, 4}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 3},
+            {2, 4}
+        };
+
+        if (m1.transpose() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        };
+
+        if (m1.transpose() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 2},
+            {3, 4},
+            {5, 6}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 3, 5},
+            {2, 4, 6}
+        };
+
+        if (m1.transpose() != expected)
+            return (-1);
+    }
+
+
     return (0);
 }

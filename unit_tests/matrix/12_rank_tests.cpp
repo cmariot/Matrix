@@ -51,5 +51,86 @@ int m_rank_test(void)
             return (-1);
     }
 
+    {
+        ft::Matrix<double> m1 = {
+            {0, 0},
+            {0, 0},
+        };
+
+        if (m1.rank() != 0)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 0},
+            {0, 1},
+        };
+
+        if (m1.rank() != 2)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {2, 0},
+            {0, 2},
+        };
+
+        if (m1.rank() != 2)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 1},
+            {1, 1},
+        };
+
+        if (m1.rank() != 1)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {0, 1},
+            {1, 0},
+        };
+
+        if (m1.rank() != 2)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 2},
+            {3, 4},
+        };
+
+        if (m1.rank() != 2)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {-7, 5},
+            {4, 6},
+        };
+
+        if (m1.rank() != 2)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        };
+
+        if (m1.rank() != 3)
+            return (-1);
+    }
+
     return (0);
 }

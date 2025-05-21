@@ -63,5 +63,99 @@ int v_norm_test(void)
             return (-1);
     }
 
+    {
+        ft::Vector<float> v1 = {0.};
+
+        if (v1.norm_1() != 0.)
+            return (-1);
+
+        if (v1.norm() != 0.)
+            return (-1);
+
+        if (v1.norm_inf() != 0.)
+            return (-1);
+    }
+
+    {
+        ft::Vector<float> v1 = {1.};
+
+        if (v1.norm_1() != 1.)
+            return (-1);
+
+        if (v1.norm() != 1.)
+            return (-1);
+
+        if (v1.norm_inf() != 1.)
+            return (-1);
+    }
+
+    {
+        ft::Vector<float> v1 = {0., 0.};
+
+        if (v1.norm_1() != 0.)
+            return (-1);
+
+        if (v1.norm() != 0.)
+            return (-1);
+
+        if (v1.norm_inf() != 0.)
+            return (-1);
+    }
+
+    {
+        ft::Vector<float> v1 = {1., 0.};
+
+        if (v1.norm_1() != 1.)
+            return (-1);
+
+        if (v1.norm() != 1.)
+            return (-1);
+
+        if (v1.norm_inf() != 1.)
+            return (-1);
+    }
+
+    {
+
+        ft::Vector<float> v1 = {2., 1.};
+
+        if (v1.norm_1() != 3.)
+            return (-1);
+
+        const float norm = 2.236067977;
+        if (v1.norm() != (float)norm)
+            return (-1);
+
+        if (v1.norm_inf() != 2.)
+            return (-1);
+    }
+
+    {
+        ft::Vector<float> v1 = {4., 2.};
+        if (v1.norm_1() != 6.)
+            return (-1);
+
+        float norm = 4.47213595499958;
+        if (v1.norm() != (float)norm)
+            return (-1);
+
+        if (v1.norm_inf() != 4.)
+            return (-1);
+    }
+
+    {
+        ft::Vector<float> v1 = {-4., -2.};
+
+        if (v1.norm_1() != 6.)
+            return (-1);
+
+        float norm = 4.47213595499958;
+        if (v1.norm() != (float)norm)
+            return (-1);
+
+        if (v1.norm_inf() != 4.)
+            return (-1);
+    }
+
     return (0);
 }

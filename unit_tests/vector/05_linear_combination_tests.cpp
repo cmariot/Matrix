@@ -163,5 +163,64 @@ int v_linear_combination_test(void)
 
     }
 
+    {
+
+        ft::Vector<double> v1 = {-42, 42};
+
+        ft::Vector<double> ret = ft::linear_combination<double>(
+            std::list<ft::Vector<double>>({v1}),
+            std::list<double>({-1.0})
+        );
+
+        ft::Vector<double> expected = {42, -42};
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {-42};
+        ft::Vector<double> v2 = {-42};
+        ft::Vector<double> v3 = {-42};
+
+        ft::Vector<double> ret = ft::linear_combination<double>(
+            std::list<ft::Vector<double>>({v1, v2, v3}),
+            std::list<double>({-1.0, 1.0, 0.0})
+        );
+
+        ft::Vector<double> expected = {0.0};
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {-42, 42};
+        ft::Vector<double> v2 = {1, 3};
+        ft::Vector<double> v3 = {10, 20};
+
+        ft::Vector<double> ret = ft::linear_combination<double>(
+            std::list<ft::Vector<double>>({v1, v2, v3}),
+            std::list<double>({1, -10, -1})
+        );
+
+        ft::Vector<double> expected = {-62, -8};
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {-42, 100, -69.5};
+        ft::Vector<double> v2 = {1, 3, 5};
+
+        ft::Vector<double> ret = ft::linear_combination<double>(
+            std::list<ft::Vector<double>>({v1, v2}),
+            std::list<double>({1, -10})
+        );
+
+        ft::Vector<double> expected = {-52, 70, -119.5};
+        if (ret != expected)
+            return (-1);
+    }
+
+
     return (0);
 }

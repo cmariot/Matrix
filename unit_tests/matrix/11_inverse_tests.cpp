@@ -68,5 +68,97 @@ int m_inverse_test(void)
             return (-1);
     }
 
+    {
+        ft::Matrix<double> m = {
+            { 1.0, 0.0 },
+            { 0.0, 1.0 },
+        };
+
+        ft::Matrix<double> expected = {
+            { 1.0, 0.0 },
+            { 0.0, 1.0 },
+        };
+
+        if (m.inverse() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m = {
+            { 2.0, 0.0 },
+            { 0.0, 2.0 },
+        };
+
+        ft::Matrix<double> expected = {
+            { 0.5, 0.0 },
+            { 0.0, 0.5 },
+        };
+
+        if (m.inverse() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m = {
+            { 0.5, 0.0 },
+            { 0.0, 0.5 },
+        };
+
+        ft::Matrix<double> expected = {
+            { 2, 0.0 },
+            { 0.0, 2 },
+        };
+
+        if (m.inverse() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m = {
+            { 0, 1.0 },
+            { 1.0, 0 },
+        };
+
+        ft::Matrix<double> expected = {
+            { 0, 1 },
+            { 1, 0 },
+        };
+
+        if (m.inverse() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m = {
+            { 1, 2 },
+            { 3, 4 },
+        };
+
+        ft::Matrix<double> expected = {
+            { -2, 1 },
+            { 1.5, -0.5 },
+        };
+
+        if (m.inverse() != expected)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<double> m = {
+            { 1, 0, 0 },
+            { 0, 1, 0 },
+            { 0, 0, 1 },
+        };
+
+        ft::Matrix<double> expected = {
+            { 1, 0, 0 },
+            { 0, 1, 0 },
+            { 0, 0, 1 },
+        };
+
+        if (m.inverse() != expected)
+            return (-1);
+    }
+
     return (0);
 }

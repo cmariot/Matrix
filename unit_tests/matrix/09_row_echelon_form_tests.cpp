@@ -135,5 +135,85 @@ int m_row_echelon_test(void)
             return (-1);
     }
 
+    {
+        ft::Matrix<double> m1 = {
+            {0, 0},
+            {0, 0}
+        };
+
+        ft::Matrix<double> expected = {
+            {0, 0},
+            {0, 0}
+        };
+
+        if (m1.row_echelon() != expected)
+            return (-1);
+
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 0},
+            {0, 1}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 0},
+            {0, 1}
+        };
+
+        if (m1.row_echelon() != expected)
+            return (-1);
+
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {4, 2},
+            {2, 1}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 0.5},
+            {0, 0}
+        };
+
+        if (m1.row_echelon() != expected)
+            return (-1);
+
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {-7, 2},
+            {4, 8}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 0},
+            {0, 1}
+        };
+
+        if (m1.row_echelon() != expected)
+            return (-1);
+
+    }
+
+    {
+        ft::Matrix<double> m1 = {
+            {1, 2},
+            {4, 8}
+        };
+
+        ft::Matrix<double> expected = {
+            {1, 2},
+            {0, 0}
+        };
+
+        if (m1.row_echelon() != expected)
+            return (-1);
+
+    }
+
     return (0);
 }

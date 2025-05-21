@@ -50,5 +50,71 @@ int v_cross_product_test(void)
             return (-1);
     }
 
+    {
+        ft::Vector<double> v1 = {0, 0, 0};
+        ft::Vector<double> v2 = {0, 0, 0};
+
+        ft::Vector<double> ret = cross_product<double>(v1, v2);
+        ft::Vector<double> expected = {0, 0, 0};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {1, 0, 0};
+        ft::Vector<double> v2 = {0, 0, 0};
+
+        ft::Vector<double> ret = cross_product<double>(v1, v2);
+        ft::Vector<double> expected = {0, 0, 0};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {1, 0, 0};
+        ft::Vector<double> v2 = {0, 1, 0};
+
+        ft::Vector<double> ret = cross_product<double>(v1, v2);
+        ft::Vector<double> expected = {0, 0, 1};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {8, 7, -4};
+        ft::Vector<double> v2 = {3, 2, 1};
+
+        ft::Vector<double> ret = cross_product<double>(v1, v2);
+        ft::Vector<double> expected = {15, -20, -5};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {1, 1, 1};
+        ft::Vector<double> v2 = {0, 0, 0};
+
+        ft::Vector<double> ret = cross_product<double>(v1, v2);
+        ft::Vector<double> expected = {0, 0, 0};
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {1, 1, 1};
+        ft::Vector<double> v2 = {1, 1, 1};
+
+        ft::Vector<double> ret = cross_product<double>(v1, v2);
+        ft::Vector<double> expected = {0, 0, 0};
+
+        if (ret != expected)
+            return (-1);
+    }
+
     return (0);
 }

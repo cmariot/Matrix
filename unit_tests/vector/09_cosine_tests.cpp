@@ -90,5 +90,60 @@ int v_cosine_test(void)
             return (-1);
     }
 
+    {
+        ft::Vector<double> v1 = {1., 0.};
+        ft::Vector<double> v2 = {0., 1.};
+
+        double ret = angle_cos<double>(v1, v2);
+        double expected = 0.0;
+
+        if (ret != expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> v1 = {8., 7.};
+        ft::Vector<double> v2 = {3., 2.};
+
+        double ret = angle_cos<double>(v1, v2);
+        double expected = 0.991454;
+        if (std::abs(ret - expected) > 0.00001)
+            return (-1);
+
+    }
+
+    {
+        ft::Vector<double> v1 = {1., 1.};
+        ft::Vector<double> v2 = {1., 1.};
+
+        double ret = angle_cos<double>(v1, v2);
+        double expected = 1.0;
+        if (ret != expected)
+            return (-1);
+
+    }
+
+    {
+        ft::Vector<double> v1 = {4., 2.};
+        ft::Vector<double> v2 = {1., 1.};
+
+        double ret = angle_cos<double>(v1, v2);
+        double expected = 0.948683;
+        if (std::abs(ret - expected) > 0.00001)
+            return (-1);
+
+    }
+
+    {
+        ft::Vector<double> v1 = {-7., 3.};
+        ft::Vector<double> v2 = {6., 4.};
+
+        double ret = angle_cos<double>(v1, v2);
+        double expected = -0.546268;
+        if (std::abs(ret - expected) > 0.00001)
+            return (-1);
+
+    }
+
     return (0);
 }

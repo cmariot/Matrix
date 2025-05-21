@@ -54,5 +54,37 @@ int v_linear_interpolation_test(void)
             return (4);
     }
 
+    {
+        double ret = lerp<double>(0., 1., 0.);
+        double expected = 0.0;
+
+        if ((float)ret != (float)expected)
+            return (1);
+    }
+
+    {
+        double ret = lerp<double>(0., 1., 1.);
+        double expected = 1.0;
+
+        if ((float)ret != (float)expected)
+            return (1);
+    }
+
+    {
+        double ret = lerp<double>(0., 42., 0.5);
+        double expected = 21.0;
+
+        if ((float)ret != (float)expected)
+            return (-1);
+    }
+
+    {
+        ft::Vector<double> ret = lerp<ft::Vector<double> >({-42., 42.}, {42., -42.}, 0.5);
+        ft::Vector<double> expected = {0., 0.};
+
+        if (ret != expected)
+            return (-1);
+    }
+
     return (0);
 }

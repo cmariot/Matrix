@@ -61,5 +61,86 @@ int m_determinant_test(void)
 
     }
 
+    {
+        ft::Matrix<float> m1 = {
+            {0, 0},
+            {0, 0},
+        };
+
+        if (m1.determinant() != 0)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<float> m1 = {
+            {1, 0},
+            {0, 1},
+        };
+
+        if (m1.determinant() != 1)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<float> m1 = {
+            {2, 0},
+            {0, 2},
+        };
+
+        if (m1.determinant() != 4)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<float> m1 = {
+            {1, 1},
+            {1, 1},
+        };
+
+        if (m1.determinant() != 0)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<float> m1 = {
+            {0, 1},
+            {1, 0},
+        };
+
+        if (m1.determinant() != -1)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<float> m1 = {
+            {1, 2},
+            {3, 4},
+        };
+
+        if (m1.determinant() != -2)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<float> m1 = {
+            {-7, 5},
+            {4, 6},
+        };
+
+        if (m1.determinant() != -62)
+            return (-1);
+    }
+
+    {
+        ft::Matrix<float> m1 = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        };
+
+        if (m1.determinant() != 1)
+            return (-1);
+    }
+
     return (0);
 }
