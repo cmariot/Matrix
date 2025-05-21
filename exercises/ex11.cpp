@@ -21,6 +21,8 @@ int main()
 
     std::cout << "Positive determinant : " << m1.determinant() << std::endl;
 
+    // Si le determinant est supérieur à 1, la transformation augmente la surface de la figure.
+    // Si le determinant est inférieur à 1, la transformation diminue la surface de la figure.
 
     // The determinant of a 2D transformation is 0 if it squishes all of space onto a line, or even onto a single point, since the area of every region would then become 0.
     // https://www.3blue1brown.com/content/lessons/2016/determinant/determinant_0.svg

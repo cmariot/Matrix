@@ -18,6 +18,7 @@
 # include <list>
 # include <stdexcept>
 # include <limits>
+# include "ft_math.hpp"
 
 
 namespace ft
@@ -100,33 +101,63 @@ T lerp(const T &a, const T &b, const float &t)
 
 
 template <typename T>
-float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
+float angle_cos(const ft::Vector<std::complex<T>> & u, const ft::Vector<std::complex<T>> & v)
 {
-    using std::conj;
-    using std::sqrt;
-    using std::abs;
-
     if (u.size() != v.size())
         throw std::length_error("The two vectors must have the same size.");
     else if (u.size() == 0)
         throw std::length_error("The two vectors must not be empty.");
 
-    auto dot_product = decltype(conj(u[0]) * v[0])();
-    auto norm_u = decltype(abs(u[0]))();
-    auto norm_v = decltype(abs(v[0]))();
+    auto dot_product = decltype(ft_conj(u[0]) * v[0])();
+    auto norm_u = decltype(ft_abs(u[0]))();
+    auto norm_v = decltype(ft_abs(v[0]))();
 
     for (size_t i = 0; i < u.size(); ++i)
     {
-        dot_product += conj(u[i]) * v[i];
-        norm_u += abs(u[i]) * abs(u[i]);
-        norm_v += abs(v[i]) * abs(v[i]);
+        dot_product += ft_conj(u[i]) * v[i];
+        norm_u += ft_abs(u[i]) * ft_abs(u[i]);
+        norm_v += ft_abs(v[i]) * ft_abs(v[i]);
     }
 
     if (norm_u == 0 || norm_v == 0)
         throw std::invalid_argument("The two vectors must not be null.");
 
     // Retourne la partie réelle du cosinus de l'angle
-    return std::real(dot_product / (sqrt(norm_u) * sqrt(norm_v)));
+    return ft_real(dot_product / (ft_sqrt(norm_u) * ft_sqrt(norm_v)));
+}
+
+template <typename T>
+float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
+{
+    /*
+    Cosine of the angle between two vectors
+    */
+
+    if (u.size() != v.size())
+        throw std::length_error("The two vectors must have the same size.");
+    else if (u.size() == 0)
+        throw std::length_error("The two vectors must not be empty.");
+
+    double dot_product = 0;
+    double norm_u = 0;
+    double norm_v = 0;
+
+    typename ft::Vector<T>::const_iterator it1 = u.begin();
+    typename ft::Vector<T>::const_iterator it2 = v.begin();
+
+    while (it1 != u.end())
+    {
+        dot_product = std::fma(*it1, *it2, dot_product);
+        norm_u = std::fma(*it1, *it1, norm_u);
+        norm_v = std::fma(*it2, *it2, norm_v);
+        ++it1;
+        ++it2;
+    }
+
+    if (norm_u == 0 || norm_v == 0)
+        throw std::invalid_argument("The two vectors must not be null.");
+
+    return (dot_product / (ft_sqrt(norm_u) * ft_sqrt(norm_v)));
 }
 
 

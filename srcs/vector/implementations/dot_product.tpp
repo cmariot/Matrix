@@ -14,7 +14,6 @@
 #define DOT_PRODUCT_TPP
 
 #include "vector.hpp"
-#include <cmath>
 
 template <typename T>
 T ft::Vector<T>::dot(const ft::Vector<T> &rhs) const

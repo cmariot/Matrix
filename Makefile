@@ -184,21 +184,21 @@ test :			all
 # Création du dossier pour les objets des exercices
 
 dirs_exos:
-	@mkdir -p objs/exercises
+				@mkdir -p objs/exercises
 
-all_exos: dirs_exos $(EXECS)
+all_exos: header_exos dirs_exos $(EXECS)
 
 # Specific rule for ex14 to include projection.o
 bin/ex14: objs/exercises/ex14.o objs/srcs/matrix/srcs/projection.o
-	@mkdir -p bin
-	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
+				@mkdir -p bin
+				$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
 bin/%: objs/exercises/%.o
-	@mkdir -p bin
-	$(CC) $(CFLAGS) $(INCLUDES) $< -o $@
+				@mkdir -p bin
+				$(CC) $(CFLAGS) $(INCLUDES) $< -o $@
 
 objs/exercises/%.o: exercises/%.cpp | dirs_exos
-	$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+				$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
 
 
 clean :
@@ -237,6 +237,11 @@ header :
 				@printf "MATRIX COMPILATION\n"
 				@printf "$(RESET)"
 
+
+header_exos :
+				@printf "$(CYAN)"
+				@printf "EXERCISES COMPILATION\n"
+				@printf "$(RESET)"
 
 footer :
 				@printf "$(CYAN)"

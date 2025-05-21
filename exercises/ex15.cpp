@@ -8,13 +8,31 @@
 
 
 /*
+
+Pour comprendre les nombres complexes il faut s'imaginer un nouvel ensemble, C, qui contient les nombres réels R et les nombres imaginaires i.
+Un nombre complexe est de la forme z = a + bi, où a et b sont des réels et i est l'unité imaginaire, qui vérifie i^2 = -1.
+La partie réelle est a et la partie imaginaire est b. Si b = 0, alors z est un nombre réel.
+
 Les nombres complexes sont une extension des nombres réels qui permettent de résoudre des équations comme
 x^2 + 1 = 0, qui n’ont pas de solution dans les réels.
+
+Les nombres complexes peuvent être additionnés, soustraits, multipliés et divisés selon des règles spécifiques.
+
+Addition :
+    (a + bi) + (c + di) = (a + c) + (b + d)i
+Soustraction :
+    (a + bi) - (c + di) = (a - c) + (b - d)i
+Multiplication :
+    (a + bi) * (c + di) = (ac - bd) + (ad + bc)i
+Division :
+    (a + bi) / (c + di) = ((ac + bd) / (c^2 + d^2)) + ((bc - ad) / (c^2 + d^2))i
 
 On peut représenter les nombres complexes dans un plan, appelé plan d’Argand ou plan complexe :
 
     l’axe horizontal (x) représente la partie réelle
     l’axe vertical (y) représente la partie imaginaire
+
+
 
 Ainsi, z=a+bi correspond au point (a,b) dans ce plan.
 
@@ -50,7 +68,7 @@ void vector_complex_tests() {
         std::cerr << "Erreur: " << e.what() << std::endl;
     }
 
-    
+
     // Interpolation linéaire
     ft::Vector<cplx> a = {cplx(0,0), cplx(0,10)};
     ft::Vector<cplx> b = {cplx(10,0), cplx(0,0)};
