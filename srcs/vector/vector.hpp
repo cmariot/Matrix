@@ -64,7 +64,7 @@ namespace ft
             Vector &         operator *= (const_reference scalar);
             Vector &         scl(const_reference scalar);
 
-            float            dot(const Vector<T> & rhs) const;
+            T                dot(const Vector<T> & rhs) const;
 
             float            norm() const;
             float            norm_1() const;
@@ -82,7 +82,7 @@ namespace ft
             friend std::ostream & operator << (std::ostream & os, const Vector & vector)
             {
                 const_iterator it = vector.begin();
-                const int cell_width = 10;
+                const int cell_width = 15;
                 size_t cols = vector.size();
 
                 if (cols == 0)

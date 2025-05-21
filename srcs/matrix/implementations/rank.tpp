@@ -32,7 +32,7 @@ typename ft::Matrix<T>::size_type ft::Matrix<T>::rank() const
 
         for (size_type j = 0; j < row_echelon_form.size()[1]; j++)
         {
-            if (row_echelon_form[i][j] != 0)
+            if (row_echelon_form[i][j] != T())
             {
                 full_zero = false;
                 break;

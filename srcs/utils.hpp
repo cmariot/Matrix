@@ -16,34 +16,12 @@
 # include "vector.hpp"
 # include <iostream>
 # include <list>
-# include <cmath>
 # include <stdexcept>
 # include <limits>
 
 
 namespace ft
 {
-    template <typename T>
-    T sqrt(T n)
-    {
-        if (n < 0)
-            throw std::invalid_argument("Cannot calculate the square root of a negative number.");
-        if (n == 0)
-            return 0;
-
-        T x = n;
-        T y = 1;
-        // The desired precision for the result.
-        // std::numeric_limits<T>::epsilon() is the smallest representable positive value such that 1.0 + epsilon != 1.0.
-        T e = std::numeric_limits<T>::epsilon();
-
-        while (x - y > e)
-        {
-            x = (x + y) / 2;
-            y = n / x;
-        }
-        return x;
-    }
 
     template <typename T>
     ft::Vector<T> linear_combination(const std::list<ft::Vector<T> > &u, const std::list<T> &coeffs)
@@ -91,7 +69,7 @@ namespace ft
             // Compute the linear combination
             while (it_res != result.end())
             {
-                *it_res = std::fma(*it_vec, *it_coeff, *it_res);
+                *it_res += *it_vec * *it_coeff;
                 ++it_res;
                 ++it_vec;
             }
@@ -124,37 +102,31 @@ T lerp(const T &a, const T &b, const float &t)
 template <typename T>
 float angle_cos(const ft::Vector<T> & u, const ft::Vector<T> & v)
 {
-    /*
-    Cosine of the angle between two vectors
-    */
+    using std::conj;
+    using std::sqrt;
+    using std::abs;
 
     if (u.size() != v.size())
         throw std::length_error("The two vectors must have the same size.");
     else if (u.size() == 0)
         throw std::length_error("The two vectors must not be empty.");
 
+    auto dot_product = decltype(conj(u[0]) * v[0])();
+    auto norm_u = decltype(abs(u[0]))();
+    auto norm_v = decltype(abs(v[0]))();
 
-    double dot_product = 0;
-    double norm_u = 0;
-    double norm_v = 0;
-
-    typename ft::Vector<T>::const_iterator it1 = u.begin();
-    typename ft::Vector<T>::const_iterator it2 = v.begin();
-
-    while (it1 != u.end())
+    for (size_t i = 0; i < u.size(); ++i)
     {
-        dot_product = std::fma(*it1, *it2, dot_product);
-        // dot += *it1 * *it2
-        norm_u = std::fma(*it1, *it1, norm_u);
-        norm_v = std::fma(*it2, *it2, norm_v);
-        ++it1;
-        ++it2;
+        dot_product += conj(u[i]) * v[i];
+        norm_u += abs(u[i]) * abs(u[i]);
+        norm_v += abs(v[i]) * abs(v[i]);
     }
 
     if (norm_u == 0 || norm_v == 0)
         throw std::invalid_argument("The two vectors must not be null.");
 
-    return (dot_product / (ft::sqrt(norm_u) * ft::sqrt(norm_v)));
+    // Retourne la partie réelle du cosinus de l'angle
+    return std::real(dot_product / (sqrt(norm_u) * sqrt(norm_v)));
 }
 
 
@@ -166,9 +138,9 @@ ft::Vector<T> cross_product(const ft::Vector<T> & u, const ft::Vector<T> & v)
 
     return ft::Vector<T>(
         {
-            std::fma(u[1], v[2], -u[2] * v[1]),
-            std::fma(u[2], v[0], -u[0] * v[2]),
-            std::fma(u[0], v[1], -u[1] * v[0])
+            u[1] * v[2] - u[2] * v[1],
+            u[2] * v[0] - u[0] * v[2],
+            u[0] * v[1] - u[1] * v[0]
         }
     );
 }

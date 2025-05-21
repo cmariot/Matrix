@@ -102,7 +102,7 @@ T ft::Matrix<T>::determinant() const
     {
         size_type zeros = 0;
         for (size_type j = 0; j < _size; j++)
-            if (_matrix[i][j] == 0)
+            if (_matrix[i][j] == T())
                 zeros++;
         if (zeros > max_zeros)
         {
@@ -112,7 +112,7 @@ T ft::Matrix<T>::determinant() const
     }
 
     for (size_type i = 0; i < _size; i++)
-        if (_matrix[max_zeros_index][i] != 0)
+        if (_matrix[max_zeros_index][i] != T())
             det += _matrix[max_zeros_index][i] * cofactor(max_zeros_index, i);
     return (det);
 }

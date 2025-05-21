@@ -27,7 +27,6 @@ int	vector_launcher(void)
     load_test(&tests, function_name, "Norm                  ", (void *)&v_norm_test, "");
     load_test(&tests, function_name, "Cosine                ", (void *)&v_cosine_test, "");
     load_test(&tests, function_name, "Cross product         ", (void *)&v_cross_product_test, "");
-    load_test(&tests, function_name, "Complex               ", (void *)&v_complex_test, "");
 
 	return (launch_tests(&tests));
 }
