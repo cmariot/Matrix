@@ -16,7 +16,7 @@
 # **************************************************************************** #
 
 
-NAME			 = Matrix
+NAME			 = bin/tester
 
 
 
@@ -110,7 +110,7 @@ EXERCICES		= exercises/ex00.cpp \
 				  exercises/ex15.cpp
 
 # Liste des exécutables ex00, ex01, ...
-EXECS = $(patsubst exercises/%.cpp,executables/%, $(EXERCICES))
+EXECS = $(patsubst exercises/%.cpp,bin/%, $(EXERCICES))
 
 # Objets pour les exercices
 EXO_OBJDIR = objs/exercises/
@@ -167,20 +167,21 @@ $(OBJ_ROOTDIR)%.o: $(SRC_ROOTDIR)%.cpp
 
 $(NAME)	: 		$(OBJS)
 				@make -C unit_tests/framework --no-print-directory
+				@mkdir -p bin
 				$(CC) $(LFLAGS) $(OBJS) $(LIBRARY) -o $(NAME)
 				@printf "\n"
 
 
 leaks :			all
-				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=66 ./$(NAME) 2> valgrind.log
+				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=66 ./bin/tester 2> valgrind.log
 
 
 showleaks :		all
-				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=66 ./$(NAME)
+				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=66 ./bin/tester
 
 
 test :			all
-				@./$(NAME)
+				@./bin/tester
 
 
 # Création du dossier pour les objets des exercices
@@ -191,12 +192,12 @@ dirs_exos:
 all_exos: dirs_exos $(EXECS)
 
 # Specific rule for ex14 to include projection.o
-executables/ex14: objs/exercises/ex14.o objs/srcs/matrix/srcs/projection.o
-	@mkdir -p executables
+bin/ex14: objs/exercises/ex14.o objs/srcs/matrix/srcs/projection.o
+	@mkdir -p bin
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
-executables/%: objs/exercises/%.o
-	@mkdir -p executables
+bin/%: objs/exercises/%.o
+	@mkdir -p bin
 	$(CC) $(CFLAGS) $(INCLUDES) $< -o $@
 
 objs/exercises/%.o: exercises/%.cpp | dirs_exos
@@ -207,7 +208,7 @@ clean :
 				@rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@rm -rf VECTOR.log MATRIX.log valgrind.log
 				@rm -rf objs/exercises
-				@rm -rf executables
+				@rm -rf bin
 				@make clean -C unit_tests/framework --no-print-directory
 				@printf "$(RED)"
 				@printf "Object files removed\n"
@@ -219,7 +220,7 @@ fclean :
 				@rm -rf VECTOR.log MATRIX.log valgrind.log
 				@-rm -rf $(OBJ_ROOTDIR) $(DEPENDS)
 				@rm -rf objs/exercises
-				@rm -rf executables
+				@rm -rf bin
 				@make fclean -C unit_tests/framework --no-print-directory
 				@printf "$(RED)"
 				@printf "Binary and object files removed\n"
@@ -245,7 +246,7 @@ footer :
 				@printf "➤     SUCCESS\n"
 				@printf "\nUSAGE\n"
 				@printf "$(RESET)"
-				@printf "./$(NAME)\n"
+				@printf "./bin/tester\n"
 
 
 -include $(DEPENDS)
